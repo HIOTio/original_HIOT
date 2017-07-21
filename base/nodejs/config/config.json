@@ -1,0 +1,74 @@
+{
+  "wia": "Lightwave RF controller",
+  "wid": "Control any connected Lightwave RF devices",
+  "c": [
+    {
+      "id": "e1",
+      "d": "Turn a device on or off",
+      "n": "Device On/Off",
+      "p": [
+        {
+          "id": "p1",
+          "type": "char[]",
+          "description": "Room Number, e.g. ‘R1’",
+          "required": 1,
+          "min": "2",
+          "max": "4",
+          "default": "R1"
+        },
+        {
+          "id": "p2",
+          "type": "char[]",
+          "description": "Device Number, e.g. D1’",
+          "required": 1,
+          "min": "2",
+          "max": "4",
+          "default": "D1"
+        },
+        {
+          "id": "p3",
+          "type": "char[]",
+          "description": "F0 for o=Off, F1 for On’",
+          "required": 1,
+          "min": "2",
+          "max": "2",
+          "default": "F1"
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "d": "Dim lights",
+      "n": "Dim",
+      "p": [
+        {
+          "id": "p1",
+          "type": "char[]",
+          "description": "Room Number, e.g. ‘R1’",
+          "required": 1,
+          "min": "2",
+          "max": "4",
+          "default": "R1"
+        },
+        {
+          "id": "p2",
+          "type": "char[]",
+          "description": "Device Number, e.g. D1’",
+          "required": 1,
+          "min": "2",
+          "max": "4",
+          "default": "D1"
+        },
+        {
+          "id": "p3",
+          "type": "int",
+          "description": "Dim level from 0 to 32’",
+          "required": 1,
+          "min": "0",
+          "max": "32",
+          "default": "16"
+        }
+      ]
+    }
+  ]
+}
