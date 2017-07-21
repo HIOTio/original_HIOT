@@ -1,0 +1,206 @@
+---
+swagger: "2.0"
+info:
+  description: "The API for the Hierarchial IOT"
+  version: "0.1.0"
+  title: "hiot-api"
+host: "virtserver.swaggerhub.com"
+basePath: "/healyma/HIOT.io/1.0.0"
+schemes:
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /platform/deviceRoles:
+    get:
+      tags:
+      - "Platform"
+      description: "returns roles for specified device"
+      operationId: "getRoles"
+      parameters:
+      - name: "deviceId"
+        in: "query"
+        description: "deviceId of the device to query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Enabled roles"
+          schema:
+            type: "array"
+            items:
+              type: "integer"
+              format: "int32"
+      x-swagger-router-controller: "Platform"
+  /platform/devicesWithRole:
+    get:
+      tags:
+      - "Platform"
+      description: "returns devices with the specified role"
+      operationId: "getDevicesByRole"
+      parameters:
+      - name: "roleId"
+        in: "query"
+        description: "roleId to search for"
+        required: false
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "starting position, default"
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of devices to return"
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Devices configured with specified role"
+          schema:
+            type: "array"
+            items:
+              type: "integer"
+              format: "int32"
+              description: "deviceId"
+      x-swagger-router-controller: "Platform"
+  /platform/status:
+    get:
+      tags:
+      - "Platform"
+      description: "returns health status and metrics for the platform"
+      operationId: "getStatus"
+      parameters: []
+      responses:
+        200:
+          description: "Enabled roles"
+          schema:
+            type: "array"
+            items:
+              type: "integer"
+              format: "int32"
+      x-swagger-router-controller: "Platform"
+  /platform/command/categories:
+    get:
+      tags:
+      - "Platform"
+      description: "return an array of available command categories"
+      operationId: "getCommandCategories"
+      parameters: []
+      responses:
+        200:
+          description: "list of command categories"
+          schema:
+            $ref: "#/definitions/CommandCategories"
+      x-swagger-router-controller: "Platform"
+  /platform/commands/byController:
+    get:
+      tags:
+      - "Platform"
+      description: "returns the commands supported by controller devices"
+      operationId: "getCommands"
+      parameters:
+      - name: "commandCategories"
+        in: "query"
+        description: "command categories to return"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "offset"
+        in: "query"
+        description: "starting position, default"
+        required: false
+        type: "integer"
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of devices to return"
+        required: false
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Devices configured with specified role"
+          schema:
+            $ref: "#/definitions/CommandCategory"
+      x-swagger-router-controller: "Platform"
+definitions:
+  CommandCategories:
+    type: "object"
+    properties:
+      categories:
+        type: "array"
+        items:
+          $ref: "#/definitions/CommandCategory"
+  CommandCategory:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+      level:
+        type: "integer"
+        format: "int32"
+  Role:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      description:
+        type: "string"
+  Command:
+    type: "object"
+    properties:
+      d:
+        type: "string"
+        format: "hex"
+        description: "device Id (16 character hex)"
+      c:
+        type: "string"
+        format: "hex"
+        description: "command Id as specified by the device"
+      p:
+        type: "array"
+        description: "array of parameters"
+        items:
+          $ref: "#/definitions/CommandParameters"
+  CommandParameters:
+    type: "object"
+    properties:
+      p:
+        type: "array"
+        items:
+          $ref: "#/definitions/Parameter"
+  Parameter:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "parameter name"
+      value:
+        type: "string"
+        description: "this is the name of the datatype for the parameter"
+      required:
+        type: "boolean"
+      min:
+        type: "integer"
+        format: "int32"
+        description: "minimum value for numerics, min length for strings and byte\
+          \ arrays"
+      max:
+        type: "integer"
+        format: "int32"
+        description: "max value for numerics, max length for strings and byte arrays"
