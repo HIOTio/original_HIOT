@@ -5,7 +5,7 @@ info:
   version: "0.0.1"
   title: "HIOT.io - Thing API"
 host: "virtserver.swaggerhub.com"
-basePath: "/healyma/HIOT.io.Thing/0.0.1"
+basePath: "/"
 schemes:
 - "https"
 paths:
