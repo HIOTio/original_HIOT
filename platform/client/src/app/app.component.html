@@ -1,8 +1,26 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <alert></alert>
-            <router-outlet></router-outlet>
-        </div>
+<md-toolbar color="primary">
+
+    <button md-button routerLink="/">
+    <md-icon>home</md-icon> 
+        {{title}}</button>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button md-button routerLink="/products" *ngIf="loggedIn">Products</button>
+        <button md-button routerLink="/dashboard" *ngIf="loggedIn">Dashboard</button>
+        <button md-button routerLink="/login" *ngIf="!loggedIn">Login</button>
+        <button md-button routerLink="/register" *ngIf="!loggedIn">Register</button>
     </div>
-</div>
+    <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+     <md-icon>menu</md-icon>
+    </button>
+
+</md-toolbar>
+<md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item routerLink="/products" *ngIf="loggedIn">Products</button>
+    <button md-menu-item routerLink="/dashboard" *ngIf="loggedIn">Dashboard</button>
+    <!--<button md-menu-item>Help</button>-->
+</md-menu>
+<alert></alert>
+<router-outlet></router-outlet>
