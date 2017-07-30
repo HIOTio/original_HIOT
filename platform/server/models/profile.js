@@ -1,0 +1,66 @@
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
+const SALT_WORK_FACTOR = 10;
+
+var ProfileSchema = new Schema({
+    username: {
+        type: String,
+        reauired: true,
+        index: {
+            unique: true
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 8
+    },
+    added: {
+        type: Date,
+        default: Date.now
+    },
+    active: {
+        type: Boolean,
+        default: true
+    }
+});
+
+ProfileSchema
+    .virtual('url')
+    .get(function () {
+        return '/api/profile/' + this._id;
+    });
+
+ProfileSchema.pre('save', function (next) {
+    var user = this;
+
+    if (!user.isModified('password')) return next();
+
+    // generate a salt
+    bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+        if (err) return next(err);
+
+        // hash the password along with our new salt
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            if (err) return next(err);
+
+            // override the cleartext password with the hashed one
+            user.password = hash;
+            next();
+        });
+    });
+});
+ProfileSchema.methods.toJSON = function () {
+    var obj = this.toObject()
+    delete obj.password
+    return obj
+}
+ProfileSchema.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+module.exports = mongoose.model('Profile', ProfileSchema);
