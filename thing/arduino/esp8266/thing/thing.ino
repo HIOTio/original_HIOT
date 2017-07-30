@@ -56,9 +56,10 @@ ESP8266WebServer server(80);
 #define Moist_A0 0;
 #define Moist_D0 0;
 
-#define I2C_SDL 4;
+#define I2C_SDA 4;
 #define I2C_SCL 5;
 
+int poll_interval=0;
 
 void setup() {
   lcd.setBacklightPin(BACKLIGHT_PIN,POSITIVE);
@@ -68,6 +69,9 @@ lcd.home (); // go home
   //read config from "config.txt" on SD card
   char ssid[]="";
   char password[]="";
+  poll_interval=0;
+
+  
   WiFi.begin(ssid, password);
   //start LCD and display WiFi status
   
