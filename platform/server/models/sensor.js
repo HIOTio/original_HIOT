@@ -36,5 +36,4 @@ SensorSchema
     });
 
 
-// Compile model from schema
 module.exports = mongoose.model('Sensor', SensorSchema);
