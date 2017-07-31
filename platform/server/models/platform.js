@@ -12,4 +12,4 @@ PlatformSchema
 
 
 // Compile model from schema
-varPlatformModel = mongoose.model('Platform', PlatformSchema);
+var PlatformModel = mongoose.model('Platform', PlatformSchema);

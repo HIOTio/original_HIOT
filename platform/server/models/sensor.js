@@ -18,10 +18,14 @@ var SensorSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Sensor_Types'
 	},
-	coordinator_groups:[{
+	coordinator_groups: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Coordinator_Groups'
-	}[]
+	}],
+	sensor_readings: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Sensor_Reading'
+	}]
 });
 SensorSchema
 	.virtual('url')

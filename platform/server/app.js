@@ -59,12 +59,14 @@ var r_profile = require('./routes/profile');
 var r_deployment = require('./routes/deployment');
 var r_coordinator = require('./routes/coordinator');
 var r_aggregator = require('./routes/aggregator');
+var r_dashboard = require('./routes/dashboard');
 
 app.use('/', r_no_auth);
 app.use('/api/profile', r_profile);
 app.use('/api/deployment', r_deployment);
 app.use('/api/coordinator', r_coordinator);
 app.use('/api/aggregator', r_aggregator);
+app.use('/api/dashboard', r_dashboard);
 // End Routing
 
 

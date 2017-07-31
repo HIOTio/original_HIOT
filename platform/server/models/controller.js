@@ -7,7 +7,11 @@ var ControllerSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Thing'
 	},
-	added: Date
+	added: Date,
+	commands: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Controller_Command'
+	}]
 });
 ControllerSchema
 	.virtual('url')

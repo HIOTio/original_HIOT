@@ -12,6 +12,10 @@ var DeviceSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Device_Make'
 	},
+	health: [{
+		type: Schema.Types.ObjectId,
+		ref: 'HealthModel'
+	}],
 	model: {
 		type: Schema.Types.ObjectId,
 		ref: 'Device_Model'
