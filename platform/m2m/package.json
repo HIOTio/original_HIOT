@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^4.11.5",
     "mqtt": "^2.10.0"
   }
 }

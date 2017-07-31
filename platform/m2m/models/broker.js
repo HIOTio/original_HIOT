@@ -1,8 +1,7 @@
-var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var AggregatorSchema = new Schema({
-    device: {
+var BrokerSchema = new Schema({
+    deviceId: {
         type: Schema.Types.ObjectId,
         ref: 'Device',
         required: true
@@ -12,9 +11,8 @@ var AggregatorSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Device'
     },
-    added: Date,
-    active: Boolean
+    added: Date
 });
 
 // Compile model from schema
-module.exports = mongoose.model('Aggregator', AggregatorSchema);
+var BrokerModel = mongoose.model('Broker', BrokerSchema);
