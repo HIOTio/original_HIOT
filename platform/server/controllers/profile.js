@@ -40,7 +40,7 @@ exports.profile_auth = function (req, res, next) {
 		}
 	});
 };
-exports.profile_detail = function (req, res) {
+exports.profile_detail = function (req, res, next) {
 	Profile.findOne({
 		_id: req.params.profile
 	}, function (err, profile) {

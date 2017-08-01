@@ -3,6 +3,16 @@ var Schema = mongoose.Schema;
 
 var DeploymentSchema = new Schema({
 	description: String,
+	name: {
+		type: String,
+		required: true
+	},
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: 'Profile',
+		required: true
+	},
+
 	added: {
 		type: Date,
 		default: Date.now
