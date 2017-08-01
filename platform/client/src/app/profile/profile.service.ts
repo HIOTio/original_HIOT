@@ -13,7 +13,8 @@ export class ProfileService {
         return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
     create(user: Profile) {
-        return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
+		console.log(user);
+        return this.http.post('http://localhost:3000/register', user, this.jwt()).map((response: Response) => response.json());
     }
     update(user: Profile) {
         return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
