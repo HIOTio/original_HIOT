@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Coordinator_GroupSchema = new Schema({
@@ -24,5 +25,4 @@ Coordinator_GroupSchema
 	});
 
 
-// Compile model from schema
-var Coordinator_GroupModel = mongoose.model('Coordinator_Group', Coordinator_GroupSchema);
+module.exports = mongoose.model('Coordinator_Group', Coordinator_GroupSchema);

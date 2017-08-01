@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 var cors = require('cors');
 app.use(bodyParser.urlencoded({
-    extended: false
+	extended: false
 }));
 app.use(expressValidator());
 var expressJwt = require('express-jwt');
@@ -31,24 +31,24 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = config.secret;
 
 var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
-    Profile.find_by_id(jwt_payload.id, function (err, user) {
-        if (this) {
-            next(null, this);
-        } else {
-            next(null, false);
-        }
-    });
+	Profile.find_by_id(jwt_payload.id, function (err, user) {
+		if (this) {
+			next(null, this);
+		} else {
+			next(null, false);
+		}
+	});
 });
 passport.use(strategy);
 app.use(passport.initialize());
 
 app.use('/api', passport.authenticate('jwt', {
-    session: false
+	session: false
 }));
 
 // use it before all route definitions
 app.use(cors({
-    origin: 'http://localhost:4200'
+	origin: 'http://localhost:4200'
 }));
 
 // Routing
@@ -63,6 +63,7 @@ var r_dashboard = require('./routes/dashboard');
 var r_device = require('./routes/device');
 var r_thing = require('./routes/thing');
 var r_sensor = require('./routes/sensor');
+var r_sensor_reading = require('./routes/sensor_reading');
 
 app.use('/', r_no_auth);
 app.use('/api/profile', r_profile);
@@ -73,14 +74,15 @@ app.use('/api/dashboard', r_dashboard);
 app.use('/api/device', r_device);
 app.use('/api/thing', r_thing);
 app.use('/api/sensor', r_sensor);
+app.use('/api/sensor_reading', r_sensor_reading);
 // End Routing
 
 
 app.get('/', function (req, res) {
-    res.send('HIOT Platform!');
+	res.send('HIOT Platform!');
 });
 
 
 app.listen(3000, function () {
-    console.log('Platform running on port 3000!');
+	console.log('Platform running on port 3000!');
 });

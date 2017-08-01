@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var HealthSchema = new Schema({
@@ -6,7 +7,7 @@ var HealthSchema = new Schema({
 	storageUsage: Number,
 	totalMemory: Number,
 	totalStorage: Number,
-	date: Date
+	date: Date,
 	device: {
 		type: Schema.Types.ObjectId,
 		ref: 'Device'

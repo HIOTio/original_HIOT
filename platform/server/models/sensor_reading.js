@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Sensor_ReadingSchema = new Schema({
@@ -8,4 +9,4 @@ var Sensor_ReadingSchema = new Schema({
 
 
 // Compile model from schema
-var Sensor_ReadingModel = mongoose.model('Sensor_Reading', Sensor_ReadingSchema);
+module.exports = mongoose.model('Sensor_Reading', Sensor_ReadingSchema);
