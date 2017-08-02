@@ -64,6 +64,7 @@ var r_device = require('./routes/device');
 var r_thing = require('./routes/thing');
 var r_sensor = require('./routes/sensor');
 var r_sensor_reading = require('./routes/sensor_reading');
+var r_controller = require('./routes/controller');
 
 app.use('/', r_no_auth);
 app.use('/api/profile', r_profile);
@@ -75,6 +76,7 @@ app.use('/api/device', r_device);
 app.use('/api/thing', r_thing);
 app.use('/api/sensor', r_sensor);
 app.use('/api/sensor_reading', r_sensor_reading);
+app.use('/api/controller', r_controller);
 // End Routing
 
 
