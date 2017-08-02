@@ -24,15 +24,23 @@ export class AuthenticationService {
     
         this.cred.subscribe((res) =>{
         this.token='JWT ' + res.token;
-            console.log(this.token);
+        localStorage.setItem('currentUser', JSON.stringify({ username: username, id: res.profile._id, token: res.token }));
+            console.log('set localstorage');
         })
         return this.cred;
     }
+    loggedIn(){
+         if (localStorage.getItem('currentUser')) {
+            // logged in so return true
+            return true;
+        }
 
+        return false;
+    }
     logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        this.cred= null;
         this.token='';
+        localStorage.removeItem('currentUser');
     }
     getToken(){
         return this.token;

@@ -9,15 +9,17 @@ import { routing } from './routing';
 import { MaterialModule } from '@angular/material';
 import {Hammerjs } from 'hammerjs';
 import { MdButtonModule, MdCheckboxModule, MdMenuModule } from '@angular/material';
+import { AuthGuard} from './auth/auth.guard';
 import {NavComponent} from './nav/nav.component'; 
 import { AlertComponent } from './alerts/alert.component';
-import { AuthGuard } from './auth/auth.guard';
 import { AlertService} from './alerts/alert.service';
 import { AuthenticationService } from './auth/auth.service';
 import { ProfileService } from './profile/profile.service';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './auth/auth.login.component';
 import { RegisterComponent } from './auth/auth.register.component';
+import { DeploymentComponent } from './deployment/deployment.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
     imports: [
@@ -38,7 +40,9 @@ import { RegisterComponent } from './auth/auth.register.component';
         AlertComponent,
         ProfileComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        DeploymentComponent,
+        LogoutComponent
     ],
     providers: [
         AuthGuard,

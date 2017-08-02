@@ -7,13 +7,16 @@ import { AuthenticationService} from '../auth/auth.service';
 })
  
 export class NavComponent implements OnInit {
-    constructor(public authService: AuthenticationService) {
+    constructor(private authService:AuthenticationService) {
         
     }
     profile: any;
     ngOnInit() {
     }
-            
+    authed(){
+        return this.authService.loggedIn();
+        
+    }    
 
     
 }

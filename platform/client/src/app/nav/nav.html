@@ -7,10 +7,11 @@
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button md-button routerLink="/products" *ngIf="authService.getCredentials()">Products</button>
-        <button md-button routerLink="/dashboard" *ngIf="loggedIn">Dashboard</button>
-        <button md-button routerLink="/login" *ngIf="!loggedIn">Login</button>
-        <button md-button routerLink="/register" *ngIf="!loggedIn">Register</button>
+        <button md-button routerLink="/deployments" *ngIf="authed()">Deployments</button>
+        <button md-button routerLink="/dashboard" *ngIf="authed()">Dashboard</button>
+        <button md-button routerLink="/login" *ngIf="!authed()">Login</button>
+        <button md-button routerLink="/register" *ngIf="!authed()">Register</button>
+        <button md-button routerLink="/logout" *ngIf="authed()">Logout</button>
     </div>
     <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
      <md-icon>menu</md-icon>

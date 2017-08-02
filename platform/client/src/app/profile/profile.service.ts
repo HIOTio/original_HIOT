@@ -6,9 +6,7 @@ import { Profile } from './profile.model';
 @Injectable()
 export class ProfileService {
     constructor(private http: Http) { }
-    login(username: String, password: String){
 
-    }   
     getById(id: number) {
         return this.http.get('http://localhost:3000/api/profile/' + id, this.jwt()).map((response: Response) => response.json());
     }
