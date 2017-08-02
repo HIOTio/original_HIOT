@@ -31,6 +31,7 @@ exports.broker_detail = function (req, res, next) {
 };
 exports.broker_create = function (req, res, next) {
 	var broker = new Broker({
+		deviceId: req.body.deviceId,
 		description: req.body.description,
 		parent: req.body.parent,
 		added: req.body.added,

@@ -21,4 +21,4 @@ ControllerSchema
 
 
 // Compile model from schema
-var ControllerModel = mongoose.model('Controller', ControllerSchema);
+module.exports = mongoose.model('Controller', ControllerSchema);

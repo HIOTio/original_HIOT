@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var BrokerSchema = new Schema({
@@ -15,5 +16,10 @@ var BrokerSchema = new Schema({
 	active: Boolean
 });
 
-// Compile model from schema
-var BrokerModel = mongoose.model('Broker', BrokerSchema);
+BrokerSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/broker/' + this._id;
+	});
+
+module.exports = mongoose.model('Broker', BrokerSchema);
