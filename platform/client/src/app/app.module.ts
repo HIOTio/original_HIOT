@@ -20,6 +20,7 @@ import { LoginComponent } from './auth/auth.login.component';
 import { RegisterComponent } from './auth/auth.register.component';
 import { DeploymentComponent } from './deployment/deployment.component';
 import { LogoutComponent } from './logout/logout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { LogoutComponent } from './logout/logout.component';
         LoginComponent,
         RegisterComponent,
         DeploymentComponent,
-        LogoutComponent
+        LogoutComponent,
+        DashboardComponent
     ],
     providers: [
         AuthGuard,
