@@ -9,6 +9,7 @@ import { routing } from './routing';
 import { MaterialModule } from '@angular/material';
 import {Hammerjs } from 'hammerjs';
 import { MdButtonModule, MdCheckboxModule, MdMenuModule } from '@angular/material';
+import {NavComponent} from './nav/nav.component'; 
 import { AlertComponent } from './alerts/alert.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AlertService} from './alerts/alert.service';
@@ -33,6 +34,7 @@ import { RegisterComponent } from './auth/auth.register.component';
     ],
     declarations: [
         AppComponent,
+        NavComponent,
         AlertComponent,
         ProfileComponent,
         LoginComponent,

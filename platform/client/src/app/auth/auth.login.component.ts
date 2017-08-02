@@ -5,16 +5,17 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../alerts/alert.service';
 import {AuthenticationService } from './auth.service';
-
+import {ProfileService} from '../profile/profile.service';
 @Component({
     moduleId: module.id,
-    templateUrl: 'auth.login.html'
+    templateUrl: 'auth.login.html',
+    providers: [AuthenticationService]
 })
 export class LoginComponent implements OnInit {
+    
     model: any = {};
     loading = false;
     returnUrl: string;
-
     constructor(
     private http: Http,
         private route: ActivatedRoute,
@@ -25,27 +26,23 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
-
         // get return url from route parameters or default to '/'
         this.returnUrl =  '/';
     }
 
     login(user) {
         this.loading = true;
-         this.http.post('http://localhost:3000/auth', {username: user.username, password: user.password})
-      .map(res => res.json())
-      .subscribe(
-         data => {
-             console.log('logged in');
-             this.alertService.success('Yah, logged in');
-                    this.loading = false;
-             localStorage.setItem('token', data.token);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                }
-      );
+        this.authenticationService.login(user.username,user.password).subscribe(
+            Response =>{
+                this.loading=false;
+             console.log(Response);
+            },
+            err=>{
+                console.log("Aw crappity");
+                console.log(err);
+            }
+         );
+
 
     }
 }
