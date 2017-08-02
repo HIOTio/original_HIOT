@@ -12,4 +12,4 @@ Device_MakeSchema
 
 
 // Compile model from schema
-var Device_MakeModel = mongoose.model('Device_Make', Device_MakeSchema);
+module.exports = mongoose.model('Device_Make', Device_MakeSchema);

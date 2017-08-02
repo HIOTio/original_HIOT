@@ -20,4 +20,9 @@ RoleSchema = new Schema({
 		default.Date.now
 	}
 });
+RoleSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/role/' + this._id;
+	});
 module.exports = mongoose.Model('Role', RoleSchema);

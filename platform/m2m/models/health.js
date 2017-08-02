@@ -13,5 +13,9 @@ var HealthSchema = new Schema({
 		ref: 'Device'
 	}
 });
-
+HealthSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/health/' + this._id;
+	});
 module.exports = mongoose.model('Health', HealthSchema);

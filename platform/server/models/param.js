@@ -10,5 +10,9 @@ var ParamSchema = new Schema({
 	default: Object
 
 })
-
+ParamSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/param/' + this._id;
+	});
 module.exports = mongoose.Model('ParamModel', ParamSchema);

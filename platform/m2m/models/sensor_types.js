@@ -13,6 +13,4 @@ Sensor_TypesSchema
 		return '/api/sensor_types/' + this._id;
 	});
 
-
-// Compile model from schema
-var Sensor_TypesModel = mongoose.model('Sensor_Types', Sensor_TypesSchema);
+module.exports = mongoose.model('Sensor_Types', Sensor_TypesSchema);

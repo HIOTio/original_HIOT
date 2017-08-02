@@ -13,7 +13,4 @@ Device_ModelSchema
 	.get(function () {
 		return '/api/device_model/' + this._id;
 	});
-
-
-// Compile model from schema
-var Device_ModelModel = mongoose.model('Device_Model', Device_ModelSchema);
+module.exports = mongoose.model('Device_Model', Device_ModelSchema);

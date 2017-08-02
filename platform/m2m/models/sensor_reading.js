@@ -13,4 +13,9 @@ var Sensor_ReadingSchema = new Schema({
 	reading: Number
 
 });
+Sensor_ReadingSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/sensor_reading/' + this._id;
+	});
 module.exports = mongoose.model('Sensor_Reading', Sensor_ReadingSchema);

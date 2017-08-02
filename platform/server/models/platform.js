@@ -10,6 +10,4 @@ PlatformSchema
 		return '/api/platform/' + this._id;
 	});
 
-
-// Compile model from schema
-var PlatformModel = mongoose.model('Platform', PlatformSchema);
+module.exports = mongoose.model('Platform', PlatformSchema);

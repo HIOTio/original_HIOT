@@ -20,4 +20,9 @@ DeploymentRoleSchema = new Schema({
 		default.Date.now
 	}
 });
+DeploymentRoleSchema
+	.virtual('url')
+	.get(function () {
+		return '/api/deploymentrole/' + this._id;
+	});
 module.exports = mongoose.Model('DeploymentRole', DeploymentRoleSchema);
