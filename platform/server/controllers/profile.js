@@ -82,11 +82,14 @@ exports.profile_create = function (req, res, next) {
 		firstname: req.body.firstname,
 		lastname: req.body.lastname
 	});
-	profile.save(function (err) {
+	profile.save(function (err, doc) {
 		if (err) {
 			return next(err);
 		}
-		res.send("Congrats, your profile has been created");
+		res.status(200).json({
+			"msg": "Congrats, your profile has been created",
+			"redirect": doc.url
+		});
 	});
 
 };

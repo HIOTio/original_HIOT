@@ -2,11 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Sensor_ReadingSchema = new Schema({
-	date: Date,
-	reading: Object
+	sensor_id: {
+		type: Schema.Types.ObjectId,
+		ref: 'Sensor'
+	},
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	reading: Number
 
 });
-
-
-// Compile model from schema
 module.exports = mongoose.model('Sensor_Reading', Sensor_ReadingSchema);
