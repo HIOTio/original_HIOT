@@ -28,7 +28,7 @@ var DeviceSchema = new Schema({
 	deployment: {
 		type: Schema.Types.ObjectId,
 		ref: 'Deployment'
-	}
+	},
 	added: Date,
 	Active: Boolean
 });
