@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 var cors = require('cors');
 app.use(bodyParser.urlencoded({
-	extended: false
+    extended: false
 }));
 app.use(expressValidator());
 var expressJwt = require('express-jwt');
@@ -31,25 +31,26 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
 jwtOptions.secretOrKey = config.secret;
 
 var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
-	Profile.find_by_id(jwt_payload.id, function (err, user) {
-		if (this) {
-			next(null, this);
-		} else {
-			next(null, false);
-		}
-	});
+    Profile.find_by_id(jwt_payload.id, function (err, user) {
+        if (this) {
+            next(null, this);
+        } else {
+            next(null, false);
+        }
+    });
 });
 passport.use(strategy);
+app.use(cors({
+    origin: 'http://localhost:4200'
+}));
 app.use(passport.initialize());
 
 app.use('/api', passport.authenticate('jwt', {
-	session: false
+    session: false
 }));
 
 // use it before all route definitions
-app.use(cors({
-	origin: 'http://localhost:4200'
-}));
+
 
 // Routing
 // no auth
@@ -66,6 +67,8 @@ var r_sensor = require('./routes/sensor');
 var r_sensor_reading = require('./routes/sensor_reading');
 var r_controller = require('./routes/controller');
 var r_broker = require('./routes/broker');
+var r_deployment_role = require('./routes/deployment_role');
+var r_role = require('./routes/role');
 app.use('/', r_no_auth);
 app.use('/api/profile', r_profile);
 app.use('/api/deployment', r_deployment);
@@ -78,14 +81,16 @@ app.use('/api/sensor', r_sensor);
 app.use('/api/sensor_reading', r_sensor_reading);
 app.use('/api/controller', r_controller);
 app.use('/api/broker', r_broker);
+app.use('/api/deployment_role', r_deployment_role);
+app.use('/api/role', r_role);
 // End Routing
 
 
 app.get('/', function (req, res) {
-	res.send('HIOT Platform!');
+    res.send('HIOT Platform!');
 });
 
 
 app.listen(3000, function () {
-	console.log('Platform running on port 3000!');
+    console.log('Platform running on port 3000!');
 });

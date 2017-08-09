@@ -1,1 +1,5 @@
 List all of my deployments and my access/role to then Stats for number of things, controllers and brokers health status and alerts
+
+<div *ngFor="let deployment of deployments">
+    Deployment:{{deployment.deployment.name}} ({{deployment.deployment.description}})<br/> Role:{{deployment.role.name}} ({{deployment.role.description}})
+</div>

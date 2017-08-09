@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AlertService} from '../alerts/alert.service';
 import {AuthenticationService } from './auth.service';
-import {ProfileService} from '../profile/profile.service';
 @Component({
     moduleId: module.id,
     templateUrl: 'auth.login.html',
@@ -17,9 +13,6 @@ export class LoginComponent implements OnInit {
     loading = false;
     returnUrl: string;
     constructor(
-    private http: Http,
-        private route: ActivatedRoute,
-        private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) { }
 

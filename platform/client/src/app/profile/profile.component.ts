@@ -5,7 +5,8 @@ import { ProfileService } from './profile.service';
  
 @Component({
     moduleId: module.id,
-    templateUrl: 'profile.html'
+    templateUrl: 'profile.html',
+    selector: 'app-profile'
 })
  
 export class ProfileComponent implements OnInit {
