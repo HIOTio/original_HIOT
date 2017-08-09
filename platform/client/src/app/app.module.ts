@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { routing } from './routing';
 import { MaterialModule } from '@angular/material';
 import {Hammerjs } from 'hammerjs';
-import { MdButtonModule, MdCheckboxModule, MdMenuModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdMenuModule,MdSnackBarModule } from '@angular/material';
 import { AuthGuard} from './auth/auth.guard';
 import {NavComponent} from './nav/nav.component'; 
 import { AlertComponent } from './alerts/alert.component';
@@ -33,7 +33,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         MaterialModule,
         MdButtonModule,
         MdCheckboxModule,
-        MdMenuModule
+        MdMenuModule,
+        MdSnackBarModule
     ],
     declarations: [
         AppComponent,

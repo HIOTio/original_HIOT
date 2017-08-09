@@ -1,5 +1,17 @@
 List all of my deployments and my access/role to then Stats for number of things, controllers and brokers health status and alerts
 
-<div *ngFor="let deployment of deployments">
-    Deployment:{{deployment.deployment.name}} ({{deployment.deployment.description}})<br/> Role:{{deployment.role.name}} ({{deployment.role.description}})
-</div>
+<md-card *ngFor="let deployment of deployments">
+    <md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+        <button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+    <md-card-subtitle>{{deployment.role.name}}
+
+        <md-chip-list>
+            <md-chip>{{deployment.role.name}}</md-chip>
+        </md-chip-list>
+    </md-card-subtitle>
+
+    <md-card-content></md-card-content>
+    <md-card-actions>
+        <button md-raised-button (click)="saveChanges()">Deployment Details</button>
+    </md-card-actions>
+</md-card>
