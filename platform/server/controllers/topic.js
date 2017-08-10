@@ -12,24 +12,29 @@ exports.topic_list = function (req, res, next) {
 
 exports.topic_detail = function (req, res, next) {
 	Topic.find({
-		_id: req.Topics.id
-	}, function (err, Topic) {
+		_id: req.body.id
+	}, function (err, topic) {
 		if (err) {
 			return next(err);
 		}
 		//Successful, so render
-		res.send(Topic);
+		res.send(topic);
 	});
 };
 exports.topic_create = function (req, res, next) {
+	console.log(req.body.fields);
 	var topic = new Topic({
 		description: req.body.description,
 		added: req.body.added,
 		name: req.body.name,
 		fields: req.body.fields
 	});
-	res.redirect(303, topic.url);
-
+	topic.save(function (err) {
+		if (err) {
+			return next(err);
+		}
+		res.redirect(303, topic.url);
+	});
 };
 exports.topic_delete = function (req, res, next) {
 	Topic.findOneAndUpdate({

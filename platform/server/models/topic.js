@@ -9,7 +9,7 @@ var TopicSchema = new Schema({
 		field_name: String,
 		description: String,
 		required: Boolean,
-		type: String
+		field_type: String
 	}]
 });
 TopicSchema
