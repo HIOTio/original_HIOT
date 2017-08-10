@@ -1,4 +1,3 @@
-var ObjectId = require('mongoose').Types.ObjectId;
 var SensorReading = require('../models/sensor_reading');
 
 exports.sensor_reading_list = function (req, res, next) {
@@ -12,7 +11,7 @@ exports.sensor_reading_list = function (req, res, next) {
 };
 exports.sensor_reading_list_for_sensor = function (req, res, next) {
 	SensorReading.find({
-		sensor_id: new ObjectId(req.params.sensor_id)
+		sensor_id: req.params.sensor_id
 	}, function (err, list_sensor_readings) {
 		if (err) {
 			return next(err);

@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Sensor_TypesSchema = new Schema({
@@ -5,7 +6,7 @@ var Sensor_TypesSchema = new Schema({
 	name: String,
 	active: Boolean,
 	added: Date,
-	defaultPshInterval: Number,
+	defaultPushInterval: Number,
 });
 Sensor_TypesSchema
 	.virtual('url')

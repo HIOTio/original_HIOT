@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ParamSchema = new Schema({
@@ -15,4 +16,4 @@ ParamSchema
 	.get(function () {
 		return '/api/param/' + this._id;
 	});
-module.exports = mongoose.Model('ParamModel', ParamSchema);
+module.exports = mongoose.model('ParamModel', ParamSchema);

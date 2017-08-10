@@ -1,4 +1,4 @@
-var Coordinator = require('../models/Coordinator');
+var Coordinator = require('../models/coordinator');
 
 exports.Coordinator_list = function (req, res) {
 	Coordinator.find({}, function (err, list_coordinators) {
