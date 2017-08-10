@@ -30,7 +30,21 @@ var DeviceSchema = new Schema({
 		ref: 'Deployment'
 	},
 	added: Date,
-	Active: Boolean
+	Active: Boolean,
+	publications: [{
+		channel: String,
+		topic: {
+			type: Schema.Types.ObjectId,
+			ref: 'topic'
+		}
+	}],
+	subscriptions: [{
+		channel: String,
+		topic: {
+			type: Schema.Types.ObjectId,
+			ref: 'topic'
+		}
+	}]
 });
 
 DeviceSchema
