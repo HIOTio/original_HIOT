@@ -18,9 +18,12 @@ import { ProfileService } from './profile/profile.service';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './auth/auth.login.component';
 import { RegisterComponent } from './auth/auth.register.component';
-import { DeploymentComponent } from './deployment/deployment.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditDeploymentComponent } from './deployment/edit/edit-deployment.component';
+import { AddDeploymentComponent } from './deployment/add/add-deployment.component';
+import { DeleteDeploymentComponent } from './deployment/delete/delete-deployment.component';
+import { ListDeploymentComponent } from './deployment/list/list-deployment.component';
 
 @NgModule({
     imports: [
@@ -43,9 +46,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         ProfileComponent,
         LoginComponent,
         RegisterComponent,
-        DeploymentComponent,
         LogoutComponent,
-        DashboardComponent
+        DashboardComponent,
+        EditDeploymentComponent,
+        AddDeploymentComponent,
+        DeleteDeploymentComponent,
+        ListDeploymentComponent
     ],
     providers: [
         AuthGuard,
