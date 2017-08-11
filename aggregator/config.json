@@ -1,0 +1,38 @@
+{
+	"mqttServer": "http://localhost",
+	"mqttPort": 1883,
+	"publications": [
+		{
+			"channel": "sync agg 1",
+			"message": "{\"sync\":\"0\"}",
+			"interval": 3600000
+
+		}
+	],
+	"subscriptions": ["testsensor", "sensor1", "sensor999", "sensor123","sensorABC","sensorXYZ"],
+	"aggregator_id": "aggregator1",
+	"coordinator_groups": [
+		{
+			"group": "agg_1",
+			"interval": 30000,
+			"sensors": ["sensor1", "sensor999", "sensor123"],
+			"operations": {
+				"min": true,
+				"max": true,
+				"count": true,
+				"mean": true
+			}
+
+		}, {
+			"group": "min_max2",
+			"interval": 6000,
+			"sensors": ["sensor1"],
+			"operations": {
+				"min": true,
+				"max": true,
+				"count": false,
+				"mean": false
+			}
+		}
+	]
+}
