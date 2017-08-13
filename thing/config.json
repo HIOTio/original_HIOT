@@ -1,0 +1,51 @@
+{
+    "mqttServer": "http://localhost",
+    "mqttPort": 1883,
+    "sensors": [
+        {
+            "id": "sensor1",
+            "sensor_id": "597fb1dd3d7bab07cc445bf1",
+            "description": "temperature sensor #17, floor 1",
+            "sensor_type": "rand_sensor",
+            "poll": 60000
+        },
+        {
+            "id": "sensor123",
+            "sensor_id": "597fb19ec491901c4040098e",
+            "description": "temperature sensor #7, floor 1",
+            "sensor_type": "rand_sensor",
+            "poll": 60000
+        },
+        {
+            "id": "sensor999",
+            "description": "temperature sensor #8, floor 1",
+            "sensor_type": "rand_sensor",
+            "poll": 60000
+        },
+        {
+            "id": "sensorXYZ",
+            "sensor_id": "597fb1e03d7bab07cc445bf2",
+            "description": "temperature sensor #12, floor 1",
+            "sensor_type": "rand_sensor",
+            "poll": 60000
+        },
+        {
+            "id": "sensor2",
+            "sensor_id": "597fb1f6b3c4f917ec37a93c",
+            "description": "temperature sensor #2, floor 1",
+            "sensor_type": "rand_sensor",
+            "poll": 60000
+        }
+    ],
+    "controllers": [
+        {
+            "id": "controller1",
+            "description": "lighting controller, first floor",
+            "controller_type": "demo_controller"
+        }
+
+    ],
+    "aggregator_id": "aggregator1",
+    "broker_id": "broker1",
+    "thing_id": "thing1"
+}

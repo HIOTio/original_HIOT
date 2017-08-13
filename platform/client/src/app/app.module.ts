@@ -57,7 +57,7 @@ import { ListDeploymentComponent } from './deployment/list/list-deployment.compo
         AuthGuard,
         AlertService,
         AuthenticationService,
-        ProfileService,
+        ProfileService
  
     ],
     bootstrap: [AppComponent]

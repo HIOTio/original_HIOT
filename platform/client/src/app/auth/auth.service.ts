@@ -12,13 +12,9 @@ export class UserProfile {
 }
 @Injectable()
 export class AuthenticationService {
-    headers = new Headers();
     token = '';
     cred: Observable<any>;
     constructor(private http: Http) { 
-            this.headers = new Headers();
-        this.headers.append('Content-Type','application/json');
-        this.headers.append('Authorization','JWT ' + JSON.parse(localStorage.getItem('currentUser')).token);
     }
     login (username: string, password: string): Observable<UserProfile> {
         this.cred=  this.http.post('http://localhost:3000/auth', {username: username, password:password}) // ...using post request
@@ -28,9 +24,6 @@ export class AuthenticationService {
         this.cred.subscribe((res) =>{
         this.token = 'JWT ' + res.token;
         localStorage.setItem('currentUser', JSON.stringify({ username: username, id: res.profile._id, token: res.token }));
-             this.headers = new Headers();
-this.headers.append('Content-Type','application/json');
-this.headers.append('Authorization',this.token);
         })
         return this.cred;
     }
@@ -51,8 +44,12 @@ this.headers.append('Authorization',this.token);
         return this.token;
     }
     getAuthHeaders(){
-
-        return this.headers;
+        var headers = new Headers();
+        var options = new RequestOptions();
+        headers.append('Content-Type','application/json');
+        headers.append('Authorization','JWT ' + JSON.parse(localStorage.getItem('currentUser')).token);
+        options.headers=headers;
+        return options;
     }
 
 }

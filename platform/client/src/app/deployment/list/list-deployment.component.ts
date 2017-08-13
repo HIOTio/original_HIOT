@@ -2,8 +2,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map'
 import { Component, OnInit } from '@angular/core';
 import {MdSnackBar} from '@angular/material';
-import {AuthenticationService} from '../../auth/auth.service';
 import {DeploymentService} from '../deployment.service';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-deployment',
   templateUrl: './list-deployment.component.html',
@@ -11,7 +11,9 @@ import {DeploymentService} from '../deployment.service';
 providers: [DeploymentService]
 }) 
 export class ListDeploymentComponent implements OnInit {
-    deployments=[];
+    
+    public deployments: Observable<any>;
+    
   constructor( public snackBar: MdSnackBar, private deploymentService: DeploymentService) { 
     
   }
