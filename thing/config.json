@@ -40,12 +40,13 @@
     "controllers": [
         {
             "id": "controller1",
+            "controller_channel" : "controller12345",
             "description": "lighting controller, first floor",
             "controller_type": "demo_controller"
         }
 
     ],
     "aggregator_id": "aggregator1",
-    "broker_id": "broker1",
+    "broker_id": "broker_lights_first_floor",
     "thing_id": "thing1"
 }
