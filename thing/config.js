@@ -35,8 +35,10 @@ var subscribe = function (topic) {
 
 function publish(sensor) {
     var channel = sensor.id;
+
     var value = sensor_mods[sensor.sensor_type].poll(sensor);
     console.log("Publishing on channel '" + channel + "'");
+    console.log(value);
     client.publish(channel, value);
 }
 

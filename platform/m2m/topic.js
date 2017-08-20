@@ -18,9 +18,9 @@ module.exports = function (address, port, topic, M_object) {
     });
     client.on('message', function (topic, message) {
         DBObject.create(JSON.parse(message.toString()), function (err, readings) {
-            console.log(message.toString());
             console.log("received message on topic '" + topic.toString() + "'");
             if (err) {
+                // need to raise an event on the platform
                 console.log(err);
             } else {
 

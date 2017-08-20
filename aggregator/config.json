@@ -1,39 +1,118 @@
 {
     "mqttServer": "http://localhost",
     "mqttPort": 1883,
-    "publications": [
-        {
-            "channel": "sync agg 1",
-            "message": "{\"sync\":\"0\"}",
-            "interval": 3600000
-
-		}
-	],
-    "subscriptions": ["testsensor", "sensor1", "sensor999", "sensor2", "sensor123", "sensorABC", "sensorXYZ"],
     "aggregator_id": "aggregator1",
     "reading_interval": 60000,
-    "coordinator_groups": [
+    "publications": [
         {
-            "group": "agg_1",
-            "interval": 300000,
-            "sensors": ["sensor1", "sensor2", "sensor123"],
-            "operations": {
-                "min": true,
-                "max": true,
-                "count": true,
-                "mean": true
+            "channel": "agg_1",
+            "interval": 600,
+            "handler": "agg",
+            "options": {
+                "operations": {
+                    "min": true,
+                    "max": true,
+                    "count": true,
+                    "mean": true
+                }
             }
+        },
+        {
+            "channel": "min_max2",
+            "interval": 60000,
+            "handler": "agg",
+            "options": {
+                "operations": {
+                    "min": true,
+                    "max": true,
+                    "count": true,
+                    "mean": false
+                }
+            }
+        },
+        {
+            "channel": "sync_agg_1",
+            "handler": "sync",
+            "interval": 3600000,
+            "options": {}
+        }
+    ],
+    "subscriptions": [
+        {
+            "channel": "testsensor",
+            "handler": "agg",
+            "options": {
+                "sensor": "testsensor",
+                "forward_readings": true,
+                "coordinator_groups": [{
+                    "group": "agg1",
+                    "primary": false
+                }]
+            }
+        },
+        {
+            "channel": "admin",
+            "handler": "admin",
+            "options": {
+                "forward_readings": true,
+                "coordinator_groups": [
+                    {
+                        "group": "agg1",
+                        "primary": false
+                }, {
+                        "group": "min_max2",
+                        "primary": true
+                }]
 
-		}, {
-            "group": "min_max2",
-            "interval": 300000,
-            "sensors": ["sensor1"],
-            "operations": {
-                "min": true,
-                "max": true,
-                "count": true,
-                "mean": false
             }
-		}
-	]
+        },
+        {
+            "channel": "sensor1",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensor1",
+                "forward_readings": false
+            }
+        },
+        {
+            "channel": "sensor999",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensor999",
+                "forward_readings": true
+            }
+        },
+        {
+            "channel": "sensor2",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensor2",
+                "forward_readings": false
+            }
+        },
+        {
+            "channel": "sensor123",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensor123",
+                "forward_readings": true
+            }
+        },
+        {
+            "channel": "sensorABC",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensorABC",
+                "forward_readings": true
+            }
+        },
+        {
+            "channel": "sensorXYZ",
+            "handler": "agg",
+            "options": {
+                "sensor": "sensorXYZ",
+                "forward_readings": true
+            }
+        }
+    ]
 }
