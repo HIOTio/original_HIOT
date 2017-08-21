@@ -1,7 +1,6 @@
 var mqtt = require('mqtt');
 var config = require('./config');
 config.updateConfig();
-require('./admin');
 var agg_id = config.aggregator_id;
 var readings = [];
 
@@ -11,6 +10,6 @@ var controllers = config.controllers;
 
 
 config.client.on("message", function (topic, _message) {
-    console.log("received message '" + _message + "' on topic '" + topic + "'");
+	console.log("received message '" + _message + "' on topic '" + topic + "'");
 
 });
