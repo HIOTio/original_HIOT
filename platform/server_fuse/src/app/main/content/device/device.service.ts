@@ -26,6 +26,9 @@ export class DeviceService {
     public list(deployment_id) :Observable<any>{
      return this.http.get(this.config.server + '/api/device/deployment/'+ deployment_id,this.auth.getAuthHeaders())
       .map((res:Response) => res.json())
-  
-}
+  }
+	public count_deployment(deployment_id) :Observable<any>{
+		     return this.http.get(this.config.server + '/api/device/count/deployment/'+ deployment_id,this.auth.getAuthHeaders())
+      .map(res => res.json())
+	}
 }

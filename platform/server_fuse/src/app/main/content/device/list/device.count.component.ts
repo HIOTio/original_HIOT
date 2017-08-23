@@ -4,19 +4,23 @@ import { Observable } from 'rxjs/Observable';
 import {MdSnackBar} from '@angular/material';
 
 @Component({
-    selector   : 'device-list',
-    templateUrl: './device_list.component.html',
-    styleUrls  : ['./device_list.component.scss'],
+    selector   : 'device-count',
+    template: '<div>Devices: {{device_count  }}</div>',
 	providers: [DeviceService]
 })
-export class DeviceListComponent
+export class DeviceCountComponent
 {
 	@Input() deployment: string;
-	public devices: Observable<any>;
+	public device_count: Observable<any>;
     constructor(private deviceService: DeviceService){
     }
-	  ngOnInit(deployment_id) {
-      this.devices=this.deviceService.list(this.deployment);
+	  ngOnInit() {
+		  
+     this.deviceService.count_deployment(this.deployment).subscribe(res=>{
+		 this.device_count= res.device_count;
+																					   });
+		  
+		  
   }
 
 

@@ -5,7 +5,9 @@ import { SharedModule } from '../../../core/modules/shared.module';
 import { AuthGuard } from '../../../core/auth/auth.guard';
 //import { DeviceAddComponent } from './new/device_new.component';
 import { DeviceListComponent} from './list/device_list.component';
+import { DeviceCountComponent} from './list/device.count.component';
 //import { DeviceDetailsComponent} from './list/device_list.component';
+
 
 const routes = [
     {
@@ -23,14 +25,16 @@ canActivate: [AuthGuard]
 @NgModule({
     declarations: [
        // DeviceDetailsComponent,
-		DeviceListComponent
+		DeviceListComponent,
+		DeviceCountComponent
     ],
     imports     : [
         SharedModule,
         RouterModule.forChild(routes)
     ],
     exports     : [
-		DeviceListComponent
+		DeviceListComponent,
+		DeviceCountComponent
     ]
 })
 

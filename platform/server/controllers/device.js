@@ -9,6 +9,15 @@ exports.device_list = function (req, res, next) {
 		res.send(list_devices);
 	});
 };
+exports.device_count = function (req, res, next) {
+	Device.count({
+		deployment: req.params.deployment
+	}, function (err, dev_count) {
+		res.send({
+			'device_count': dev_count
+		});
+	})
+}
 exports.device_list_for_deployment = function (req, res, next) {
 
 	Device.find({
