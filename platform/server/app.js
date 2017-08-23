@@ -83,7 +83,7 @@ var r_sensor_types = require('./routes/sensor_types');
 var r_subscription = require('./routes/subscription');
 var r_thing = require('./routes/thing');
 var r_topic = require('./routes/topic');
-
+var r_navigation = require('./routes/navigation');
 
 app.use('/', r_no_auth);
 app.use('/api/aggregator', r_aggregator);
@@ -113,6 +113,7 @@ app.use('/api/sensor_types', r_sensor_types);
 app.use('/api/subscription', r_subscription);
 app.use('/api/thing', r_thing);
 app.use('/api/topic', r_topic);
+app.use('/api/navigation', r_navigation);
 // End Routing
 
 

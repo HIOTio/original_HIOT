@@ -12,8 +12,10 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
+    "async": "^2.5.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "co": "^4.6.0",
     "connect": "^3.2.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",

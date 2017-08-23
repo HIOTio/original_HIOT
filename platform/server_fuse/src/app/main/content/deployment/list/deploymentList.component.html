@@ -1,0 +1,33 @@
+<div class="page-layout blank p-24" perfect-scrollbar>
+
+	<md-card *ngFor="let deployment of deployments  | async">
+		<md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+			<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+		<md-card-subtitle>{{deployment.role.name}}
+
+			<md-chip-list>
+				<md-chip>{{deployment.role.name}}</md-chip>
+			</md-chip-list>
+		</md-card-subtitle>
+
+		<md-card-content>
+			<pre>
+    Sensors (breakdown by type???)
+    Controllers (breakdown??)
+    Aggregators (Admin only)
+    Brokers (Admin only)]
+    Locations/Groups
+    Health warnings
+    </pre>
+		</md-card-content>
+		<md-card-actions>
+			<button md-raised-button routerLink={{deployment.deployment._id}}>Deployment Details</button>
+			<button md-raised-button (click)="saveChanges()">Admin Tasks</button>
+			<button md-raised-button (click)="saveChanges()">Maps</button>
+			<button md-raised-button (click)="saveChanges()">Health</button>
+			<button md-raised-button (click)="saveChanges()">Reports</button>
+
+		</md-card-actions>
+	</md-card>
+
+</div>

@@ -1,5 +1,4 @@
-// read configuration and determine installed roles
-var config = require('./admin');
-// set up required publications and subscriptions and ensure the required files are available
-
-// error handling & reporting
+var config = require('./config');
+var mqtt = require('./MQTT');
+var fs = require('fs');
+var mqttStatus = false;

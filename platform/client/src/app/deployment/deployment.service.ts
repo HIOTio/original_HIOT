@@ -3,7 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {AuthenticationService } from '../auth/auth.service';
+import {AuthenticationService } from '..//auth/auth.service';
 import {Deployment} from './deployment.model';
 
 

@@ -10,12 +10,13 @@ exports.device_list = function (req, res, next) {
 	});
 };
 exports.device_list_for_deployment = function (req, res, next) {
-	//need to map devices back up to deployments, eventually
-	Device.find({}, function (err, list_devices) {
+
+	Device.find({
+		deployment: req.params.deployment
+	}, function (err, list_devices) {
 		if (err) {
 			return next(err);
 		}
-		//Successful, so render
 		res.send(list_devices);
 	});
 };

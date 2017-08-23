@@ -1,5 +1,6 @@
 var mqtt = require('mqtt');
 var config = require('./config');
+var handler = require('./handler');
 var client = mqtt.connect(config.mqttServer, {
     keepalive: 0,
     debug: false
@@ -24,6 +25,7 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, _message) {
     //get the JSON representation of the message
+    console.log("got message");
     try {
         var message = JSON.parse(_message.toString());
         //handle special channels to get and set config
@@ -42,15 +44,17 @@ client.on('message', function (topic, _message) {
                 })
             } else if (topic.startsWith("_CFG_Get")) {
                 // add security (basic white/black listing) eventually...
-
+                console.log("I was asked for my config");
                 //need to return the config to the calling channel
+                console.log(message.caller);
+                console.log(config.getConfig());
                 client.publish(message.caller, config.getConfig());
             } else {
                 //add exception handling here...
             }
             return;
         }
-        handlers[subscriptions[topic]].handleMessage(topic, message);
+        handler.getHandler(config.subscriptions[topic]).handleMessage(topic, message);
     } catch (err) {
         console.log(err);
     }
@@ -61,8 +65,7 @@ module.exports = {
         client.subscribe(channel);
     },
     publish: function (channel) {
-        console.log(config.handlers);
-        var message = config.getHandler(channel.handler).poll(channel);
+        var message = handler.getHandler(channel.handler).poll(channel);
         console.log("Channel: " + channel.channel + " message " + message);
         client.publish(channel.channel, message);
     },
