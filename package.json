@@ -1,6 +1,6 @@
 {
   "name": "hiot.io",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "<a href=http://www.hiot.io>HIOT.io</a>",
   "main": "index.js",
   "scripts": {
