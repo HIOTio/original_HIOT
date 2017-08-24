@@ -1,0 +1,15 @@
+{
+  "name": "hiot.io",
+  "version": "1.0.1",
+  "description": "<a href=http://www.hiot.io>HIOT.io</a>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/healyma/HIOT.io.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
