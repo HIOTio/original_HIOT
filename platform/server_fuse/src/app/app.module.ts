@@ -19,6 +19,8 @@ import { FuseConfigService } from './core/services/config.service';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { DeploymentModule } from './main/content/deployment/deployment.module';
 import { DashboardModule } from './main/content/dashboard/dashboard.module'; 
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { ChartModule } from 'angular2-chartjs';
 const appRoutes: Routes = [
     {
         path      : '**',
@@ -42,7 +44,9 @@ const appRoutes: Routes = [
         FuseMainModule,
         FuseSampleModule,
 		DeploymentModule,
-		DashboardModule
+		DashboardModule,
+		FlexLayoutModule,
+		ChartModule
     ],
     providers   : [
         FuseSplashScreenService,

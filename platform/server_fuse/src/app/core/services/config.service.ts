@@ -27,7 +27,7 @@ export class FuseConfigService
             layout          : {
                 navigation: 'left', // 'right', 'left', 'top', none
                 toolbar   : 'below', // 'above', 'below', none
-                footer    : 'below' // 'above', 'below', none
+                footer    : 'none' // 'above', 'below', none
             },
             colorClasses    : {
                 toolbar: 'md-red-500-bg',

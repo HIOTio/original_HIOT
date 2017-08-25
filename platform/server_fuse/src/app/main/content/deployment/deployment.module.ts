@@ -5,9 +5,15 @@ import { SharedModule } from '../../../core/modules/shared.module';
 import { AuthGuard } from '../../../core/auth/auth.guard';
 import { DeploymentComponent } from './deployment.component';
 import { DeploymentListComponent} from './list/deploymentList.component';
-
+import { DeploymentNewComponent} from './new/deploymentNew.component';
 import { DeviceModule} from '../device/device.module'; 
+import { ChartModule } from 'angular2-chartjs';
 const routes = [
+	{
+		path : 'deployment/new',
+		component: DeploymentNewComponent,
+		canActivate: [AuthGuard]
+	},
     {
         path     : 'deployment/:id',
         component: DeploymentComponent,
@@ -23,12 +29,14 @@ canActivate: [AuthGuard]
 @NgModule({
     declarations: [
         DeploymentComponent,
-		DeploymentListComponent
+		DeploymentListComponent,
+		DeploymentNewComponent
     ],
     imports     : [
         SharedModule,
         RouterModule.forChild(routes),
-		DeviceModule
+		DeviceModule,
+		ChartModule
     ],
     exports     : [
         DeploymentComponent

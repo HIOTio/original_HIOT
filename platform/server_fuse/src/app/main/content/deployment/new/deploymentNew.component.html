@@ -1,0 +1,40 @@
+<div class="page-layout blank p-24" perfect-scrollbar>
+
+
+	<md-card>
+		<md-card-title>Add a new deployment
+			<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+
+
+		<md-card-content>
+
+
+			<form class="hiot-full-width">
+				<div fxLayout="column">
+					<md-input-container>
+						<input mdInput placeholder="Deployment Name" name="name">
+					</md-input-container>
+
+					<md-input-container>
+						<input mdInput placeholder="Description" name="description">
+					</md-input-container>
+
+					<md-select placeholder="Owner" [(ngModel)]="deployment.owner" floatPlaceholder="never" name="owner">
+						<md-option *ngFor="let user of deployment_users" [value]="user._id">{{ user.name }}</md-option>
+						<md-option [value]="new">Add User</md-option>
+					</md-select>
+					<md-slide-toggle class="example-margin" [color]="color" [checked]="checked">
+						Active
+					</md-slide-toggle>
+				</div>
+			</form>
+		</md-card-content>
+		<md-card-actions>
+			<button md-raised-button>Save</button>
+			<button md-raised-button (click)="saveChanges()">Cancel</button>
+
+		</md-card-actions>
+
+	</md-card>
+
+</div>

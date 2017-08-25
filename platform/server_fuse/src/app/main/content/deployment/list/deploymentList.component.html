@@ -1,17 +1,17 @@
 <div class="page-layout blank p-24" perfect-scrollbar>
 
-	<md-card *ngFor="let deployment of deployments  | async">
-		<md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
-			<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
-		<md-card-subtitle>{{deployment.role.name}}
+	<div *ngFor="let deployment of deployments  | async">
+		<md-card>
+			<md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+				<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
 
-			<md-chip-list>
-				<md-chip>{{deployment.role.name}}</md-chip>
-			</md-chip-list>
-		</md-card-subtitle>
-
-		<md-card-content>
-			<pre>
+			<md-card-content>
+				<div fxlayout="row">
+					<div fxFlex="60">
+						<md-chip-list>
+							<md-chip>{{deployment.role.name}}</md-chip>
+						</md-chip-list>
+						<pre>
     Sensors (breakdown by type???)
     Controllers (breakdown??)
     Aggregators (Admin only)
@@ -19,15 +19,30 @@
     Locations/Groups
     Health warnings
     </pre>
-		</md-card-content>
-		<md-card-actions>
-			<button md-raised-button routerLink={{deployment.deployment._id}}>Deployment Details</button>
-			<button md-raised-button (click)="saveChanges()">Admin Tasks</button>
-			<button md-raised-button (click)="saveChanges()">Maps</button>
-			<button md-raised-button (click)="saveChanges()">Health</button>
-			<button md-raised-button (click)="saveChanges()">Reports</button>
+					</div>
+					<div fxFlex="40">
+						<chart [type]="type" [data]="data" [options]="options"></chart>
+						<pre>
+						
+	
+Health
+Responsiveness (95% within 20ms : green; 90%  within 20ms late or 95% within 500ms late : yellow; 80% within 20ms late or 90% within 500ms: orange, otherwise red)
+				</pre>
+					</div>
+				</div>
+			</md-card-content>
+			<md-card-actions>
+				<button md-raised-button routerLink={{deployment.deployment._id}}>Deployment Details</button>
+				<button md-raised-button (click)="saveChanges()">Admin Tasks</button>
+				<button md-raised-button (click)="saveChanges()">Maps</button>
+				<button md-raised-button (click)="saveChanges()">Health</button>
+				<button md-raised-button (click)="saveChanges()">Reports</button>
 
-		</md-card-actions>
-	</md-card>
-
+			</md-card-actions>
+			<md-card-footer>
+				Devices | Sensors | Controllers | Aggregators | Brokers
+			</md-card-footer>
+		</md-card>
+		<br/>
+	</div>
 </div>
