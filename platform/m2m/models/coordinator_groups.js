@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
-var Coordinator_GroupSchema = new Schema({
+var CoordinatorGroupSchema = new Schema({
   description: String,
   name: String,
   active: Boolean,
@@ -18,10 +18,10 @@ var Coordinator_GroupSchema = new Schema({
     }
   ]
 })
-Coordinator_GroupSchema
+CoordinatorGroupSchema
 	.virtual('url')
 	.get(function () {
   return '/api/coordinator_group/' + this._id
 })
 
-module.exports = mongoose.model('Coordinator_Group', Coordinator_GroupSchema)
+module.exports = mongoose.model('Coordinator_Group', CoordinatorGroupSchema)

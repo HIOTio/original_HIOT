@@ -11,7 +11,7 @@ import {DeviceService} from "../device.service";
 })
 export class DeviceListComponent
 {
-	public public public; @Input() deployment: string;
+	public; @Input() deployment: string;
 	public devices: Observable<any>;
     constructor(private deviceService: DeviceService){
     }

@@ -20,17 +20,25 @@ import { DashboardModule } from "./main/content/dashboard/dashboard.module";
 import { DeploymentModule } from "./main/content/deployment/deployment.module";
 import { FuseSampleModule } from "./main/content/sample/sample.module";
 import { FuseMainModule } from "./main/main.module";
+import  {LoginComponent } from "./core/auth/auth.login.component";
 const appRoutes: Routes = [
-    {
+
+  {
+    path :"login",
+    component: LoginComponent
+},
+      {
         path      : "**",
         redirectTo: "",
+		canActivate: [AuthGuard]
 
-    },
+    }
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
+      LoginComponent
     ],
     imports     : [
         BrowserModule,
@@ -45,7 +53,7 @@ const appRoutes: Routes = [
 		DeploymentModule,
 		DashboardModule,
 		FlexLayoutModule,
-		ChartModule,
+		ChartModule
     ],
     providers   : [
         FuseSplashScreenService,

@@ -52,15 +52,15 @@ client.on('message', function (topic, _message) {
   }
 })
 
-this.unsub=function (topic) {
-    client.unsubscribe(topic, function (err) {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('unsubscribed from ' + topic)
-      }
-    })
-  }
+this.unsub = function (topic) {
+  client.unsubscribe(topic, function (err) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('unsubscribed from ' + topic)
+    }
+  })
+}
 module.exports = {
   subscribe: function (channel) {
     client.subscribe(channel)

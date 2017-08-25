@@ -10,8 +10,8 @@ export class FuseHljsComponent implements OnInit
 {
     public hljs: any;
 
-    public public public; @ContentChild("source") source: ElementRef;
-    public public public; @Input("lang") lang: string;
+    public; @ContentChild("source") source: ElementRef;
+     @Input("lang") lang: string;
 
     constructor(
         private elementRef: ElementRef,

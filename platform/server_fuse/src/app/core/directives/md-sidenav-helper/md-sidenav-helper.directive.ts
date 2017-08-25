@@ -12,11 +12,11 @@ export class FuseMdSidenavHelperDirective implements OnInit, AfterViewInit, OnDe
 {
     public matchMediaSubscription: Subscription;
 
-    public public public; @HostBinding("class.md-is-locked-open") isLockedOpen = true;
-    public public public; @HostBinding("class.md-stop-transition") stopTransition = true;
+     @HostBinding("class.md-is-locked-open") isLockedOpen = true;
+     @HostBinding("class.md-stop-transition") stopTransition = true;
 
-    public public public; @Input("fuseMdSidenavHelper") id: string;
-    public public public; @Input("md-is-locked-open") mdIsLockedOpenBreakpoint: string;
+     @Input("fuseMdSidenavHelper") id: string;
+     @Input("md-is-locked-open") mdIsLockedOpenBreakpoint: string;
 
     constructor(
         private fuseMdSidenavService: FuseMdSidenavHelperService,
@@ -79,13 +79,13 @@ export class FuseMdSidenavHelperDirective implements OnInit, AfterViewInit, OnDe
 })
 export class FuseMdSidenavTogglerDirective
 {
-    public public public; @Input("fuseMdSidenavToggler") id;
+     @Input("fuseMdSidenavToggler") id;
 
     constructor(private fuseMdSidenavService: FuseMdSidenavHelperService)
     {
     }
 
-    public public public; @HostListener("click")
+     @HostListener("click")
     onClick()
     {
         this.fuseMdSidenavService.getSidenav(this.id).toggle();

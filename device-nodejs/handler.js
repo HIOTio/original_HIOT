@@ -12,7 +12,7 @@ this.addHandler = function (index, file, poll, object) {
         }, object.poll))
       }
     } else {
-			// need to broadcast a message to the coordinator/broker to send on complete config and files
+      // need to broadcast a message to the coordinator/broker to send on complete config and files
       console.log(err)
     }
   })

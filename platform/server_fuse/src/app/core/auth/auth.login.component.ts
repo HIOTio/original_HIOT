@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { AlertService} from "../alerts/alert.service";
 import {AuthenticationService } from "./auth.service";
 @Component({
     moduleId: module.id,
@@ -13,8 +12,7 @@ export class LoginComponent implements OnInit {
     public loading = false;
     public returnUrl: string;
     constructor(
-        private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private authenticationService: AuthenticationService) { }
 
     public ngOnInit() {
         // reset login status

@@ -17,8 +17,8 @@ var BrokerSchema = new Schema({
 })
 
 BrokerSchema
-	.virtual('url')
-	.get(function () {
+  .virtual('url')
+  .get(function () {
   return '/api/broker/' + this._id
 })
 

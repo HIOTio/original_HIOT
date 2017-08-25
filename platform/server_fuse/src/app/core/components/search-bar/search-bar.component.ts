@@ -11,7 +11,7 @@ export class FuseSearchBarComponent implements OnInit
 {
     public collapsed: boolean;
     public toolbarColor: string;
-    public public public; @Output() onInput: EventEmitter<any> = new EventEmitter();
+     @Output() onInput: EventEmitter<any> = new EventEmitter();
     public onSettingsChanged: Subscription;
 
     constructor(

@@ -16,16 +16,16 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
     public hues: string[];
     public view = "palettes";
 
-    public public public; @Input() selectedPalette = "";
-    public public public; @Input() selectedHue = "";
-    public public public; @Input() selectedFg = "";
-    public public public; @Input() value: any;
-    public public public; @Output() onValueChange = new EventEmitter();
-    public public public; @Output() selectedPaletteChange = new EventEmitter();
-    public public public; @Output() selectedHueChange = new EventEmitter();
-    public public public; @Output() selectedClassChange = new EventEmitter();
-    public public public; @Output() selectedBgChange = new EventEmitter();
-    public public public; @Output() selectedFgChange = new EventEmitter();
+     @Input() selectedPalette = "";
+   @Input() selectedHue = "";
+     @Input() selectedFg = "";
+    @Input() value: any;
+    @Output() onValueChange = new EventEmitter();
+     @Output() selectedPaletteChange = new EventEmitter();
+    @Output() selectedHueChange = new EventEmitter();
+    @Output() selectedClassChange = new EventEmitter();
+   @Output() selectedBgChange = new EventEmitter();
+    @Output() selectedFgChange = new EventEmitter();
 
     public _selectedClass = "";
     @Input()

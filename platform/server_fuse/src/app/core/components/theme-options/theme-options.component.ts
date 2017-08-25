@@ -10,8 +10,8 @@ import { FuseConfigService } from "../../services/config.service";
 })
 export class FuseThemeOptionsComponent implements OnInit, OnDestroy
 {
-    public public public; @ViewChild("openButton") openButton;
-    public public public; @ViewChild("panel") panel;
+     @ViewChild("openButton") openButton;
+     @ViewChild("panel") panel;
 
     public player: AnimationPlayer;
     public fuseSettings: any;

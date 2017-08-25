@@ -4,7 +4,7 @@ module.exports = {
     try {
       console.log(command.parameters)
     } catch (e) {
-			// not valid command -> just ignore it for now
+      // not valid command -> just ignore it for now
       console.log(e)
     }
   }

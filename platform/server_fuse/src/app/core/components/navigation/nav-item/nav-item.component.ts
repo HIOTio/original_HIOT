@@ -7,8 +7,8 @@ import { Component, HostBinding, Input, OnInit } from "@angular/core";
 })
 export class FuseNavItemComponent implements OnInit
 {
-    public public public; @HostBinding("class") classes = "nav-item";
-    public public public; @Input() item: any;
+     @HostBinding("class") classes = "nav-item";
+     @Input() item: any;
 
     constructor()
     {

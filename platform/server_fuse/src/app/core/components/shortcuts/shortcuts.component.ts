@@ -21,8 +21,8 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
     public matchMediaSubscription: Subscription;
     public onSettingsChanged: Subscription;
 
-    public public public; @ViewChild("searchInput") searchInputField;
-    public public public; @ViewChild("shortcuts") shortcutsEl: ElementRef;
+     @ViewChild("searchInput") searchInputField;
+     @ViewChild("shortcuts") shortcutsEl: ElementRef;
 
     constructor(
         private renderer: Renderer2,

@@ -1,6 +1,3 @@
-function updateConfig () {
-
-}
 
 module.exports = {
   handleMessage: function (message) {

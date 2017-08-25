@@ -10,9 +10,8 @@ import { FuseWidgetToggleDirective } from "./widget-toggle.directive";
 
 export class FuseWidgetComponent implements OnInit, AfterContentInit
 {
-    public public public; @HostBinding("class.flipped") flipped = false;
-    public public public; @ContentChildren(FuseWidgetToggleDirective, {descendants: true}) toggleButtons: QueryList<FuseWidgetToggleDirective>;
-
+     @HostBinding("class.flipped") flipped = false;
+     @ContentChildren(FuseWidgetToggleDirective, {descendants: true}) toggleButtons: QueryList<FuseWidgetToggleDirective>;
     constructor(private el: ElementRef, private renderer: Renderer2)
     {
     }

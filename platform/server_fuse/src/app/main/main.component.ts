@@ -12,7 +12,7 @@ export class FuseMainComponent implements OnInit, OnDestroy
 {
     public onSettingsChanged: Subscription;
     public fuseSettings: any;
-    public public public; @HostBinding("class.disable-perfect-scrollbar") disableCustomScrollbars;
+    public; @HostBinding("class.disable-perfect-scrollbar") disableCustomScrollbars;
 
     constructor(
         private _renderer: Renderer2,

@@ -1,1 +1,1 @@
-var config = require('./config')
+require('./config')

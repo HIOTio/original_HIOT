@@ -16,8 +16,8 @@ var AggregatorSchema = new Schema({
   active: Boolean
 })
 AggregatorSchema
-	.virtual('url')
-	.get(function () {
+  .virtual('url')
+  .get(function () {
   return '/api/aggregator/' + this._id
 })
 

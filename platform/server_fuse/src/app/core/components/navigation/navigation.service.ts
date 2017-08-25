@@ -10,22 +10,28 @@ export class FuseNavigationService
     public onNavCollapseToggled = new EventEmitter<any>();
     public navigation: any[];
     public flatNavigation: any[] = [];
-
+public display: boolean;
     constructor(private http: Http, private auth: AuthenticationService)
     {
      	this.navigation = [];
-
+      this.display=false;
     }
 
     /**
      * Get navigation array
      * @returns {any[]}
      */
-
+  
     public getNavigation(): Observable<any[]>
     {
+      if(!localStorage.getItem("currentUser")){
+        console.log("no active user");
+        this.display=false;
+        return Observable.empty();
+      }
         return this.http.get("http://localhost:3000/api/navigation/" + JSON.parse(localStorage.getItem("currentUser")).id, this.auth.getAuthHeaders())
 		.map(function(res){
+            this.display=true;
 			(res: Response) => res.json();
 			const my_menu = res.json();
 			return my_menu;

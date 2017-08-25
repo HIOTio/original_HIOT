@@ -7,14 +7,14 @@ import { FuseNavbarService } from "./navbar.service";
 })
 export class FuseNavbarToggleDirective
 {
-    public public public; @Input() fuseNavbar: string;
+    public; @Input() fuseNavbar: string;
     public navbar: FuseNavbarComponent;
 
     constructor(private navbarService: FuseNavbarService)
     {
     }
 
-    public public public; @HostListener("click")
+    @HostListener("click")
     onClick()
     {
         this.navbar = this.navbarService.getNavBar();

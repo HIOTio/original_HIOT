@@ -10,7 +10,7 @@ import { Animations } from "../../core/animations";
 })
 export class FuseContentComponent implements OnInit
 {
-    public public public; @HostBinding("@routerTransition") routeAnimationState = false;
+    public; @HostBinding("@routerTransition") routeAnimationState = false;
 
     constructor(
         private router: Router,

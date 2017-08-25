@@ -10,7 +10,7 @@ import {DeviceService} from "../device.service";
 })
 export class DeviceCountComponent
 {
-	public public public; @Input() deployment: string;
+	public; @Input() deployment: string;
 	public device_count: Observable<any>;
     constructor(private deviceService: DeviceService){
     }

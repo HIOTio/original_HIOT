@@ -11,8 +11,8 @@ import { FuseNavigationService } from "../navigation.service";
 })
 export class FuseNavCollapseComponent implements OnInit
 {
-    public public public; @Input() item: any;
-    public public public; @HostBinding("class") classes = "nav-collapse nav-item";
+     @Input() item: any;
+     @HostBinding("class") classes = "nav-collapse nav-item";
     @HostBinding("class.open") public isOpen = false;
 
     constructor(private navigationService: FuseNavigationService, private router: Router)

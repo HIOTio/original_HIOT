@@ -11,11 +11,12 @@ import { Observable } from "rxjs/Observable";
 export class FuseNavigationComponent
 {
     public navigation: Observable<any[]>;
-
+    public display: boolean;
     constructor(private navigationService: FuseNavigationService)
     {
+      
 		this.navigation = this.navigationService.getNavigation();
-
+        this.display=navigationService.display;
     }
 
 }

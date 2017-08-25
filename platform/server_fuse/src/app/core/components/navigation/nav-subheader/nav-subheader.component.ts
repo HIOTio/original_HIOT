@@ -7,8 +7,8 @@ import { Component, HostBinding, Input, OnInit } from "@angular/core";
 })
 export class FuseNavSubheaderComponent implements OnInit
 {
-    public public public; @HostBinding("class") classes = "nav-subheader";
-    public public public; @Input() item: any;
+     @HostBinding("class") classes = "nav-subheader";
+     @Input() item: any;
 
     constructor()
     {

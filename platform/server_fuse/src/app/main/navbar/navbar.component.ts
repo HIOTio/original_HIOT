@@ -16,15 +16,14 @@ import { FuseNavbarService } from "./navbar.service";
 })
 export class FuseNavbarComponent implements OnInit, OnDestroy
 {
-    public public public; @HostBinding("class.close") isClosed: boolean;
-    public public public; @HostBinding("class.folded") isFoldedActive: boolean;
-    public public public; @HostBinding("class.folded-open") isFoldedOpen: boolean;
-    public public public; @HostBinding("class.initialized") initialized: boolean;
-    public public public; @Input("folded") foldedByDefault = false;
-    public public public; @ViewChild(PerfectScrollbarDirective) perfectScrollbarDirective;
+    public; @HostBinding("class.close") isClosed: boolean;
+    @HostBinding("class.folded") isFoldedActive: boolean;
+    @HostBinding("class.folded-open") isFoldedOpen: boolean;
+    @HostBinding("class.initialized") initialized: boolean;
+    @Input("folded") foldedByDefault = false;
+    @ViewChild(PerfectScrollbarDirective) perfectScrollbarDirective;
 
     public matchMediaWatcher: Subscription;
-
     constructor(
         private fuseMainComponentEl: FuseMainComponent,
         private fuseMatchMedia: FuseMatchMedia,
@@ -35,7 +34,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
     )
     {
         navBarService.setNavBar(this);
-
+      
         this.fuseNavigationService.onNavCollapseToggled.subscribe(() => {
 
             setTimeout(() => {
@@ -75,6 +74,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         );
     }
 
+  
     public ngOnInit()
     {
         this.isClosed = false;
@@ -155,13 +155,13 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         this.isFoldedOpen = false;
     }
 
-    public public public; @HostListener("mouseenter")
+    @HostListener("mouseenter")
     onMouseEnter()
     {
         this.isFoldedOpen = true;
     }
 
-    public public public; @HostListener("mouseleave")
+    @HostListener("mouseleave")
     onMouseLeave()
     {
         this.isFoldedOpen = false;

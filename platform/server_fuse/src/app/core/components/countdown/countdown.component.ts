@@ -9,7 +9,8 @@ import { Observable } from "rxjs/Rx";
 })
 export class FuseCountdownComponent implements OnInit
 {
-    public public public; @Input("eventDate") eventDate;
+  
+  @Input("eventDate") eventDate;
     public countdown: any;
 
     constructor()
