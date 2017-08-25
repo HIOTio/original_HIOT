@@ -1,28 +1,22 @@
-import { Component,Input } from '@angular/core';
-import {DeviceService} from '../device.service';
-import { Observable } from 'rxjs/Observable';
-import {MdSnackBar} from '@angular/material';
+import { Component, Input } from "@angular/core";
+import {MdSnackBar} from "@angular/material";
+import { Observable } from "rxjs/Observable";
+import {DeviceService} from "../device.service";
 
 @Component({
-    selector   : 'device-list',
-    templateUrl: './device_list.component.html',
-    styleUrls  : ['./device_list.component.scss'],
-	providers: [DeviceService]
+    selector   : "device-list",
+    templateUrl: "./device_list.component.html",
+    styleUrls  : ["./device_list.component.scss"],
+	providers: [DeviceService],
 })
 export class DeviceListComponent
 {
-	@Input() deployment: string;
+	public public public; @Input() deployment: string;
 	public devices: Observable<any>;
     constructor(private deviceService: DeviceService){
     }
-	  ngOnInit(deployment_id) {
-      this.devices=this.deviceService.list(this.deployment);
+	  public ngOnInit(deployment_id) {
+      this.devices = this.deviceService.list(this.deployment);
   }
 
-
 }
-
-
-
-
-

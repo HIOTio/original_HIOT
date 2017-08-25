@@ -1,21 +1,21 @@
-import { AfterContentChecked, Directive, ElementRef, TemplateRef, ViewContainerRef } from '@angular/core';
+import { AfterContentChecked, Directive, ElementRef, TemplateRef, ViewContainerRef } from "@angular/core";
 
 @Directive({
-    selector: '[fuseIfOnDom]'
+    selector: "[fuseIfOnDom]",
 })
 export class FuseIfOnDomDirective implements AfterContentChecked
 {
-    isCreated = false;
+    public isCreated = false;
 
     constructor(
         private templateRef: TemplateRef<any>,
         private viewContainer: ViewContainerRef,
-        private element: ElementRef
+        private element: ElementRef,
     )
     {
     }
 
-    ngAfterContentChecked()
+    public ngAfterContentChecked()
     {
         if ( document.body.contains(this.element.nativeElement) && !this.isCreated )
         {

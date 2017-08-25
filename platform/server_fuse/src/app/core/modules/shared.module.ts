@@ -1,25 +1,25 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { MaterialModule } from './material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { ColorPickerModule } from 'ngx-color-picker';
-import { NgxDnDModule } from '@swimlane/ngx-dnd';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { NgxDnDModule } from "@swimlane/ngx-dnd";
+import { ColorPickerModule } from "ngx-color-picker";
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import { MaterialModule } from "./material.module";
 
-import { FuseMdSidenavHelperDirective, FuseMdSidenavTogglerDirective } from '../directives/md-sidenav-helper/md-sidenav-helper.directive';
-import { FusePipesModule } from '../pipes/pipes.module';
-import { FuseConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
-import { FuseCountdownComponent } from '../components/countdown/countdown.component';
-import { FuseNavigationService } from '../components/navigation/navigation.service';
-import { FuseMatchMedia } from '../services/match-media.service';
-import { FuseNavbarService } from '../../main/navbar/navbar.service';
-import { FuseMdSidenavHelperService } from '../directives/md-sidenav-helper/md-sidenav-helper.service';
-import { FuseHljsComponent } from '../components/hljs/hljs.component';
-import { FuseIfOnDomDirective } from '../directives/fuse-if-on-dom/fuse-if-on-dom.directive';
-import { FuseMaterialColorPickerComponent } from '../components/material-color-picker/material-color-picker.component';
+import { FuseNavbarService } from "../../main/navbar/navbar.service";
+import { FuseConfirmDialogComponent } from "../components/confirm-dialog/confirm-dialog.component";
+import { FuseCountdownComponent } from "../components/countdown/countdown.component";
+import { FuseHljsComponent } from "../components/hljs/hljs.component";
+import { FuseMaterialColorPickerComponent } from "../components/material-color-picker/material-color-picker.component";
+import { FuseNavigationService } from "../components/navigation/navigation.service";
+import { FuseIfOnDomDirective } from "../directives/fuse-if-on-dom/fuse-if-on-dom.directive";
+import { FuseMdSidenavHelperDirective, FuseMdSidenavTogglerDirective } from "../directives/md-sidenav-helper/md-sidenav-helper.directive";
+import { FuseMdSidenavHelperService } from "../directives/md-sidenav-helper/md-sidenav-helper.service";
+import { FusePipesModule } from "../pipes/pipes.module";
+import { FuseMatchMedia } from "../services/match-media.service";
 
 @NgModule({
     declarations   : [
@@ -29,7 +29,7 @@ import { FuseMaterialColorPickerComponent } from '../components/material-color-p
         FuseCountdownComponent,
         FuseHljsComponent,
         FuseIfOnDomDirective,
-        FuseMaterialColorPickerComponent
+        FuseMaterialColorPickerComponent,
     ],
     imports        : [
         FlexLayoutModule,
@@ -41,7 +41,7 @@ import { FuseMaterialColorPickerComponent } from '../components/material-color-p
         ReactiveFormsModule,
         ColorPickerModule,
         NgxDnDModule,
-        NgxDatatableModule
+        NgxDatatableModule,
     ],
     exports        : [
         FlexLayoutModule,
@@ -59,17 +59,17 @@ import { FuseMaterialColorPickerComponent } from '../components/material-color-p
         NgxDnDModule,
         NgxDatatableModule,
         FuseIfOnDomDirective,
-        FuseMaterialColorPickerComponent
+        FuseMaterialColorPickerComponent,
     ],
     entryComponents: [
-        FuseConfirmDialogComponent
+        FuseConfirmDialogComponent,
     ],
     providers      : [
         FuseNavigationService,
         FuseMatchMedia,
         FuseNavbarService,
-        FuseMdSidenavHelperService
-    ]
+        FuseMdSidenavHelperService,
+    ],
 })
 
 export class SharedModule

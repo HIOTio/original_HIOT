@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
-import { SharedModule } from '../../modules/shared.module';
-import { FuseSearchBarComponent } from './search-bar.component';
+import { SharedModule } from "../../modules/shared.module";
+import { FuseSearchBarComponent } from "./search-bar.component";
 
 @NgModule({
     declarations: [
-        FuseSearchBarComponent
+        FuseSearchBarComponent,
     ],
     imports     : [
         SharedModule,
-        RouterModule
+        RouterModule,
     ],
     exports     : [
-        FuseSearchBarComponent
-    ]
+        FuseSearchBarComponent,
+    ],
 })
 export class FuseSearchBarModule
 {

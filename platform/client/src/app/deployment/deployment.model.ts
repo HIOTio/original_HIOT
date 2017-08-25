@@ -1,9 +1,9 @@
 export class Deployment {
-    _id: String;
-    description: String;
-    name:String;
-    owner:String;
-    added:Date;
-    active:Boolean;
+    public _id: String;
+    public description: String;
+    public name: String;
+    public owner: String;
+    public added: Date;
+    public active: Boolean;
 
 }

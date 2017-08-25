@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-    selector   : 'fuse-sample',
-    templateUrl: './sample.component.html',
-    styleUrls  : ['./sample.component.scss']
+    selector   : "fuse-sample",
+    templateUrl: "./sample.component.html",
+    styleUrls  : ["./sample.component.scss"],
 })
 export class FuseSampleComponent
 {

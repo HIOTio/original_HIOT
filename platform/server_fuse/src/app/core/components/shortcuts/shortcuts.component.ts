@@ -1,35 +1,35 @@
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FuseNavigationService } from '../navigation/navigation.service';
-import { Subscription } from 'rxjs/Subscription';
-import { ObservableMedia } from '@angular/flex-layout';
-import { FuseMatchMedia } from '../../services/match-media.service';
-import { FuseConfigService } from '../../services/config.service';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
+import { ObservableMedia } from "@angular/flex-layout";
+import { Subscription } from "rxjs/Subscription";
+import { FuseConfigService } from "../../services/config.service";
+import { FuseMatchMedia } from "../../services/match-media.service";
+import { FuseNavigationService } from "../navigation/navigation.service";
 
 @Component({
-    selector   : 'fuse-shortcuts',
-    templateUrl: './shortcuts.component.html',
-    styleUrls  : ['./shortcuts.component.scss']
+    selector   : "fuse-shortcuts",
+    templateUrl: "./shortcuts.component.html",
+    styleUrls  : ["./shortcuts.component.scss"],
 })
 export class FuseShortcutsComponent implements OnInit, OnDestroy
 {
-    shortcutItems: any[] = [];
-    navigationItems: any[];
-    filteredNavigationItems: any[];
-    searching = false;
-    mobileShortcutsPanelActive = false;
-    toolbarColor: string;
-    matchMediaSubscription: Subscription;
-    onSettingsChanged: Subscription;
+    public shortcutItems: any[] = [];
+    public navigationItems: any[];
+    public filteredNavigationItems: any[];
+    public searching = false;
+    public mobileShortcutsPanelActive = false;
+    public toolbarColor: string;
+    public matchMediaSubscription: Subscription;
+    public onSettingsChanged: Subscription;
 
-    @ViewChild('searchInput') searchInputField;
-    @ViewChild('shortcuts') shortcutsEl: ElementRef;
+    public public public; @ViewChild("searchInput") searchInputField;
+    public public public; @ViewChild("shortcuts") shortcutsEl: ElementRef;
 
     constructor(
         private renderer: Renderer2,
         private observableMedia: ObservableMedia,
         private fuseMatchMedia: FuseMatchMedia,
         private fuseNavigationService: FuseNavigationService,
-        private fuseConfig: FuseConfigService
+        private fuseConfig: FuseConfigService,
     )
     {
         this.filteredNavigationItems = this.navigationItems = this.fuseNavigationService.getFlatNavigation();
@@ -39,59 +39,59 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                 .subscribe(
                     (newSettings) => {
                         this.toolbarColor = newSettings.colorClasses.toolbar;
-                    }
+                    },
                 );
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         // User's shortcut items
         this.shortcutItems = [
             {
-                'title': 'Calendar',
-                'type' : 'nav-item',
-                'icon' : 'today',
-                'url'  : '/apps/calendar'
+                title: "Calendar",
+                type : "nav-item",
+                icon : "today",
+                url  : "/apps/calendar",
             },
             {
-                'title': 'Mail',
-                'type' : 'nav-item',
-                'icon' : 'email',
-                'url'  : '/apps/mail'
+                title: "Mail",
+                type : "nav-item",
+                icon : "email",
+                url  : "/apps/mail",
             },
             {
-                'title': 'Contacts',
-                'type' : 'nav-item',
-                'icon' : 'account_box',
-                'url'  : '/apps/contacts'
+                title: "Contacts",
+                type : "nav-item",
+                icon : "account_box",
+                url  : "/apps/contacts",
             },
             {
-                'title': 'To-Do',
-                'type' : 'nav-item',
-                'icon' : 'check_box',
-                'url'  : '/apps/todo'
-            }
+                title: "To-Do",
+                type : "nav-item",
+                icon : "check_box",
+                url  : "/apps/todo",
+            },
         ];
 
         this.matchMediaSubscription =
             this.fuseMatchMedia.onMediaChange.subscribe(() => {
-                if ( this.observableMedia.isActive('gt-sm') )
+                if ( this.observableMedia.isActive("gt-sm") )
                 {
                     this.hideMobileShortcutsPanel();
                 }
             });
     }
 
-    ngOnDestroy()
+    public ngOnDestroy()
     {
         this.matchMediaSubscription.unsubscribe();
     }
 
-    search(event)
+    public search(event)
     {
         const value = event.target.value.toLowerCase();
 
-        if ( value === '' )
+        if ( value === "" )
         {
             this.searching = false;
             this.filteredNavigationItems = this.navigationItems;
@@ -106,7 +106,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         });
     }
 
-    toggleShortcut(event, itemToToggle)
+    public toggleShortcut(event, itemToToggle)
     {
         event.stopPropagation();
 
@@ -123,27 +123,27 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         this.shortcutItems.push(itemToToggle);
     }
 
-    isInShortcuts(navigationItem)
+    public isInShortcuts(navigationItem)
     {
-        return this.shortcutItems.find(item => {
+        return this.shortcutItems.find((item) => {
             return item.url === navigationItem.url;
         });
     }
 
-    onMenuOpen()
+    public onMenuOpen()
     {
         this.searchInputField.nativeElement.focus();
     }
 
-    showMobileShortcutsPanel()
+    public showMobileShortcutsPanel()
     {
         this.mobileShortcutsPanelActive = true;
-        this.renderer.addClass(this.shortcutsEl.nativeElement, 'show-mobile-panel');
+        this.renderer.addClass(this.shortcutsEl.nativeElement, "show-mobile-panel");
     }
 
-    hideMobileShortcutsPanel()
+    public hideMobileShortcutsPanel()
     {
         this.mobileShortcutsPanelActive = false;
-        this.renderer.removeClass(this.shortcutsEl.nativeElement, 'show-mobile-panel');
+        this.renderer.removeClass(this.shortcutsEl.nativeElement, "show-mobile-panel");
     }
 }

@@ -3,14 +3,14 @@ export class FuseUtils
 
     public static filterArrayByString(mainArr, searchText)
     {
-        if ( searchText === '' )
+        if ( searchText === "" )
         {
             return mainArr;
         }
 
         searchText = searchText.toLowerCase();
 
-        return mainArr.filter(itemObj => {
+        return mainArr.filter((itemObj) => {
             return this.searchInObj(itemObj, searchText);
         });
     }
@@ -27,7 +27,7 @@ export class FuseUtils
 
             const value = itemObj[prop];
 
-            if ( typeof value === 'string' )
+            if ( typeof value === "string" )
             {
                 if ( this.searchInSting(value, searchText) )
                 {
@@ -44,7 +44,7 @@ export class FuseUtils
 
             }
 
-            if ( typeof value === 'object' )
+            if ( typeof value === "object" )
             {
                 if ( this.searchInObj(value, searchText) )
                 {
@@ -58,7 +58,7 @@ export class FuseUtils
     {
         for ( const value of arr )
         {
-            if ( typeof value === 'string' )
+            if ( typeof value === "string" )
             {
                 if ( this.searchInSting(value, searchText) )
                 {
@@ -66,7 +66,7 @@ export class FuseUtils
                 }
             }
 
-            if ( typeof value === 'object' )
+            if ( typeof value === "object" )
             {
                 if ( this.searchInObj(value, searchText) )
                 {

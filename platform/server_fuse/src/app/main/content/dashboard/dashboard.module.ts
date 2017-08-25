@@ -1,29 +1,29 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
-import { SharedModule } from '../../../core/modules/shared.module';
-import { AuthGuard } from '../../../core/auth/auth.guard';
-import { DashboardComponent } from './dashboard.component';
+import { AuthGuard } from "../../../core/auth/auth.guard";
+import { SharedModule } from "../../../core/modules/shared.module";
+import { DashboardComponent } from "./dashboard.component";
 
 const routes = [
     {
-        path     : 'dashboard',
+        path     : "dashboard",
         component: DashboardComponent,
-canActivate: [AuthGuard]
-    }
+canActivate: [AuthGuard],
+    },
 ];
 
 @NgModule({
     declarations: [
-        DashboardComponent
+        DashboardComponent,
     ],
     imports     : [
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
     ],
     exports     : [
-        DashboardComponent
-    ]
+        DashboardComponent,
+    ],
 })
 
 export class DashboardModule

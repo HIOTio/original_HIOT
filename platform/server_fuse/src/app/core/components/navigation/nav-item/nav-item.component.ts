@@ -1,20 +1,20 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 
 @Component({
-    selector   : 'fuse-nav-item',
-    templateUrl: './nav-item.component.html',
-    styleUrls  : ['./nav-item.component.scss']
+    selector   : "fuse-nav-item",
+    templateUrl: "./nav-item.component.html",
+    styleUrls  : ["./nav-item.component.scss"],
 })
 export class FuseNavItemComponent implements OnInit
 {
-    @HostBinding('class') classes = 'nav-item';
-    @Input() item: any;
+    public public public; @HostBinding("class") classes = "nav-item";
+    public public public; @Input() item: any;
 
     constructor()
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 }

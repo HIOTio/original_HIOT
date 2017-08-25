@@ -1,26 +1,26 @@
-import { Component, ContentChild, ElementRef, Input, OnInit } from '@angular/core';
-import * as hljs from 'highlight.js';
+import { Component, ContentChild, ElementRef, Input, OnInit } from "@angular/core";
+import * as hljs from "highlight.js";
 
 @Component({
-    selector : 'fuse-hljs',
-    template : ' ',
-    styleUrls: ['./hljs.component.scss']
+    selector : "fuse-hljs",
+    template : " ",
+    styleUrls: ["./hljs.component.scss"],
 })
 export class FuseHljsComponent implements OnInit
 {
-    hljs: any;
+    public hljs: any;
 
-    @ContentChild('source') source: ElementRef;
-    @Input('lang') lang: string;
+    public public public; @ContentChild("source") source: ElementRef;
+    public public public; @Input("lang") lang: string;
 
     constructor(
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
     )
     {
         this.hljs = hljs;
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         const originalSource = this.source.nativeElement.value;
 
@@ -30,14 +30,14 @@ export class FuseHljsComponent implements OnInit
         }
 
         // Split the source into lines
-        const sourceLines = originalSource.split('\n');
+        const sourceLines = originalSource.split("\n");
 
         // Find the first non-whitespace char index in
         // the first line of the source code
         const indexOfFirstChar = sourceLines[0].search(/\S|$/);
 
         // Generate the trimmed source
-        let source = '';
+        let source = "";
 
         // Iterate through all the lines and trim the
         // beginning white space depending on the index
@@ -47,7 +47,7 @@ export class FuseHljsComponent implements OnInit
 
             if ( index !== sourceLines.length - 1 )
             {
-                source = source + '\n';
+                source = source + "\n";
             }
         });
 
@@ -55,4 +55,3 @@ export class FuseHljsComponent implements OnInit
             `<pre><code class="highlight">` + this.hljs.highlight(this.lang, source).value + `</code></pre>`;
     }
 }
-

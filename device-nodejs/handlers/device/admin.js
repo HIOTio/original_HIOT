@@ -1,9 +1,9 @@
-function updateConfig(){
-	
+function updateConfig () {
+
 }
 
-module.exports={
-	handleMessage: function(message){
-		console.log("this is the handler");
-	}
+module.exports = {
+  handleMessage: function (message) {
+    console.log('this is the handler')
+  }
 }

@@ -1,46 +1,46 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
-import { SharedModule } from '../../../core/modules/shared.module';
-import { AuthGuard } from '../../../core/auth/auth.guard';
-import { DeploymentComponent } from './deployment.component';
-import { DeploymentListComponent} from './list/deploymentList.component';
-import { DeploymentNewComponent} from './new/deploymentNew.component';
-import { DeviceModule} from '../device/device.module'; 
-import { ChartModule } from 'angular2-chartjs';
+import { ChartModule } from "angular2-chartjs";
+import { AuthGuard } from "../../../core/auth/auth.guard";
+import { SharedModule } from "../../../core/modules/shared.module";
+import { DeviceModule} from "../device/device.module";
+import { DeploymentComponent } from "./deployment.component";
+import { DeploymentListComponent} from "./list/deploymentList.component";
+import { DeploymentNewComponent} from "./new/deploymentNew.component";
 const routes = [
 	{
-		path : 'deployment/new',
+		path : "deployment/new",
 		component: DeploymentNewComponent,
-		canActivate: [AuthGuard]
+		canActivate: [AuthGuard],
 	},
     {
-        path     : 'deployment/:id',
+        path     : "deployment/:id",
         component: DeploymentComponent,
-canActivate: [AuthGuard]
-    },{
-		
-	path : 'deployments',
-	component : DeploymentListComponent
-	}
-	
+canActivate: [AuthGuard],
+    }, {
+
+	path : "deployments",
+	component : DeploymentListComponent,
+	},
+
 ];
 
 @NgModule({
     declarations: [
         DeploymentComponent,
 		DeploymentListComponent,
-		DeploymentNewComponent
+		DeploymentNewComponent,
     ],
     imports     : [
         SharedModule,
         RouterModule.forChild(routes),
 		DeviceModule,
-		ChartModule
+		ChartModule,
     ],
     exports     : [
-        DeploymentComponent
-    ]
+        DeploymentComponent,
+    ],
 })
 
 export class DeploymentModule

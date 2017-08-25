@@ -1,21 +1,21 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FuseConfigService } from '../../services/config.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
+import { FuseConfigService } from "../../services/config.service";
 
 @Component({
-    selector   : 'fuse-search-bar',
-    templateUrl: './search-bar.component.html',
-    styleUrls  : ['./search-bar.component.scss']
+    selector   : "fuse-search-bar",
+    templateUrl: "./search-bar.component.html",
+    styleUrls  : ["./search-bar.component.scss"],
 })
 export class FuseSearchBarComponent implements OnInit
 {
-    collapsed: boolean;
-    toolbarColor: string;
-    @Output() onInput: EventEmitter<any> = new EventEmitter();
-    onSettingsChanged: Subscription;
+    public collapsed: boolean;
+    public toolbarColor: string;
+    public public public; @Output() onInput: EventEmitter<any> = new EventEmitter();
+    public onSettingsChanged: Subscription;
 
     constructor(
-        private fuseConfig: FuseConfigService
+        private fuseConfig: FuseConfigService,
     )
     {
         this.collapsed = true;
@@ -24,26 +24,26 @@ export class FuseSearchBarComponent implements OnInit
                 .subscribe(
                     (newSettings) => {
                         this.toolbarColor = newSettings.colorClasses.toolbar;
-                    }
+                    },
                 );
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
 
     }
 
-    collapse()
+    public collapse()
     {
         this.collapsed = true;
     }
 
-    expand()
+    public expand()
     {
         this.collapsed = false;
     }
 
-    search(event)
+    public search(event)
     {
         const value = event.target.value;
 

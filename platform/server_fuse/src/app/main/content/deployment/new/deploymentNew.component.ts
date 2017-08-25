@@ -1,34 +1,28 @@
-import { Component } from '@angular/core';
-import {DeploymentService} from '../deployment.service';
-import { Observable } from 'rxjs/Observable';
-import {MdSnackBar} from '@angular/material';
+import { Component } from "@angular/core";
+import {MdSnackBar} from "@angular/material";
+import { Observable } from "rxjs/Observable";
+import {DeploymentService} from "../deployment.service";
 
 @Component({
-    selector   : 'deploymentNew',
-    templateUrl: './deploymentNew.component.html',
-	providers: [DeploymentService]
+    selector   : "deploymentNew",
+    templateUrl: "./deploymentNew.component.html",
+	providers: [DeploymentService],
 })
 export class DeploymentNewComponent
 {
-	deployment={};
-	deployment_users=[];
+	public deployment= {};
+	public deployment_users= [];
     constructor(private deploymentService: DeploymentService){
-		this.deployment_users=[
+		this.deployment_users = [
 			{
-				"_id":12345,
-				"name" : 'Mark Healy'
-}
-		]
+				_id: 12345,
+				name : "Mark Healy",
+},
+		];
     }
-	  ngOnInit() {
+	  public ngOnInit() {
      // this.deployments=this.deploymentService.list();
 		  console.log("in the new deployment component");
   }
 
-
 }
-
-
-
-
-
