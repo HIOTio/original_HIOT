@@ -11,28 +11,46 @@ import {MdSnackBar} from '@angular/material';
 export class DeploymentListComponent
 {
 	public deployments: Observable<any>;
-public type: string;
-	public data:{	};
-public options:{};
+public chart1:{	};
+public chart2:{};
     constructor(private deploymentService: DeploymentService){
-		this.type = 'doughnut';
-this.data = {
+		this.chart1={
+			type: 'line',
+			data : {
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  datasets: [
+    {
+      label: "My First dataset",
+      data: [65, 59, 80, 81, 56, 55, 40]
+    }
+  ]
+},
+options : {
+  responsive: true,
+  maintainAspectRatio: false
+}
+		};
+	this.chart2={
+		type : 'doughnut',
+		data : {
     datasets: [{
-        data: [10, 20, 30],
-		bakgroundColor:['#ff0000','00ffff','#0000ff']
+        data: [10, 100, 5000],
+		backgroundColor:['#ff0000','#00ffff','#00ff00']
     }],
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
         'Red',
         'Yellow',
-        'Blue'
+        'Green'
     ]
-};
-this.options = {
+},
+options : {
   responsive: true,
   maintainAspectRatio: false
-};
+}
+	};
+
+
     }
 	  ngOnInit() {
       this.deployments=this.deploymentService.list();
@@ -42,6 +60,7 @@ this.options = {
 
 
 }
+
 
 
 
