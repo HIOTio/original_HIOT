@@ -1,19 +1,19 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { FuseNavigationService } from '../navigation.service';
-import { NavigationEnd, Router } from '@angular/router';
-import { Animations } from '../../../animations';
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
+import { Animations } from "../../../animations";
+import { FuseNavigationService } from "../navigation.service";
 
 @Component({
-    selector   : 'fuse-nav-collapse',
-    templateUrl: './nav-collapse.component.html',
-    styleUrls  : ['./nav-collapse.component.scss'],
-    animations : [Animations.slideInOut]
+    selector   : "fuse-nav-collapse",
+    templateUrl: "./nav-collapse.component.html",
+    styleUrls  : ["./nav-collapse.component.scss"],
+    animations : [Animations.slideInOut],
 })
 export class FuseNavCollapseComponent implements OnInit
 {
-    @Input() item: any;
-    @HostBinding('class') classes = 'nav-collapse nav-item';
-    @HostBinding('class.open') public isOpen = false;
+     @Input() item: any;
+     @HostBinding("class") classes = "nav-collapse nav-item";
+    @HostBinding("class.open") public isOpen = false;
 
     constructor(private navigationService: FuseNavigationService, private router: Router)
     {
@@ -37,7 +37,7 @@ export class FuseNavCollapseComponent implements OnInit
                         this.collapse();
                     }
                 }
-            }
+            },
         );
 
         /**
@@ -64,7 +64,7 @@ export class FuseNavCollapseComponent implements OnInit
                         this.collapse();
                     }
                 }
-            }
+            },
         );
     }
 
@@ -72,7 +72,7 @@ export class FuseNavCollapseComponent implements OnInit
      * Toggle Collapse
      * @param ev
      */
-    toggleOpen(ev)
+    public toggleOpen(ev)
     {
         ev.preventDefault();
         this.isOpen = !this.isOpen;
@@ -82,7 +82,7 @@ export class FuseNavCollapseComponent implements OnInit
     /**
      * Expand
      */
-    expand()
+    public expand()
     {
         if ( this.isOpen )
         {
@@ -94,7 +94,7 @@ export class FuseNavCollapseComponent implements OnInit
     /**
      * Collapse
      */
-    collapse()
+    public collapse()
     {
         if ( !this.isOpen )
         {
@@ -109,7 +109,7 @@ export class FuseNavCollapseComponent implements OnInit
      * @param url
      * @returns {any}
      */
-    isUrlInChildren(arr, url)
+    public isUrlInChildren(arr, url)
     {
         if ( !arr.children )
         {
@@ -140,7 +140,7 @@ export class FuseNavCollapseComponent implements OnInit
         return this.isOpen;
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 

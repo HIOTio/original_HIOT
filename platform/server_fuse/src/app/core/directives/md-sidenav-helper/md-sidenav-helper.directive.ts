@@ -1,46 +1,46 @@
-import { Directive, Input, OnInit, HostListener, OnDestroy, HostBinding, AfterViewInit } from '@angular/core';
-import { MdSidenav } from '@angular/material';
-import { FuseMdSidenavHelperService } from 'app/core/directives/md-sidenav-helper/md-sidenav-helper.service';
-import { FuseMatchMedia } from '../../services/match-media.service';
-import { ObservableMedia } from '@angular/flex-layout';
-import { Subscription } from 'rxjs/Subscription';
+import { AfterViewInit, Directive, HostBinding, HostListener, Input, OnDestroy, OnInit } from "@angular/core";
+import { ObservableMedia } from "@angular/flex-layout";
+import { MdSidenav } from "@angular/material";
+import { FuseMdSidenavHelperService } from "app/core/directives/md-sidenav-helper/md-sidenav-helper.service";
+import { Subscription } from "rxjs/Subscription";
+import { FuseMatchMedia } from "../../services/match-media.service";
 
 @Directive({
-    selector: '[fuseMdSidenavHelper]'
+    selector: "[fuseMdSidenavHelper]",
 })
 export class FuseMdSidenavHelperDirective implements OnInit, AfterViewInit, OnDestroy
 {
-    matchMediaSubscription: Subscription;
+    public matchMediaSubscription: Subscription;
 
-    @HostBinding('class.md-is-locked-open') isLockedOpen = true;
-    @HostBinding('class.md-stop-transition') stopTransition = true;
+     @HostBinding("class.md-is-locked-open") isLockedOpen = true;
+     @HostBinding("class.md-stop-transition") stopTransition = true;
 
-    @Input('fuseMdSidenavHelper') id: string;
-    @Input('md-is-locked-open') mdIsLockedOpenBreakpoint: string;
+     @Input("fuseMdSidenavHelper") id: string;
+     @Input("md-is-locked-open") mdIsLockedOpenBreakpoint: string;
 
     constructor(
         private fuseMdSidenavService: FuseMdSidenavHelperService,
         private fuseMatchMedia: FuseMatchMedia,
         private observableMedia: ObservableMedia,
-        private mdSidenav: MdSidenav
+        private mdSidenav: MdSidenav,
     )
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
         this.fuseMdSidenavService.setSidenav(this.id, this.mdSidenav);
 
         if ( this.observableMedia.isActive(this.mdIsLockedOpenBreakpoint) )
         {
             this.isLockedOpen = true;
-            this.mdSidenav.mode = 'side';
+            this.mdSidenav.mode = "side";
             this.mdSidenav.open();
         }
         else
         {
             this.isLockedOpen = false;
-            this.mdSidenav.mode = 'over';
+            this.mdSidenav.mode = "over";
             this.mdSidenav.close();
         }
 
@@ -48,44 +48,44 @@ export class FuseMdSidenavHelperDirective implements OnInit, AfterViewInit, OnDe
             if ( this.observableMedia.isActive(this.mdIsLockedOpenBreakpoint) )
             {
                 this.isLockedOpen = true;
-                this.mdSidenav.mode = 'side';
+                this.mdSidenav.mode = "side";
                 this.mdSidenav.open();
             }
             else
             {
                 this.isLockedOpen = false;
-                this.mdSidenav.mode = 'over';
+                this.mdSidenav.mode = "over";
                 this.mdSidenav.close();
             }
         });
 
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit()
     {
         setTimeout(() => {
             this.stopTransition = false;
         }, 0);
     }
 
-    ngOnDestroy()
+    public ngOnDestroy()
     {
         this.matchMediaSubscription.unsubscribe();
     }
 }
 
 @Directive({
-    selector: '[fuseMdSidenavToggler]'
+    selector: "[fuseMdSidenavToggler]",
 })
 export class FuseMdSidenavTogglerDirective
 {
-    @Input('fuseMdSidenavToggler') id;
+     @Input("fuseMdSidenavToggler") id;
 
     constructor(private fuseMdSidenavService: FuseMdSidenavHelperService)
     {
     }
 
-    @HostListener('click')
+     @HostListener("click")
     onClick()
     {
         this.fuseMdSidenavService.getSidenav(this.id).toggle();

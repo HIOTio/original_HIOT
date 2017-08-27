@@ -1,10 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
-@Pipe({name: 'htmlToPlaintext'})
+@Pipe({name: "htmlToPlaintext"})
 export class HtmlToPlaintextPipe implements PipeTransform
 {
-    transform(value: string, args: any[] = [])
+    public transform(value: string, args: any[] = [])
     {
-        return value ? String(value).replace(/<[^>]+>/gm, '') : '';
+        return value ? String(value).replace(/<[^>]+>/gm, "") : "";
     }
 }

@@ -1,15 +1,15 @@
-import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from "@angular/core";
+import { MediaChange, ObservableMedia } from "@angular/flex-layout";
 
 @Injectable()
 export class FuseMatchMedia
 {
-    activeMediaQuery: string;
-    onMediaChange: EventEmitter<string> = new EventEmitter<string>();
+    public activeMediaQuery: string;
+    public onMediaChange: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private observableMedia: ObservableMedia)
     {
-        this.activeMediaQuery = '';
+        this.activeMediaQuery = "";
 
         this.observableMedia.subscribe((change: MediaChange) => {
             if ( this.activeMediaQuery !== change.mqAlias )

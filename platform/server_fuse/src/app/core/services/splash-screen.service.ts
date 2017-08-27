@@ -1,21 +1,21 @@
-import { Inject, Injectable } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
-import { NavigationEnd, Router } from '@angular/router';
+import { animate, AnimationBuilder, AnimationPlayer, style } from "@angular/animations";
+import { DOCUMENT } from "@angular/common";
+import { Inject, Injectable } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
 
 @Injectable()
 export class FuseSplashScreenService
 {
-    splashScreenEl;
+    public splashScreenEl;
     public player: AnimationPlayer;
 
     constructor(
         private animationBuilder: AnimationBuilder,
         @Inject(DOCUMENT) private document: any,
-        private router: Router
+        private router: Router,
     )
     {
-        this.splashScreenEl = this.document.body.querySelector('#fuse-splash-screen');
+        this.splashScreenEl = this.document.body.querySelector("#fuse-splash-screen");
 
         const hideOnLoad = this.router.events.subscribe((event) => {
                 if ( event instanceof NavigationEnd )
@@ -25,20 +25,20 @@ export class FuseSplashScreenService
                         hideOnLoad.unsubscribe();
                     }, 0);
                 }
-            }
+            },
         );
     }
 
-    show()
+    public show()
     {
         this.player =
             this.animationBuilder
                 .build([
                     style({
-                        opacity: '0',
-                        zIndex : '99999'
+                        opacity: "0",
+                        zIndex : "99999",
                     }),
-                    animate('400ms ease', style({opacity: '1'}))
+                    animate("400ms ease", style({opacity: "1"})),
                 ]).create(this.splashScreenEl);
 
         setTimeout(() => {
@@ -46,16 +46,16 @@ export class FuseSplashScreenService
         }, 0);
     }
 
-    hide()
+    public hide()
     {
         this.player =
             this.animationBuilder
                 .build([
-                    style({opacity: '1'}),
-                    animate('400ms ease', style({
-                        opacity: '0',
-                        zIndex : '-10'
-                    }))
+                    style({opacity: "1"}),
+                    animate("400ms ease", style({
+                        opacity: "0",
+                        zIndex : "-10",
+                    })),
                 ]).create(this.splashScreenEl);
 
         setTimeout(() => {

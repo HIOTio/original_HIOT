@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CdkTableModule } from "@angular/cdk";
+import { NgModule } from "@angular/core";
 import {
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
-    MdCheckboxModule,
-    MdToolbarModule,
-    MdTooltipModule,
     MdCardModule,
+    MdCheckboxModule,
     MdChipsModule,
     MdCoreModule,
     MdDatepickerModule,
@@ -30,9 +29,10 @@ import {
     MdSnackBarModule,
     MdSortModule,
     MdTableModule,
-    MdTabsModule
-} from '@angular/material';
-import { CdkTableModule } from '@angular/cdk';
+    MdTabsModule,
+    MdToolbarModule,
+    MdTooltipModule,
+} from "@angular/material";
 
 @NgModule({
     imports: [
@@ -67,7 +67,7 @@ import { CdkTableModule } from '@angular/cdk';
         MdTabsModule,
         MdToolbarModule,
         MdTooltipModule,
-        CdkTableModule
+        CdkTableModule,
     ],
     exports: [
         MdAutocompleteModule,
@@ -101,8 +101,8 @@ import { CdkTableModule } from '@angular/cdk';
         MdTabsModule,
         MdToolbarModule,
         MdTooltipModule,
-        CdkTableModule
-    ]
+        CdkTableModule,
+    ],
 })
 export class MaterialModule
 {

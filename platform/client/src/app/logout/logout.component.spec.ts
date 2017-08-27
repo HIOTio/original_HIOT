@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { LogoutComponent } from './logout.component';
+import { LogoutComponent } from "./logout.component";
 
-describe('LogoutComponent', () => {
+describe("LogoutComponent", () => {
   let component: LogoutComponent;
   let fixture: ComponentFixture<LogoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogoutComponent ]
+      declarations: [ LogoutComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +19,7 @@ describe('LogoutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 });

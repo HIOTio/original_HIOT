@@ -1,60 +1,57 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
+var express = require('express')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+var expressValidator = require('express-validator')
 
-var _ = require("lodash");
-var jwt = require('jsonwebtoken');
-var passport = require("passport");
-var passportJWT = require("passport-jwt");
-var ExtractJwt = passportJWT.ExtractJwt;
-var JwtStrategy = passportJWT.Strategy;
-var config = require('./config');
-var app = express();
+var _ = require('lodash')
+var jwt = require('jsonwebtoken')
+var passport = require('passport')
+var passportJWT = require('passport-jwt')
+var ExtractJwt = passportJWT.ExtractJwt
+var JwtStrategy = passportJWT.Strategy
+var config = require('./config')
+var app = express()
 
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-var cors = require('cors');
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.json())
+var cors = require('cors')
 app.use(bodyParser.urlencoded({
 	extended: false
-}));
-app.use(expressValidator());
-var expressJwt = require('express-jwt');
-var db = require('./api/db');
-var Profile = require('./controllers/profile');
-
+}))
+app.use(expressValidator())
+var expressJwt = require('express-jwt')
+var db = require('./api/db')
+var Profile = require('./controllers/profile')
 
 var jwtOptions = {}
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
-jwtOptions.secretOrKey = config.secret;
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader()
+jwtOptions.secretOrKey = config.secret
 
 var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 	Profile.find_by_id(jwt_payload.id, function (err, user) {
 		if (this) {
-			next(null, this);
+			next(null, this)
 		} else {
-			next(null, false);
+			next(null, false)
 		}
-	});
-});
-passport.use(strategy);
+	})
+})
+passport.use(strategy)
 app.use(cors({
 	origin: 'http://localhost:4200'
-}));
-app.use(passport.initialize());
+}))
+app.use(passport.initialize())
 
 app.use('/api', passport.authenticate('jwt', {
 	session: false
-}));
+}))
 
 // use it before all route definitions
 
-
 // Routing
 // no auth
-var r_no_auth = require('./routes/no_auth');
+var r_no_auth = require('./routes/no_auth')
 // with auth
 var r_aggregator = require('./routes/aggregator');
 var r_broker = require('./routes/broker');
@@ -116,14 +113,13 @@ app.use('/api/subscription', r_subscription);
 app.use('/api/thing', r_thing);
 app.use('/api/topic', r_topic);
 app.use('/api/navigation', r_navigation);
+
 // End Routing
 
-
 app.get('/', function (req, res) {
-	res.send('HIOT Platform!');
-});
-
+	res.send('HIOT Platform!')
+})
 
 app.listen(3000, function () {
-	console.log('Platform running on port 3000!');
-});
+	console.log('Platform running on port 3000!')
+})

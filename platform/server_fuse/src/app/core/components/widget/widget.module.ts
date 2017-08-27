@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../../modules/shared.module';
-import { FuseWidgetComponent } from './widget.component';
-import { FuseWidgetToggleDirective } from './widget-toggle.directive';
+import { NgModule } from "@angular/core";
+import { SharedModule } from "../../modules/shared.module";
+import { FuseWidgetToggleDirective } from "./widget-toggle.directive";
+import { FuseWidgetComponent } from "./widget.component";
 
 @NgModule({
     imports     : [
-        SharedModule
+        SharedModule,
     ],
     exports     : [
         FuseWidgetComponent,
-        FuseWidgetToggleDirective
+        FuseWidgetToggleDirective,
     ],
     declarations: [
         FuseWidgetComponent,
-        FuseWidgetToggleDirective
-    ]
+        FuseWidgetToggleDirective,
+    ],
 })
 export class FuseWidgetModule
 {

@@ -1,20 +1,20 @@
-import { Directive, HostListener, Input } from '@angular/core';
-import { FuseNavbarService } from './navbar.service';
-import { FuseNavbarComponent } from './navbar.component';
+import { Directive, HostListener, Input } from "@angular/core";
+import { FuseNavbarComponent } from "./navbar.component";
+import { FuseNavbarService } from "./navbar.service";
 
 @Directive({
-    selector: '[fuseNavbar]'
+    selector: "[fuseNavbar]",
 })
 export class FuseNavbarToggleDirective
 {
-    @Input() fuseNavbar: string;
-    navbar: FuseNavbarComponent;
+    public; @Input() fuseNavbar: string;
+    public navbar: FuseNavbarComponent;
 
     constructor(private navbarService: FuseNavbarService)
     {
     }
 
-    @HostListener('click')
+    @HostListener("click")
     onClick()
     {
         this.navbar = this.navbarService.getNavBar();

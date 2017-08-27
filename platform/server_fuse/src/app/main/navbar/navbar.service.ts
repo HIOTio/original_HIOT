@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class FuseNavbarService
 {
-    navBarRef;
+    public navBarRef;
 
     constructor()
     {
     }
 
-    setNavBar(ref)
+    public setNavBar(ref)
     {
         this.navBarRef = ref;
     }
 
-    getNavBar()
+    public getNavBar()
     {
         return this.navBarRef;
     }

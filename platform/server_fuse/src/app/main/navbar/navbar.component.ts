@@ -1,41 +1,40 @@
-import { Component, HostBinding, HostListener, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import { FuseMatchMedia } from '../../core/services/match-media.service';
-import { FuseNavbarService } from './navbar.service';
-import { ObservableMedia } from '@angular/flex-layout';
-import { FuseMainComponent } from '../main.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
-import { FuseNavigationService } from '../../core/components/navigation/navigation.service';
+import { Component, HostBinding, HostListener, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
+import { ObservableMedia } from "@angular/flex-layout";
+import { NavigationEnd, Router } from "@angular/router";
+import { PerfectScrollbarDirective } from "ngx-perfect-scrollbar";
+import { Subscription } from "rxjs/Subscription";
+import { FuseNavigationService } from "../../core/components/navigation/navigation.service";
+import { FuseMatchMedia } from "../../core/services/match-media.service";
+import { FuseMainComponent } from "../main.component";
+import { FuseNavbarService } from "./navbar.service";
 
 @Component({
-    selector     : 'fuse-navbar',
-    templateUrl  : './navbar.component.html',
-    styleUrls    : ['./navbar.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    selector     : "fuse-navbar",
+    templateUrl  : "./navbar.component.html",
+    styleUrls    : ["./navbar.component.scss"],
+    encapsulation: ViewEncapsulation.None,
 })
 export class FuseNavbarComponent implements OnInit, OnDestroy
 {
-    @HostBinding('class.close') isClosed: boolean;
-    @HostBinding('class.folded') isFoldedActive: boolean;
-    @HostBinding('class.folded-open') isFoldedOpen: boolean;
-    @HostBinding('class.initialized') initialized: boolean;
-    @Input('folded') foldedByDefault = false;
+    public; @HostBinding("class.close") isClosed: boolean;
+    @HostBinding("class.folded") isFoldedActive: boolean;
+    @HostBinding("class.folded-open") isFoldedOpen: boolean;
+    @HostBinding("class.initialized") initialized: boolean;
+    @Input("folded") foldedByDefault = false;
     @ViewChild(PerfectScrollbarDirective) perfectScrollbarDirective;
 
-    matchMediaWatcher: Subscription;
-
+    public matchMediaWatcher: Subscription;
     constructor(
         private fuseMainComponentEl: FuseMainComponent,
         private fuseMatchMedia: FuseMatchMedia,
         private fuseNavigationService: FuseNavigationService,
         private navBarService: FuseNavbarService,
         public media: ObservableMedia,
-        private router: Router
+        private router: Router,
     )
     {
         navBarService.setNavBar(this);
-
+      
         this.fuseNavigationService.onNavCollapseToggled.subscribe(() => {
 
             setTimeout(() => {
@@ -48,7 +47,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
                 .subscribe((mediaStep) => {
                     setTimeout(() => {
 
-                        if ( this.media.isActive('lt-lg') )
+                        if ( this.media.isActive("lt-lg") )
                         {
                             this.closeBar();
                             this.deActivateFolded();
@@ -64,18 +63,19 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
             (event) => {
                 if ( event instanceof NavigationEnd )
                 {
-                    if ( this.media.isActive('lt-lg') )
+                    if ( this.media.isActive("lt-lg") )
                     {
                         setTimeout(() => {
                             this.closeBar();
                         });
                     }
                 }
-            }
+            },
         );
     }
 
-    ngOnInit()
+  
+    public ngOnInit()
     {
         this.isClosed = false;
         this.isFoldedActive = this.foldedByDefault;
@@ -87,7 +87,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
             this.initialized = true;
         });
 
-        if ( this.media.isActive('lt-lg') )
+        if ( this.media.isActive("lt-lg") )
         {
             this.closeBar();
             this.deActivateFolded();
@@ -105,19 +105,19 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         }
     }
 
-    openBar()
+    public openBar()
     {
         this.isClosed = false;
         this.updateCssClasses();
     }
 
-    closeBar()
+    public closeBar()
     {
         this.isClosed = true;
         this.updateCssClasses();
     }
 
-    toggleBar()
+    public toggleBar()
     {
         if ( this.isClosed )
         {
@@ -129,7 +129,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         }
     }
 
-    toggleFold()
+    public toggleFold()
     {
         if ( !this.isFoldedActive )
         {
@@ -141,47 +141,47 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         }
     }
 
-    activateFolded()
+    public activateFolded()
     {
         this.isFoldedActive = true;
-        this.fuseMainComponentEl.addClass('fuse-nav-bar-folded');
+        this.fuseMainComponentEl.addClass("fuse-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
-    deActivateFolded()
+    public deActivateFolded()
     {
         this.isFoldedActive = false;
-        this.fuseMainComponentEl.removeClass('fuse-nav-bar-folded');
+        this.fuseMainComponentEl.removeClass("fuse-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
-    @HostListener('mouseenter')
+    @HostListener("mouseenter")
     onMouseEnter()
     {
         this.isFoldedOpen = true;
     }
 
-    @HostListener('mouseleave')
+    @HostListener("mouseleave")
     onMouseLeave()
     {
         this.isFoldedOpen = false;
     }
 
-    updateCssClasses()
+    public updateCssClasses()
     {
         if ( this.isClosed )
         {
-            this.fuseMainComponentEl.addClass('fuse-nav-bar-opened');
-            this.fuseMainComponentEl.removeClass('fuse-nav-bar-closed');
+            this.fuseMainComponentEl.addClass("fuse-nav-bar-opened");
+            this.fuseMainComponentEl.removeClass("fuse-nav-bar-closed");
         }
         else
         {
-            this.fuseMainComponentEl.addClass('fuse-nav-bar-closed');
-            this.fuseMainComponentEl.removeClass('fuse-nav-bar-opened');
+            this.fuseMainComponentEl.addClass("fuse-nav-bar-closed");
+            this.fuseMainComponentEl.removeClass("fuse-nav-bar-opened");
         }
     }
 
-    ngOnDestroy()
+    public ngOnDestroy()
     {
         this.matchMediaWatcher.unsubscribe();
     }

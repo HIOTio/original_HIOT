@@ -1,42 +1,42 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { MatColors } from '../../matColors';
-import { Animations } from '../../animations';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from "@angular/core";
+import { Animations } from "../../animations";
+import { MatColors } from "../../matColors";
 
 @Component({
-    selector     : 'fuse-material-color-picker',
-    templateUrl  : './material-color-picker.component.html',
-    styleUrls    : ['./material-color-picker.component.scss'],
+    selector     : "fuse-material-color-picker",
+    templateUrl  : "./material-color-picker.component.html",
+    styleUrls    : ["./material-color-picker.component.scss"],
     animations   : [Animations.slideInLeft, Animations.slideInRight],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
 {
-    colors: any;
-    selectedColor: any;
-    hues: string[];
-    view = 'palettes';
+    public colors: any;
+    public selectedColor: any;
+    public hues: string[];
+    public view = "palettes";
 
-    @Input() selectedPalette = '';
-    @Input() selectedHue = '';
-    @Input() selectedFg = '';
+     @Input() selectedPalette = "";
+   @Input() selectedHue = "";
+     @Input() selectedFg = "";
     @Input() value: any;
     @Output() onValueChange = new EventEmitter();
-    @Output() selectedPaletteChange = new EventEmitter();
+     @Output() selectedPaletteChange = new EventEmitter();
     @Output() selectedHueChange = new EventEmitter();
     @Output() selectedClassChange = new EventEmitter();
-    @Output() selectedBgChange = new EventEmitter();
+   @Output() selectedBgChange = new EventEmitter();
     @Output() selectedFgChange = new EventEmitter();
 
-    _selectedClass = '';
+    public _selectedClass = "";
     @Input()
     set selectedClass(value)
     {
-        if ( value && value !== '' && this._selectedClass !== value )
+        if ( value && value !== "" && this._selectedClass !== value )
         {
-            const color = value.split('-');
+            const color = value.split("-");
             if ( color.length >= 5 )
             {
-                this.selectedPalette = color[1] + '-' + color[2];
+                this.selectedPalette = color[1] + "-" + color[2];
                 this.selectedHue = color[3];
             }
             else
@@ -53,11 +53,11 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
         return this._selectedClass;
     }
 
-    _selectedBg = '';
+    public _selectedBg = "";
     @Input()
     set selectedBg(value)
     {
-        if ( value && value !== '' && this._selectedBg !== value )
+        if ( value && value !== "" && this._selectedBg !== value )
         {
             for ( const palette in this.colors )
             {
@@ -88,35 +88,35 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
     constructor()
     {
         this.colors = MatColors.all;
-        this.hues = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', 'A100', 'A200', 'A400', 'A700'];
+        this.hues = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "A100", "A200", "A400", "A700"];
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
 
     }
 
-    selectPalette(palette)
+    public selectPalette(palette)
     {
         this.selectedPalette = palette;
         this.updateSelectedColor();
-        this.view = 'hues';
+        this.view = "hues";
     }
 
-    selectHue(hue)
+    public selectHue(hue)
     {
         this.selectedHue = hue;
         this.updateSelectedColor();
     }
 
-    removeColor()
+    public removeColor()
     {
-        this.selectedPalette = '';
-        this.selectedHue = '';
+        this.selectedPalette = "";
+        this.selectedHue = "";
         this.updateSelectedColor();
     }
 
-    updateSelectedColor()
+    public updateSelectedColor()
     {
         setTimeout(() => {
 
@@ -125,16 +125,16 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
                 return;
             }
 
-            if ( this.selectedPalette !== '' && this.selectedHue !== '' )
+            if ( this.selectedPalette !== "" && this.selectedHue !== "" )
             {
                 this.selectedBg = MatColors.getColor(this.selectedPalette)[this.selectedHue];
                 this.selectedFg = MatColors.getColor(this.selectedPalette).contrast[this.selectedHue];
-                this.selectedClass = 'md-' + this.selectedPalette + '-' + this.selectedHue + '-bg';
+                this.selectedClass = "md-" + this.selectedPalette + "-" + this.selectedHue + "-bg";
             }
             else
             {
-                this.selectedBg = '';
-                this.selectedFg = '';
+                this.selectedBg = "";
+                this.selectedFg = "";
             }
 
             this.selectedColor = {
@@ -142,7 +142,7 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
                 hue    : this.selectedHue,
                 class  : this.selectedClass,
                 bg     : this.selectedBg,
-                fg     : this.selectedFg
+                fg     : this.selectedFg,
             };
 
             this.selectedPaletteChange.emit(this.selectedPalette);
@@ -156,28 +156,28 @@ export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
         });
     }
 
-    backToPaletteSelection()
+    public backToPaletteSelection()
     {
-        this.view = 'palettes';
+        this.view = "palettes";
     }
 
-    onMenuOpen()
+    public onMenuOpen()
     {
-        if ( this.selectedPalette === '' )
+        if ( this.selectedPalette === "" )
         {
-            this.view = 'palettes';
+            this.view = "palettes";
         }
         else
         {
-            this.view = 'hues';
+            this.view = "hues";
         }
     }
 
-    ngOnChanges(changes: any)
+    public ngOnChanges(changes: any)
     {
-        if ( changes.selectedBg && changes.selectedBg.currentValue === '' ||
-            changes.selectedClass && changes.selectedClass.currentValue === '' ||
-            changes.selectedPalette && changes.selectedPalette.currentValue === '' )
+        if ( changes.selectedBg && changes.selectedBg.currentValue === "" ||
+            changes.selectedClass && changes.selectedClass.currentValue === "" ||
+            changes.selectedPalette && changes.selectedPalette.currentValue === "" )
         {
             this.removeColor();
             return;

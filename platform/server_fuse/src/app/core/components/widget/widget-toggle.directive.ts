@@ -1,7 +1,7 @@
-import { AfterViewInit, Directive, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, OnInit } from "@angular/core";
 
 @Directive({
-    selector: '[fuseWidgetToggle]'
+    selector: "[fuseWidgetToggle]",
 })
 export class FuseWidgetToggleDirective implements OnInit, AfterViewInit
 {
@@ -10,11 +10,11 @@ export class FuseWidgetToggleDirective implements OnInit, AfterViewInit
     {
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
     }
 
-    ngAfterViewInit()
+    public ngAfterViewInit()
     {
     }
 

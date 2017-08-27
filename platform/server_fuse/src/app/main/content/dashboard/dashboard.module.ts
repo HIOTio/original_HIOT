@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 import { SharedModule } from '../../../core/modules/shared.module';
 import { AuthGuard } from '../../../core/auth/auth.guard';
@@ -8,15 +8,15 @@ import { ChartModule } from 'angular2-chartjs';
 
 const routes = [
     {
-        path     : 'dashboard',
+        path     : "dashboard",
         component: DashboardComponent,
-canActivate: [AuthGuard]
-    }
+canActivate: [AuthGuard],
+    },
 ];
 
 @NgModule({
     declarations: [
-        DashboardComponent
+        DashboardComponent,
     ],
     imports     : [
         SharedModule,
@@ -24,8 +24,8 @@ canActivate: [AuthGuard]
 		ChartModule
     ],
     exports     : [
-        DashboardComponent
-    ]
+        DashboardComponent,
+    ],
 })
 
 export class DashboardModule

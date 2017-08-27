@@ -1,34 +1,39 @@
-import { EventEmitter, Injectable} from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import {AuthenticationService } from '../../../core/auth/auth.service';
+import { EventEmitter, Injectable} from "@angular/core";
+import { Headers, Http, Response } from "@angular/http";
+import "rxjs/add/operator/catch";
+import "rxjs/add/operator/map";
+import { Observable } from "rxjs/Observable";
+import {AuthenticationService } from "../../../core/auth/auth.service";
 @Injectable()
 export class FuseNavigationService
 {
-    onNavCollapseToggled = new EventEmitter<any>();
-    navigation: any[];
-    flatNavigation: any[] = [];
-
-    constructor(private http: Http,private auth: AuthenticationService)
+    public onNavCollapseToggled = new EventEmitter<any>();
+    public navigation: any[];
+    public flatNavigation: any[] = [];
+public display: boolean;
+    constructor(private http: Http, private auth: AuthenticationService)
     {
-     	this.navigation=[];
-				     
-		
+     	this.navigation = [];
+      this.display=false;
     }
 
     /**
      * Get navigation array
      * @returns {any[]}
      */
-
-    getNavigation() :Observable<any[]>
+  
+    public getNavigation(): Observable<any[]>
     {
-        return this.http.get('http://localhost:3000/api/navigation/'+ JSON.parse(localStorage.getItem('currentUser')).id,this.auth.getAuthHeaders())
-		.map(function (res){
-			(res:Response)=>res.json(); 
-			var my_menu = res.json();
+      if(!localStorage.getItem("currentUser")){
+        console.log("no active user");
+        this.display=false;
+        return Observable.empty();
+      }
+        return this.http.get("http://localhost:3000/api/navigation/" + JSON.parse(localStorage.getItem("currentUser")).id, this.auth.getAuthHeaders())
+		.map(function(res){
+            this.display=true;
+			(res: Response) => res.json();
+			const my_menu = res.json();
 			return my_menu;
 		});
     }
@@ -38,7 +43,7 @@ export class FuseNavigationService
      * @param navigationItems
      * @returns {any[]}
      */
-    getFlatNavigation(navigationItems?)
+    public getFlatNavigation(navigationItems?)
     {
         if ( !navigationItems )
         {
@@ -47,24 +52,24 @@ export class FuseNavigationService
 
         for ( const navItem of navigationItems )
         {
-            if ( navItem.type === 'subheader' )
+            if ( navItem.type === "subheader" )
             {
                 continue;
             }
 
-            if ( navItem.type === 'nav-item' )
+            if ( navItem.type === "nav-item" )
             {
                 this.flatNavigation.push({
                     title: navItem.title,
                     type : navItem.type,
                     icon : navItem.icon || false,
-                    url  : navItem.url
+                    url  : navItem.url,
                 });
 
                 continue;
             }
 
-            if ( navItem.type === 'nav-collapse' )
+            if ( navItem.type === "nav-collapse" )
             {
                 this.getFlatNavigation(navItem.children);
             }

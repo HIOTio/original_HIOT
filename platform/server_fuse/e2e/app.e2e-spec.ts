@@ -1,14 +1,14 @@
-import { Fuse2Page } from './app.po';
+import { Fuse2Page } from "./app.po";
 
-describe('fuse2 App', () => {
+describe("fuse2 App", () => {
   let page: Fuse2Page;
 
   beforeEach(() => {
     page = new Fuse2Page();
   });
 
-  it('should display welcome message', () => {
+  it("should display welcome message", () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getParagraphText()).toEqual("Welcome to app!!");
   });
 });

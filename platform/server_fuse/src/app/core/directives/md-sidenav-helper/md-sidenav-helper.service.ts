@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
-import { MdSidenav } from '@angular/material';
+import { Injectable } from "@angular/core";
+import { MdSidenav } from "@angular/material";
 
 @Injectable()
 export class FuseMdSidenavHelperService
 {
-    sidenavInstances: MdSidenav[];
+    public sidenavInstances: MdSidenav[];
 
     constructor()
     {
         this.sidenavInstances = [];
     }
 
-    setSidenav(id, instance)
+    public setSidenav(id, instance)
     {
         this.sidenavInstances[id] = instance;
     }
 
-    getSidenav(id)
+    public getSidenav(id)
     {
         return this.sidenavInstances[id];
     }

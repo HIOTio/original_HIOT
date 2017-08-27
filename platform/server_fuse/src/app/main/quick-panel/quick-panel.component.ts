@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 
 @Component({
-    selector     : 'fuse-quick-panel',
-    templateUrl  : './quick-panel.component.html',
-    styleUrls    : ['./quick-panel.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    selector     : "fuse-quick-panel",
+    templateUrl  : "./quick-panel.component.html",
+    styleUrls    : ["./quick-panel.component.scss"],
+    encapsulation: ViewEncapsulation.None,
 })
 export class FuseQuickPanelComponent implements OnInit
 {
-    date: Date;
-    settings: any;
+    public date: Date;
+    public settings: any;
 
     constructor()
     {
@@ -17,12 +17,12 @@ export class FuseQuickPanelComponent implements OnInit
         this.settings = {
             notify: true,
             cloud : false,
-            retro : true
+            retro : true,
         };
 
     }
 
-    ngOnInit()
+    public ngOnInit()
     {
 
     }

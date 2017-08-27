@@ -1,28 +1,28 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
-import { SharedModule } from '../../../core/modules/shared.module';
+import { SharedModule } from "../../../core/modules/shared.module";
 
-import { FuseSampleComponent } from './sample.component';
+import { FuseSampleComponent } from "./sample.component";
 
 const routes = [
     {
-        path     : 'sample',
-        component: FuseSampleComponent
-    }
+        path     : "sample",
+        component: FuseSampleComponent,
+    },
 ];
 
 @NgModule({
     declarations: [
-        FuseSampleComponent
+        FuseSampleComponent,
     ],
     imports     : [
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
     ],
     exports     : [
-        FuseSampleComponent
-    ]
+        FuseSampleComponent,
+    ],
 })
 
 export class FuseSampleModule

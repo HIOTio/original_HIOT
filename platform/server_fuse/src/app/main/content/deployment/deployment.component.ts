@@ -1,31 +1,25 @@
-import { Component } from '@angular/core';
-import {DeploymentService} from './deployment.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import {MdSnackBar} from '@angular/material';
+import { Component } from "@angular/core";
+import {MdSnackBar} from "@angular/material";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { Observable } from "rxjs/Observable";
+import {DeploymentService} from "./deployment.service";
 
 @Component({
-    selector   : 'deployment',
-    templateUrl: './deployment.component.html',
-    styleUrls  : ['./deployment.component.scss'],
-	providers: [DeploymentService]
+    selector   : "deployment",
+    templateUrl: "./deployment.component.html",
+    styleUrls  : ["./deployment.component.scss"],
+	providers: [DeploymentService],
 })
 export class DeploymentComponent
 {
-	public deployment:  Observable<any>;
+	public deployment: Observable<any>;
     constructor(private route: ActivatedRoute,
-  private router: Router,private deploymentService: DeploymentService){
+                private router: Router, private deploymentService: DeploymentService){
     }
-	  ngOnInit() {
-		this.deployment=  this.route.paramMap
+	  public ngOnInit() {
+		this.deployment =  this.route.paramMap
     .switchMap((params: ParamMap) =>
-      this.deploymentService.details(params.get('id')));
+      this.deploymentService.details(params.get("id")));
   }
 
-
 }
-
-
-
-
-
