@@ -7,7 +7,6 @@ var client = mqtt.connect(config.mqttServer, {
 })
 
 client.on('connect', function () {
-  this.mqttStatus = true
   console.log('connected')
   console.log(config)
   // reconfig
@@ -24,18 +23,18 @@ client.on('error', function (err) {
 
 client.on('message', function (topic, _message) {
   // get the JSON representation of the message
-  console.log('got message')
+  console.log('got message on topic' + topic)
   try {
     var message = JSON.parse(_message.toString())
     // handle special channels to get and set config
     if (topic.startsWith('_CFG_')) {
       if (topic.startsWith('_CFG_Set')) {
         // need to set the config
-        // need to tidy this up a LOT
+        // TODO: need to tidy this up a LOT
      //   this.unsub(config.subscriptions)
         config.updateConfig(message.config)
       } else if (topic.startsWith('_CFG_Get')) {
-        // add security (basic white/black listing) eventually...
+        // TODO: add security (basic white/black listing) eventually...
         console.log('I was asked for my config')
         // need to return the config to the calling channel
         console.log(message.caller)
@@ -63,6 +62,7 @@ this.unsub = function (topic) {
 }
 module.exports = {
   subscribe: function (channel) {
+    // TODO: make sur we're connected
     client.subscribe(channel)
   },
   publish: function (channel) {

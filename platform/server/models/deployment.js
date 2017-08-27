@@ -12,23 +12,6 @@ var DeploymentSchema = new Schema({
     ref: 'Profile',
     required: true
   },
-
-<<<<<<< HEAD
-	added: {
-		type: Date,
-		default: Date.now
-	},
-	active: {
-		type: Boolean,
-		default: true
-	},
-	deploymentType: {
-		type: Schema.Types.ObjectId,
-		ref: 'DeploymentType'
-	},
-	dtValues: String
-});
-=======
   added: {
     type: Date,
     default: Date.now
@@ -36,9 +19,13 @@ var DeploymentSchema = new Schema({
   active: {
     type: Boolean,
     default: true
-  }
+  },
+  deploymentType: {
+    type: Schema.Types.ObjectId,
+    ref: 'DeploymentType'
+  },
+  dtValues: String
 })
->>>>>>> 6feee323f9b8b17ede5d34a875baabf70f5202c0
 
 DeploymentSchema
 	.virtual('url')

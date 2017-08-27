@@ -6,51 +6,36 @@ exports.deployment_list = function (req, res, next) {
     if (err) {
       return next(err)
     }
-		// Successful, so render
     res.send(list_deployments)
   })
 }
 exports.deployment_detail = function (req, res, next) {
-<<<<<<< HEAD
-	Deployment.find({
-		_id: req.params.id
-	}).populate('deploymentType').exec(function (err, deployment) {
-		if (err) {
-			return next(err);
-		}
-		//Successful, so render
-		res.send(deployment);
-	});
-};
-
-exports.deployment_create = function (req, res, next) {
-	req.checkBody('description', 'Each deployment needs a description').notEmpty();
-	req.sanitize('description').escape();
-	req.sanitize('description').trim();
-	var errors = req.validationErrors();
-	var deployment = new Deployment({
-		description: req.body.description,
-		name: req.body.name,
-		deploymentType: req.body.deploymentType,
-		owner: req.body.owner
-	});
-	deployment.save(function (err) {
-		if (err) {
-			return next(err);
-		}
-		res.redirect(deployment.url);
-	});
-
-};
-=======
   Deployment.find({
     _id: req.params.id
-  }, function (err, deployment) {
+  }).populate('deploymentType').exec(function (err, deployment) {
     if (err) {
       return next(err)
     }
-		// Successful, so render
     res.send(deployment)
+  })
+}
+
+exports.deployment_create = function (req, res, next) {
+  req.checkBody('description', 'Each deployment needs a description').notEmpty()
+  req.sanitize('description').escape()
+  req.sanitize('description').trim()
+  var errors = req.validationErrors()
+  var deployment = new Deployment({
+    description: req.body.description,
+    name: req.body.name,
+    deploymentType: req.body.deploymentType,
+    owner: req.body.owner
+  })
+  deployment.save(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect(deployment.url)
   })
 }
 
@@ -69,7 +54,6 @@ exports.deployment_create = function (req, res, next) {
     res.redirect(deployment.url)
   })
 }
->>>>>>> 6feee323f9b8b17ede5d34a875baabf70f5202c0
 exports.deployment_delete = function (req, res, next) {
   Deployment.findOneAndUpdate({
     _id: req.body.id
@@ -99,12 +83,12 @@ exports.deployment_update = function (req, res) {
   }, {
     upsert: false
   },
-		function (err, doc) {
-  if (err) {
-    return res.send(500, {
-      error: err
+    function (err, doc) {
+      if (err) {
+        return res.send(500, {
+          error: err
+        })
+      }
+      res.redirect(303, doc.url)
     })
-  }
-  res.redirect(303, doc.url)
-})
 }

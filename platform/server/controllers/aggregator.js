@@ -10,7 +10,7 @@ exports.aggregator_list = function (req, res) {
   })
 }
 
-// TODO: get this to work by recursing through parents or (probably) assiging devices to deployments, and querying the "device" element
+// TODO: get this to work by assiging devices to deployments, and querying the "device" element
 exports.aggergator_list_for_deployment = function (req, res) {
   Aggregator.find({
     deployment: req.params.deployment
@@ -53,7 +53,7 @@ exports.aggregator_create = function (req, res, next) {
     if (err) {
       return next(err)
     }
-    res.redirect(deployment.url)
+    res.redirect(aggregator.url)
   })
 }
 exports.aggregator_delete = function (req, res) {
@@ -84,12 +84,12 @@ exports.aggregator_update = function (req, res) {
   }, {
     upsert: false
   },
-		function (err, doc) {
-  if (err) {
-    return res.send(500, {
-      error: err
+    function (err, doc) {
+      if (err) {
+        return res.send(500, {
+          error: err
+        })
+      }
+      res.redirect(303, doc.url)
     })
-  }
-  res.redirect(303, doc.url)
-})
 }

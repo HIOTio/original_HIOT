@@ -9,6 +9,7 @@ this.isAggregator = false
 this.isBroker = false
 var config
 this.updateConfig = function (configOut) {
+  console.log('Updating device config')
   if (!configOut) {
     config = require('./config.json')
     console.log('reading config')
@@ -57,7 +58,7 @@ this.updateConfig = function (configOut) {
       handler.addHandler(this.sensors[i].handler, './handlers/' + this.sensors[i].handler, this.sensors[i].poll, this.sensors[i])
       // moved this into the addHandler function to ensure it executes in sequence
       // setInterval(publish, sensors[i].poll, sensors[i]);
-    };
+    }
     // set up subscriptions for controllers
     for (i = 0; i < this.controllers.length; i++) {
       handler.addHandler(this.controllers[i].handler, './handlers/' + this.controllers[i].handler, null, null)
@@ -69,13 +70,19 @@ this.updateConfig = function (configOut) {
   if (config.aggregators) {
     this.aggregators = config.aggregators
     this.isAggregator = true
-    this.roles.push('AGGREGATOR')
+    this.roles['AGGREGATOR'] == true
     for (i = 0; i < this.aggregators.length; i++) {
       console.log('setting up Aggregator ' + this.aggregators[i].agg_id)
       handler.addHandler(this.aggregators[i].handler, './handlers/' + this.aggregators[i].handler, this.aggregators[i].poll, this.aggregators[i])
-      // bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
-      // moved this into the addHandler function to ensure it executes in sequence
-      // setInterval(publish, aggregators[i].poll, aggregators[i]);
+      // TODO: bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
+      for (var j = 0; j < this.aggregators[i].topics.length; j++) {
+        // subscribe to the topic
+        handler.addHandler(this.aggregators[i].topics[j], './handlers/' + this.aggregators[i].handler, null, {
+          isAggTopic: true
+        })
+        this.subscriptions[this.aggregators[i].topics[j]] = this.aggregators[i].handler
+        console.log('subscribed to ' + this.aggregators[i].topics[j])
+      }
     }
   } else {
     this.isAggregator = false
@@ -83,7 +90,7 @@ this.updateConfig = function (configOut) {
   if (config.brokers) {
     this.brokers = config.brokers
     this.isBroker = true
-    this.roles.push('BROKER')
+    this.roles['BROKER'] = true
     for (i = 0; i < this.brokers.length; i++) {
       console.log('setting up Broker ' + this.brokers[i].broker)
       handler.addHandler(this.brokers[i].handler, './handlers/' + this.brokers[i].handler, null, null)

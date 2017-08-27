@@ -18,8 +18,8 @@ var AggregatorSchema = new Schema({
 AggregatorSchema
   .virtual('url')
   .get(function () {
-  return '/api/aggregator/' + this._id
-})
+    return '/api/aggregator/' + this._id
+  })
 
 // Compile model from schema
 module.exports = mongoose.model('Aggregator', AggregatorSchema)

@@ -1,1 +1,2 @@
-require('./config')
+var config=require('./config')
+config.updateConfig()

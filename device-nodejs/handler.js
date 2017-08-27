@@ -10,9 +10,11 @@ this.addHandler = function (index, file, poll, object) {
         timers.push(setInterval(function () {
           mqtt.publish(object)
         }, object.poll))
+      } else {
+        // we're either receiving a reading for one of our aggregators or we're receiving a broker message
       }
     } else {
-      // need to broadcast a message to the coordinator/broker to send on complete config and files
+      // TODO: need to broadcast a message to the coordinator/broker to send on complete config and files
       console.log(err)
     }
   })

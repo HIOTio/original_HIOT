@@ -8,7 +8,5 @@ var NavigationItemSchema = new Schema({
 	badge_fg: String,
 
 }
-});
-
-
+})
 module.exports = mongoose.model('NavigationItem', NavigationItemSchema);

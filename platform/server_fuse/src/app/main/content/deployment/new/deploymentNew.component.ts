@@ -14,6 +14,7 @@ export class DeploymentNewComponent
 	public deployment_users= [];
     constructor(private deploymentService: DeploymentService){
 		this.deployment_users = [
+		  // TODO: add the logged in user to the deployment
 			{
 				"_id":12345,
 				"name" : 'Mark Healy'

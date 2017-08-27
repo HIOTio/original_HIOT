@@ -28,12 +28,9 @@ export class AuthenticationService {
         return this.cred;
     }
     public loggedIn(){
-         if (localStorage.getItem("currentUser")) {
-            // logged in so return true
-            return true;
-        }
+         return !!localStorage.getItem("currentUser");
 
-         return false;
+
     }
     public logout() {
         this.cred = null;
