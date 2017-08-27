@@ -1,0 +1,27 @@
+Deployment types & templates	
+	-- buildings
+	-- production/industrial units
+	-- eac type has a different lexicon
+	
+Controllers 
+	-- device modules
+	-- platofrm components
+
+Sensors
+	-- test-based results 
+	-- object based results
+
+Aggregators
+	-- based on sensor types
+	-- differennt operations
+	
+Brokers
+	-- manage 2 way comms (timeouts etc.)
+	-- 
+	
+error and exception handling
+
+dashboard
+
+simulated deployment
+	-- e.g. building or production line(s)

@@ -1,3 +1,24 @@
-<p>
-  dashboard works!
-</p>
+<div fxLayout="column">
+	<div>
+		<div fxlayout="row">
+			<chart [type]="data.chart1.type" [data]="data.chart1.data" [options]="data.chart1.options" fxFlex="30"></chart>
+			<chart [type]="data.chart2.type" [data]="data.chart2.data" [options]="data.chart2.options" fxFlex="30"></chart>
+			<chart [type]="data.chart3.type" [data]="data.chart3.data" [options]="data.chart3.options" fxFlex="30"></chart>
+		</div>
+	</div>
+	<div>
+		<div fxLayout="row">
+			<chart [type]="data.chart4.type" [data]="data.chart4.data" [options]="data.chart4.options" fxFlex="30"></chart>
+			<chart [type]="data.chart5.type" [data]="data.chart5.data" [options]="data.chart5.options" fxFlex="30"></chart>
+			<chart [type]="data.chart6.type" [data]="data.chart6.data" [options]="data.chart6.options" fxFlex="30"></chart>
+		</div>
+	</div>
+	<div>
+		<div fxLayout="row">
+			<chart [type]="data.chart7.type" [data]="data.chart7.data" [options]="data.chart7.options" fxFlex="25"></chart>
+			<chart [type]="data.chart8.type" [data]="data.chart8.data" [options]="data.chart8.options" fxFlex="25"></chart>
+			<chart [type]="data.chart9.type" [data]="data.chart9.data" [options]="data.chart9.options" fxFlex="25"></chart>
+			<chart [type]="data.chart10.type" [data]="data.chart10.data" [options]="data.chart10.options" fxFlex="25"></chart>
+		</div>
+	</div>
+</div>

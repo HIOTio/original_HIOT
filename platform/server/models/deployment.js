@@ -20,7 +20,12 @@ var DeploymentSchema = new Schema({
 	active: {
 		type: Boolean,
 		default: true
-	}
+	},
+	deploymentType: {
+		type: Schema.Types.ObjectId,
+		ref: 'DeploymentType'
+	},
+	dtValues: String
 });
 
 DeploymentSchema

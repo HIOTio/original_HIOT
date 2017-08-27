@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { AuthGuard } from '../../../core/auth/auth.guard';
 import { DashboardComponent } from './dashboard.component';
+import { ChartModule } from 'angular2-chartjs';
 
 const routes = [
     {
@@ -19,7 +20,8 @@ canActivate: [AuthGuard]
     ],
     imports     : [
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+		ChartModule
     ],
     exports     : [
         DashboardComponent

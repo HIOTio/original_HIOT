@@ -13,7 +13,7 @@ exports.deployment_list = function (req, res, next) {
 exports.deployment_detail = function (req, res, next) {
 	Deployment.find({
 		_id: req.params.id
-	}, function (err, deployment) {
+	}).populate('deploymentType').exec(function (err, deployment) {
 		if (err) {
 			return next(err);
 		}
@@ -28,7 +28,10 @@ exports.deployment_create = function (req, res, next) {
 	req.sanitize('description').trim();
 	var errors = req.validationErrors();
 	var deployment = new Deployment({
-		description: req.body.description
+		description: req.body.description,
+		name: req.body.name,
+		deploymentType: req.body.deploymentType,
+		owner: req.body.owner
 	});
 	deployment.save(function (err) {
 		if (err) {
