@@ -1,8 +1,9 @@
 var data = []
 module.exports = {
   poll: function (args) {
-    // TODO: collate all the readings and retuen them on the aggregator channel
-    // TODO: compute min, max, mean and count
+    // TODO: [x] collate all the readings and retuen them on the aggregator channel
+    // TODO: [x] compute min, max, mean and count
+    // TODO: need to implement a light workflow here, to ensure that sensor readings are synced up with the aggregator
     var readings = []
     var min = 0
     var max = 0

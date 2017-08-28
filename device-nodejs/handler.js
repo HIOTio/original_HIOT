@@ -11,7 +11,8 @@ this.addHandler = function (index, file, poll, object) {
           mqtt.publish(object)
         }, object.poll))
       } else {
-        // we're either receiving a reading for one of our aggregators or we're receiving a broker message
+        // TODO: [x] handle messages to aggregators
+        //TODO: receiving a broker message
       }
     } else {
       // TODO: need to broadcast a message to the coordinator/broker to send on complete config and files
@@ -22,10 +23,12 @@ this.addHandler = function (index, file, poll, object) {
 
 this.clearHandlers = function () {
   while (timers.length) {
+    // TODO: need some error handling in here
     clearInterval(timers.pop())
   }
 }
 this.getHandler = function (handle) {
+  // TODO: error handling if handler cannot be found
   return handlers[handle]
 }
 module.exports = {

@@ -25,3 +25,21 @@ dashboard
 
 simulated deployment
 	-- e.g. building or production line(s)
+    
+    
+    
+brackets extensions
+
+brackets-beautify
+brackets-builder-extended
+brackets-gitbranch
+brackets-htmlformat
+brackets-typescript
+bracketsgh
+dimitrk.exclude-indexing-filetree
+gruehle.exclude-folders
+jonwolfe.file-tree-exclude
+mikaeljorhult.brackets-todo
+mikailcolak.brackets-color-picker
+pflynn.github-utils
+zaggino.brackets-git

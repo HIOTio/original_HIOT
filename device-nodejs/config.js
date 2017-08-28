@@ -67,7 +67,7 @@ this.updateConfig = function (configOut) {
     this.roles['AGGREGATOR'] = true
     for (i = 0; i < this.aggregators.length; i++) {
       handler.addHandler(this.aggregators[i].handler, './handlers/' + this.aggregators[i].handler, this.aggregators[i].poll, this.aggregators[i])
-      // TODO: bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
+      // TODO: [x]bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
       for (var j = 0; j < this.aggregators[i].topics.length; j++) {
         // subscribe to the topic
         handler.addHandler(this.aggregators[i].topics[j], './handlers/' + this.aggregators[i].handler, null, {
