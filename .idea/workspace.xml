@@ -4,11 +4,12 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50ffa61d-bc42-4fc5-90d9-f1a4ccb17cbd" name="Default" comment="added aggregator sensor subscriptions">
+    <list default="true" id="50ffa61d-bc42-4fc5-90d9-f1a4ccb17cbd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device-nodejs/MQTT.js" afterPath="$PROJECT_DIR$/device-nodejs/MQTT.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device-nodejs/config.js" afterPath="$PROJECT_DIR$/device-nodejs/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device-nodejs/config.json" afterPath="$PROJECT_DIR$/device-nodejs/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js" afterPath="$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/device-nodejs/handlers/thing/sensors/rand_sensor.js" afterPath="$PROJECT_DIR$/device-nodejs/handlers/thing/sensors/rand_sensor.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,10 +26,10 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/device-nodejs/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="56" column="60" lean-forward="true" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
+            <state relative-caret-position="221">
+              <caret line="55" column="57" lean-forward="false" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
               <folding>
-                <marker date="1503879137693" expanded="false" signature="4230:4263" ph="{...}" />
+                <marker date="1503879869642" expanded="false" signature="4169:4202" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -54,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MQTT.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MQTT.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/device-nodejs/MQTT.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="353">
+              <caret line="68" column="72" lean-forward="false" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -74,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agg1.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agg1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" column="17" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="22" />
+            <state relative-caret-position="-629">
+              <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -107,8 +108,8 @@
       <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/device-nodejs/config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="90" column="36" lean-forward="false" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+            <state relative-caret-position="170">
+              <caret line="55" column="21" lean-forward="false" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -148,12 +149,12 @@
         <option value="$PROJECT_DIR$/platform/server/controllers/aggregator.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/device-nodejs/index.js" />
-        <option value="$PROJECT_DIR$/device-nodejs/config.json" />
         <option value="$PROJECT_DIR$/device-nodejs/handler.js" />
-        <option value="$PROJECT_DIR$/device-nodejs/MQTT.js" />
+        <option value="$PROJECT_DIR$/device-nodejs/handlers/thing/sensors/rand_sensor.js" />
+        <option value="$PROJECT_DIR$/device-nodejs/config.json" />
         <option value="$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js" />
         <option value="$PROJECT_DIR$/device-nodejs/config.js" />
-        <option value="$PROJECT_DIR$/device-nodejs/handlers/thing/sensors/rand_sensor.js" />
+        <option value="$PROJECT_DIR$/device-nodejs/MQTT.js" />
       </list>
     </option>
   </component>
@@ -340,12 +341,20 @@
       <updated>1503864394956</updated>
       <workItem from="1503864396779" duration="92000" />
       <workItem from="1503864502250" duration="2130000" />
-      <workItem from="1503869172678" duration="8310000" />
+      <workItem from="1503869172678" duration="8995000" />
     </task>
+    <task id="LOCAL-00001" summary="added aggregator sensor subscriptions">
+      <created>1503879214223</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1503879214223</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10532000" />
+    <option name="totallyTimeSpent" value="11217000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -360,19 +369,19 @@
   <component name="ToolWindowManager">
     <frame x="-4" y="0" width="1920" height="1048" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.49773756" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.49773756" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33767644" sideWeight="0.5048481" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.49773756" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33767644" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33767644" sideWeight="0.4951519" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18536071" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3995657" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3995657" sideWeight="0.49773756" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -623,28 +632,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/device-nodejs/MQTT.js">
+    <entry file="file://$PROJECT_DIR$/device-nodejs/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="170">
+          <caret line="55" column="21" lean-forward="false" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/device-nodejs/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="56" column="60" lean-forward="true" selection-start-line="56" selection-start-column="60" selection-end-line="56" selection-end-column="60" />
+        <state relative-caret-position="221">
+          <caret line="55" column="57" lean-forward="false" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
           <folding>
-            <marker date="1503879137693" expanded="false" signature="4230:4263" ph="{...}" />
+            <marker date="1503879869642" expanded="false" signature="4169:4202" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/device-nodejs/config.json">
+    <entry file="file://$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="90" column="36" lean-forward="false" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+        <state relative-caret-position="-629">
+          <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -657,10 +666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/device-nodejs/handlers/aggregators/agg1.js">
+    <entry file="file://$PROJECT_DIR$/device-nodejs/MQTT.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="17" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="22" />
+        <state relative-caret-position="353">
+          <caret line="68" column="72" lean-forward="false" selection-start-line="68" selection-start-column="72" selection-end-line="68" selection-end-column="72" />
           <folding />
         </state>
       </provider>

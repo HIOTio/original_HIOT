@@ -53,7 +53,7 @@
 			"sensor_id": "597fb1f6b3c4f917ec37a93c",
 			"description": "temperature sensor #2, floor 1",
 			"handler": "thing/sensors/rand_sensor",
-			"poll": 6000,
+			"poll": 8000,
 			"config": {
 				"minValue": 14,
 				"range": 17

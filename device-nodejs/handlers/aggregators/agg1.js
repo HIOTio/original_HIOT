@@ -1,7 +1,6 @@
 var data = []
 module.exports = {
   poll: function (args) {
-    console.log('fired poll from agg1')
     // TODO: collate all the readings and retuen them on the aggregator channel
     // TODO: compute min, max, mean and count
     var readings = []
@@ -10,7 +9,6 @@ module.exports = {
     var mean = 0
     var count = 0
     var sensorReadings = []
-    console.log(JSON.stringify(data))
     for (var i = 0; i < args.topics.length; i++) {
       if (data[args.topics[i]]) {
         sensorReadings = data[args.topics[i]]
@@ -52,21 +50,15 @@ module.exports = {
     console.log(message.toString())
   },
   handleMessage: function (topic, message) {
-    // TODO: make sure that the message contains a "reading" element
-    console.log(message.reading)
     if (!data[topic]) {
-      console.log('creating data array for topic ' + topic)
       data[topic] = []
     }
     data[topic].push({
       reading: message.reading,
       sensor_id: message.sensor_id,
-      date: message.Data
+      date: message.date
 
     })
-    console.log('received reading on topic' + topic)
-    console.log(data)
-    // TODO: need to log the message to an associative array and wait until the aggregator is polled
   }
 
 }

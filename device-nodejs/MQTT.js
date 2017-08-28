@@ -66,8 +66,8 @@ module.exports = {
     client.subscribe(channel)
   },
   publish: function (channel) {
+    // TODO: need to figure out why this is firing twice for each sensor
     var message = handler.getHandler(channel.handler).poll(channel)
-    console.log('Channel: ' + channel.channel + ' message ' + message)
     client.publish(channel.channel, message)
   },
   unsub: this.unsub

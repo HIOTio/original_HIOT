@@ -54,7 +54,6 @@ this.updateConfig = function (configOut) {
     this.controllers = this.thing.controllers
     this.roles.push('THING')
     for (var i = 0; i < this.thing.sensors.length; i++) {
-      console.log('setting up Sensor ' + this.sensors[i].id)
       handler.addHandler(this.sensors[i].handler, './handlers/' + this.sensors[i].handler, this.sensors[i].poll, this.sensors[i])
       // moved this into the addHandler function to ensure it executes in sequence
       // setInterval(publish, sensors[i].poll, sensors[i]);
