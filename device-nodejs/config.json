@@ -95,12 +95,12 @@
 	}],
 	"brokers": [{
 		"broker": "demoBroker",
-		"upstream": "brok_level1",
+		"channel": "brok_level1",
 		"devices": ["controller1"],
 		"handler": "brokers/demo_broker"
 	}, {
 		"broker": "secondBroker",
-		"upstream": "brok_level2",
+		"channel": "broker_br2",
 		"devices": ["device15", "device1", "device_xyx"],
 		"handler": "brokers/demo_broker"
 	}],

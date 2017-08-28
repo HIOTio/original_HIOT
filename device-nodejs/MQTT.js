@@ -35,7 +35,14 @@ client.on('message', function (topic, _message) {
       }
       return
     }
-    handler.getHandler(config.subscriptions[topic]).handleMessage(topic, message)
+    var resp=handler.getHandler(topic).handleMessage(topic, message)
+
+    if(resp){
+      if(resp.topic){
+        //send a message
+        client.publish(resp.topic,JSON.stringify(resp.message))
+      }
+    }
   } catch (err) {
     console.log(err)
   }

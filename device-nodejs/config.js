@@ -55,8 +55,8 @@ this.updateConfig = function (configOut) {
     }
     // set up subscriptions for controllers
     for (i = 0; i < this.controllers.length; i++) {
-      handler.addHandler(this.controllers[i].handler, './handlers/' + this.controllers[i].handler, null, null)
-      this.subscriptions['ctrl_' + this.controllers[i].controller_channel] = this.controllers[i].handler
+      handler.addHandler(this.controllers[i].controller_channel, './handlers/' + this.controllers[i].handler, null, null)
+      this.subscriptions[this.controllers[i].controller_channel] = this.controllers[i].handler
     }
   } else {
     this.isThing = false
@@ -84,9 +84,8 @@ this.updateConfig = function (configOut) {
     this.isBroker = true
     this.roles['BROKER'] = true
     for (i = 0; i < this.brokers.length; i++) {
-      handler.addHandler(this.brokers[i].handler, './handlers/' + this.brokers[i].handler, null, null)
-      // bit more work to be done here - need to subscribe to commands and forward to relevant device
-      this.subscriptions['broker_' + this.brokers[i].upstream] = this.brokers[i].handler
+      handler.addHandler(this.brokers[i].channel, './handlers/' + this.brokers[i].handler, null, null)
+      this.subscriptions[this.brokers[i].channel] = this.brokers[i].handler
     }
   } else {
     this.isBroker = false
