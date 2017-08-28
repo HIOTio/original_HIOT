@@ -70,7 +70,7 @@ this.updateConfig = function (configOut) {
   if (config.aggregators) {
     this.aggregators = config.aggregators
     this.isAggregator = true
-    this.roles['AGGREGATOR'] == true
+    this.roles['AGGREGATOR'] = true
     for (i = 0; i < this.aggregators.length; i++) {
       console.log('setting up Aggregator ' + this.aggregators[i].agg_id)
       handler.addHandler(this.aggregators[i].handler, './handlers/' + this.aggregators[i].handler, this.aggregators[i].poll, this.aggregators[i])
