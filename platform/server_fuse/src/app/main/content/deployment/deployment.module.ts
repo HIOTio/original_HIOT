@@ -5,7 +5,7 @@ import { ChartModule } from "angular2-chartjs";
 import { AuthGuard } from "../../../core/auth/auth.guard";
 import { SharedModule } from "../../../core/modules/shared.module";
 import { DeviceModule} from "../device/device.module";
-import { DeploymentComponent } from "./deployment.component";
+import { DeploymentComponent } from "./details/deployment.details.component";
 import { DeploymentListComponent} from "./list/deploymentList.component";
 import { DeploymentNewComponent} from "./new/deploymentNew.component";
 const routes = [

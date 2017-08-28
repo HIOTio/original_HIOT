@@ -27,10 +27,11 @@ export class LoginComponent implements OnInit {
             (Response) => {
                 this.loading = false;
                 console.log(Response);
+//TODO: redirect the user somewhere ...
             },
             (err) => {
-                console.log("Aw crappity");
-                console.log(err);
+//TODO: need to handle the login failure properly
+                this.loading=false;
             },
          );
 

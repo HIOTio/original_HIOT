@@ -64,7 +64,7 @@ exports.navigation_list = function (req, res, next) {
     my_menu.push({
       'title': 'Add Deployment',
       'url': '/deployment/new',
-      'type': 'nav-Item'
+      'type': 'nav-item'
     })
   }
   my_menu.push({

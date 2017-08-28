@@ -2,10 +2,13 @@ var Profile = require('../models/profile')
 var config = require('../config')
 var jwt = require('jsonwebtoken')
 exports.profile_auth = function (req, res, next) {
+    console.log("about to search")
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
+      console.log(profile)
     if (err) {
+      console.log(err)
       return next(err)
     }
     if (profile == null) {
@@ -23,13 +26,14 @@ exports.profile_auth = function (req, res, next) {
           }
           var token = jwt.sign(payload, config.secret)
 
-          res.json({
+          res.send({
             success: true,
             message: 'Enjoy your token!',
             token: token,
             profile: profile
           })
         } else {
+            console.log("auth failed")
           res.setHeader('WWW-Authenticate', 'Basic realm="need login"')
           res.send(401)
         }
@@ -73,17 +77,24 @@ exports.profile_create = function (req, res, next) {
   req.sanitize('lastname').escape()
   req.sanitize('lastname').trim()
   var errors = req.validationErrors()
+  
   var profile = new Profile({
     username: req.body.username,
     password: req.body.password,
     firstname: req.body.firstname,
-    lastname: req.body.lastname
+    lastname: req.body.lastname,
+      email:req.body.email
   })
+  console.log("starting to save")
   profile.save(function (err, doc) {
+      console.log("attempted to save")
     if (err) {
+        console.log(err)
       return next(err)
     }
+      console.log("ok")
     res.status(200).json({
+        
       'msg': 'Congrats, your profile has been created',
       'redirect': doc.url
     })

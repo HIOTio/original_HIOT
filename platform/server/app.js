@@ -1,7 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var expressValidator = require('express-validator')
-
+require('./api/db')
 var passport = require('passport')
 var passportJWT = require('passport-jwt')
 var ExtractJwt = passportJWT.ExtractJwt

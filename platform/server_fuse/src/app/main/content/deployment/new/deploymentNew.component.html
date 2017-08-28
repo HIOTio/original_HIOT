@@ -12,26 +12,26 @@
 			<form class="hiot-full-width">
 				<div fxLayout="column">
 					<md-input-container>
-						<input mdInput placeholder="Deployment Name" name="name">
+						<input mdInput placeholder="Deployment Name" name="name" [(ngModel)]="deployment.name" >
 					</md-input-container>
 
 					<md-input-container>
-						<input mdInput placeholder="Description" name="description">
+						<input mdInput placeholder="Description" name="description" [(ngModel)]="deployment.description" >
 					</md-input-container>
 
 					<md-select placeholder="Owner" [(ngModel)]="deployment.owner" floatPlaceholder="never" name="owner">
 						<md-option *ngFor="let user of deployment_users" [value]="user._id">{{ user.name }}</md-option>
 						<md-option [value]="new">Add User</md-option>
 					</md-select>
-					<md-slide-toggle class="example-margin" [color]="color" [checked]="checked">
+					<md-slide-toggle class="example-margin" [color]="color" [checked]="checked" [(ngModel)]="deployment.active" name="isActive"> 
 						Active
 					</md-slide-toggle>
 				</div>
 			</form>
 		</md-card-content>
 		<md-card-actions>
-			<button md-raised-button>Save</button>
-			<button md-raised-button (click)="saveChanges()">Cancel</button>
+			<button md-raised-button (click)="AddDeployment()">Save</button>
+			<button md-raised-button (click)="clear()">Cancel</button>
 
 		</md-card-actions>
 

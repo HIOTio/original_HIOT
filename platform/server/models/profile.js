@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var Schema = mongoose.Schema
-var bcrypt = require('bcrypt-nodejs')
+var bcrypt = require('bcrypt')
 const SALT_WORK_FACTOR = 10
 
 var ProfileSchema = new Schema({
@@ -45,7 +45,7 @@ var ProfileSchema = new Schema({
 })
 ProfileSchema.path('email').validate(function (email) {
   var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
-  return emailRegex.test(email.text) // Assuming email has a text attribute
+  return emailRegex.test(email) // Assuming email has a text attribute
 }, 'The e-mail field cannot be empty.')
 ProfileSchema
 	.virtual('url')

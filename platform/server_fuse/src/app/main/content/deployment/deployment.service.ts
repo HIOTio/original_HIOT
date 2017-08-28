@@ -12,11 +12,20 @@ export class DeploymentService {
   constructor(private http: Http, private auth: AuthenticationService, private config: FuseConfigService) {
 
   }
-
+ public handleError(error: Response) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
+        private extractData(res: Response) {
+    console.log("got a response");
+	let body = res.json();
+        return body.data || {};
+    }
    public add(deployment: Deployment): Observable<Deployment>{
-        return this.http.post(this.config.server + "/api/deployment", deployment, this.auth.getAuthHeaders()) // ...using post request
-                         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error: any) => Observable.throw(error.json().error || "Server error")); //...errors if any
+    console.log(this.config);
+        return this.http.post(this.config.server + "/api/deployment", deployment, this.auth.getAuthHeaders()) 
+                         .map(this.extractData)
+           .catch(this.handleError); 
     }
 	public details(deployment_id): Observable<Deployment>{
         return this.http.get(this.config.server + "/api/deployment/" + deployment_id, this.auth.getAuthHeaders()) // ...using post request

@@ -13,8 +13,15 @@ export class UserProfile {
 @Injectable()
 export class AuthenticationService {
     public token = "";
+public options;
     public cred: Observable<any>;
     constructor(private http: Http) {
+        this.token=JSON.parse(localStorage.getItem("currentUser")).token;
+        const headers = new Headers();
+        this.options = new RequestOptions();
+        headers.append("Content-Type", "application/json");
+        headers.append("Authorization", "JWT " + this.token);
+        this.options.headers = headers;
     }
     public login(username: string, password: string): Observable<UserProfile> {
         this.cred =  this.http.post("http://localhost:3000/auth", {username, password}) // ...using post request
@@ -41,12 +48,8 @@ export class AuthenticationService {
         return this.token;
     }
     public getAuthHeaders(){
-        const headers = new Headers();
-        const options = new RequestOptions();
-        headers.append("Content-Type", "application/json");
-        headers.append("Authorization", "JWT " + JSON.parse(localStorage.getItem("currentUser")).token);
-        options.headers = headers;
-        return options;
+        
+        return this.options;
     }
 
 }
