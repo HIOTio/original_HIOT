@@ -99,7 +99,9 @@ this.updateConfig = function (configOut) {
 this.getConfig = function () {
   return JSON.stringify(this)
 }
+var empty=function(){
 
+}
 module.exports = {
   getConfig: this.getConfig,
   roles: this.roles,
