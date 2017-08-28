@@ -7,23 +7,18 @@ var client = mqtt.connect(config.mqttServer, {
 })
 
 client.on('connect', function () {
-  console.log('connected')
-  console.log(config)
-  // reconfig
+  // TODO: set a flag for connection status and don't subscribe/publish unless connected
   config.updateConfig()
-  console.log('configured')
 })
 client.on('disconnect', function () {
-  // need to handle this issue somehow
+  //TODO: need to handle MQTT disconnect
 })
 client.on('error', function (err) {
-  // need to handle this somehow...
+  //TODO: need to handle MQTT errors
   console.log(err)
 })
 
 client.on('message', function (topic, _message) {
-  // get the JSON representation of the message
-  console.log('got message on topic' + topic)
   try {
     var message = JSON.parse(_message.toString())
     // handle special channels to get and set config
@@ -34,11 +29,6 @@ client.on('message', function (topic, _message) {
      //   this.unsub(config.subscriptions)
         config.updateConfig(message.config)
       } else if (topic.startsWith('_CFG_Get')) {
-        // TODO: add security (basic white/black listing) eventually...
-        console.log('I was asked for my config')
-        // need to return the config to the calling channel
-        console.log(message.caller)
-        console.log(config.getConfig())
         client.publish(message.caller, config.getConfig())
       } else {
         // add exception handling here...
@@ -55,8 +45,6 @@ this.unsub = function (topic) {
   client.unsubscribe(topic, function (err) {
     if (err) {
       console.log(err)
-    } else {
-      console.log('unsubscribed from ' + topic)
     }
   })
 }
@@ -73,3 +61,4 @@ module.exports = {
   unsub: this.unsub
 
 }
+

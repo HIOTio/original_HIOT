@@ -9,10 +9,8 @@ this.isAggregator = false
 this.isBroker = false
 var config
 this.updateConfig = function (configOut) {
-  console.log('Updating device config')
   if (!configOut) {
     config = require('./config.json')
-    console.log('reading config')
   } else {
     fs.writeFile('./config.json', JSON.stringify(configOut), function (err) {
       if (err) {
@@ -29,18 +27,15 @@ this.updateConfig = function (configOut) {
   this.aggregators = config.aggregators
   this.brokers = config.brokers
   this.brokerFrom = config.brokerFrom
-  console.log(this.subscriptions)
   // unsubscribe from MQTT topics
   for (var ind in this.subscriptions) {
     var index = ind
     delete this.subscriptions[index]
-    console.log('unsubscribing from ' + index)
     mqtt.unsub(index)
   }
   // clear timers for polling
   handler.clearHandlers()
   // add two special channels to get and set configuration
-  console.log(this.subscriptions)
   this.subscriptions['_CFG_Set' + this.device_id] = ''
   this.subscriptions['_CFG_Get' + this.device_id] = ''
   this.subscriptions['admin_' + this.device_id] = 'admin_' + this.device_id
@@ -71,7 +66,6 @@ this.updateConfig = function (configOut) {
     this.isAggregator = true
     this.roles['AGGREGATOR'] = true
     for (i = 0; i < this.aggregators.length; i++) {
-      console.log('setting up Aggregator ' + this.aggregators[i].agg_id)
       handler.addHandler(this.aggregators[i].handler, './handlers/' + this.aggregators[i].handler, this.aggregators[i].poll, this.aggregators[i])
       // TODO: bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
       for (var j = 0; j < this.aggregators[i].topics.length; j++) {
@@ -80,7 +74,6 @@ this.updateConfig = function (configOut) {
           isAggTopic: true
         })
         this.subscriptions[this.aggregators[i].topics[j]] = this.aggregators[i].handler
-        console.log('subscribed to ' + this.aggregators[i].topics[j])
       }
     }
   } else {
@@ -91,17 +84,15 @@ this.updateConfig = function (configOut) {
     this.isBroker = true
     this.roles['BROKER'] = true
     for (i = 0; i < this.brokers.length; i++) {
-      console.log('setting up Broker ' + this.brokers[i].broker)
       handler.addHandler(this.brokers[i].handler, './handlers/' + this.brokers[i].handler, null, null)
       // bit more work to be done here - need to subscribe to commands and forward to relevant device
-      this.subscriptions['broker_' + this.brokers[i].channel] = this.brokers[i].handler
+      this.subscriptions['broker_' + this.brokers[i].upstream] = this.brokers[i].handler
     }
   } else {
     this.isBroker = false
   }
   // add all of the subscribed channels/topics
   for (index in this.subscriptions) {
-    console.log("subscribing to '" + index + "'")
     mqtt.subscribe(index)
   }
 }
