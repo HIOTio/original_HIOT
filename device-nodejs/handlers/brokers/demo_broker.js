@@ -8,8 +8,8 @@ module.exports = {
   },
   handleMessage: function(topic,_message){
     var path =[]
-    var myPos=0
-    var senderPos =0
+    var myPos=-1
+    var senderPos =-1
     /* see where the message has come from and where I feature in the list
     *  my pos and sender pos
     *  if sender pos > my pos, forward to my pos -1
@@ -25,6 +25,10 @@ module.exports = {
       }else if(_message.path[i]===_message.from){
         senderPos=i
       }
+    }
+    if(myPos==-1 || senderPos==-1){
+      //TODO: Implement error handling here - either me or the sender aren't on the message path
+
     }
     //push the controller onto path
     path.push(_message.controller)

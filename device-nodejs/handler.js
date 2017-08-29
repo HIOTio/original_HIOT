@@ -8,7 +8,7 @@ this.addHandler = function (index, file, poll, object) {
       handlers[index] = require(file)
       if (poll) {
         timers.push(setInterval(function () {
-          mqtt.publish(object)
+          mqtt.publish_poll(object)
         }, object.poll))
       } else {
         // subscriptions will be handled by the mqtt.onMessage event.
@@ -16,7 +16,6 @@ this.addHandler = function (index, file, poll, object) {
 
       }
     } else {
-      // TODO: need to broadcast a message to the coordinator/broker to send on complete config and files
       console.log(err)
     }
   })

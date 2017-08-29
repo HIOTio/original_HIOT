@@ -21,20 +21,9 @@ client.on('error', function (err) {
 client.on('message', function (topic, _message) {
   try {
     var message = JSON.parse(_message.toString())
+    // TODO: move this functionality to a handler, should be the same as controller messages (i.e. with message paths)
     // handle special channels to get and set config
-    if (topic.startsWith('_CFG_')) {
-      if (topic.startsWith('_CFG_Set')) {
-        // need to set the config
-        // TODO: need to tidy this up a LOT
-     //   this.unsub(config.subscriptions)
-        config.updateConfig(message.config)
-      } else if (topic.startsWith('_CFG_Get')) {
-        client.publish(message.caller, config.getConfig())
-      } else {
-        // add exception handling here...
-      }
-      return
-    }
+
     var resp=handler.getHandler(topic).handleMessage(topic, message)
 
     if(resp){
@@ -57,13 +46,16 @@ this.unsub = function (topic) {
 }
 module.exports = {
   subscribe: function (channel) {
-    // TODO: make sur we're connected
+    // TODO: make sure we're connected
     client.subscribe(channel)
   },
-  publish: function (channel) {
+  publish_poll: function (channel) {
     // TODO: need to figure out why this is firing twice for each sensor
     var message = handler.getHandler(channel.handler).poll(channel)
     client.publish(channel.channel, message)
+  },
+    publish: function (channel,message) {
+    client.publish(channel, message)
   },
   unsub: this.unsub
 

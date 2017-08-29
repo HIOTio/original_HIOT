@@ -1,4 +1,4 @@
-
+var base64 = require('file-base64')
 var handler = require('./handler')
 var fs = require('fs')
 var mqtt = require('./MQTT')
@@ -9,17 +9,31 @@ this.isAggregator = false
 this.isBroker = false
 var config
 this.updateConfig = function (configOut) {
+  //TODO: [x]need to include a mechanism to pass handler files to the device
+  //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
   if (!configOut) {
     config = require('./config.json')
   } else {
-    fs.writeFile('./config.json', JSON.stringify(configOut), function (err) {
+    console.log("got new config")
+    config = configOut
+    fs.writeFile('./config.json', JSON.stringify(config), function (err) {
       if (err) {
         return
       }
-      config = configOut
+      //TODO: do some validation etc. here - significant security risk as anyone can push any file to any device as it currently stands
+      //NOTE: passing files from config, structure config.files=[{location:'',file:''}]
+      for (var a = 0; a < config.files.length; a++) {
+        var location ='./handlers/' + config.files[a].location;
+        base64.decode(config.files[a].file,  location, function (err, output) {
+          if(err){
+            console.log(err)
+          }
+          console.log('file written to ' + location);
+        });
+      }
     })
   }
-
+  console.log(config.device_id)
   this.device_id = config.device_id
   this.sensors = config.thing.sensors
   this.device_id = config.device_id
@@ -36,8 +50,10 @@ this.updateConfig = function (configOut) {
   // clear timers for polling
   handler.clearHandlers()
   // add two special channels to get and set configuration
-  this.subscriptions['_CFG_Set' + this.device_id] = ''
-  this.subscriptions['_CFG_Get' + this.device_id] = ''
+  this.subscriptions['_CFG_Set' + this.device_id] = './handlers/config'
+  handler.addHandler('_CFG_Set' + this.device_id, './handlers/config', null, null)
+  this.subscriptions['_CFG_Get' + this.device_id] = './handlersr/config'
+  handler.addHandler('_CFG_Get' + this.device_id, './handlers/config', null, null)
   this.subscriptions['admin_' + this.device_id] = 'admin_' + this.device_id
   handler.addHandler('admin_' + this.device_id, './handlers/device/admin', null, null)
   // clear any previously assigned roles
@@ -98,7 +114,7 @@ this.updateConfig = function (configOut) {
 this.getConfig = function () {
   return JSON.stringify(this)
 }
-var empty=function(){
+var empty = function () {
 
 }
 module.exports = {

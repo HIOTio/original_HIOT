@@ -22,25 +22,26 @@ exports.deployment_detail = function (req, res, next) {
 }
 
 exports.deployment_create = function (req, res, next) {
+  //NOTE: think about giving the user the option of changing the owner of a new deployment - for now, just hard-code  it
     console.log(JSON.stringify(req.body))
     var deployment = new Deployment({
         description: req.body.description,
         name: req.body.name,
         deploymentType: req.body.deploymentType,
-        owner: req.body.owner
+        owner: JSON.parse(localSettings("currentUser")).id
     })
     deployment.save(function (err) {
         if (err) {
             return next(err)
         }
-        //TODO: get the _id for role type "owner"
+        //TODO: [x]get the _id for role type "owner"
         Role.findOne({
             name: "Owner"
         }, function (err, resp) {
             if (err) {
                 //TODO: need to handle this properly
             }
-            //TODO: add the owner to the deployment_roles
+            //TODO: [x]add the owner to the deployment_roles
             var deploymentRole = new DeploymentRole({
                 deployment: deployment._id,
                 profile: deployment.owner,

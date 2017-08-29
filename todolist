@@ -1,0 +1,80 @@
+Thing
+-- Sensor
+//TODO: [x] Build basic sensor (rand_sensor)
+//TODO: Synchronise timings between Sensor and Aggregator
+//TODO: Enable (& test) different configurations (e.g. setting GPIO pins etc.)
+
+--Controller
+//TODO: [x] Build basic Controller (demo_controller)
+//TODO: Add libraries for specific solutions (e.g. LightwaveRF)
+//TODO: Add template files for creating new controllers
+//TODO: Define and manage commands and parameters
+
+-- Device
+//TODO: [x] Enable upload and download of configuration
+//TODO: [x] Dynamically set installed roles
+//TODO: Upload and download of handlers
+//TODO: Send health data to platform
+//TODO: Error handling and reporting
+//TODO: [x]Find a way to test and upload new files
+
+-- Aggregator
+//TODO: [x] Collate sensor readings and forward upstream
+//TODO: [x] Perform aggregations on sensor readings
+//TODO: Monitor uploads from sensors and re-sync as required
+//TODO: Check for memory leaks
+
+KX
+//TODO: Push readings to kdb
+
+Coordinator
+//TODO: Define requirements beyond acting as an intermediary
+//TODO: Should Coordinator contain logic to react to events
+//TODO: Local twin of some platform components?
+//TODO: Local access point for controller interfacing (REST services to allow clients to connect to controller)?
+
+Platform
+-- General
+//TODO: Parent/nested deployments
+//TODO: refactor and rationalise front-end
+//TODO: Controller (server) logic
+//TODO: Authentication
+//TODO: Websockets and RX
+
+-- Device configuration
+//TODO: View current Device Configuration and Roles
+//TODO: Update device configuration
+//TODO: View device health
+//TODO: Validation selection of aggregator, broker etc. - i.e. ensure selected roles are deployed somewhere
+//TODO: Define Aggregator types and options
+//TODO: Ensure that aggregator polling intervals are synced with sensors
+//TODO: Upload handlers to devices (base64 encoded and included in config json, see handlers/config for details)
+-- Operational
+//TODO: Health monitoring, alerts and reporting
+
+-- Deployment Configuration
+//TODO: Deployment templates/types
+//TODO: Add/Remove users from Deployments
+//TODO: Add/Remove devices from Deployments
+//TODO: Billing & usage limits
+//TODO: SCADA
+
+-- Automation
+//TODO: Functionality to automate responses to conditions (e.g. turn heating up/down etc.)
+
+-- Data visualisation
+//TODO: Dashboard elements
+//TODO: Floorplans/production line maps etc
+
+-- Standalone Interfaces
+//TODO: Assign user rights to specific brokers/aggregators/groups
+//TODO: Build interfaces for cut-down views (e.g. control lighting on second floor)
+
+-- Demo/PoCs
+//TODO: Arduino based device with sensor and controller
+//TODO: Arduino based device for configuring devices
+//TODO: Pi based device (test GPIO pins)
+//TODO: Pi based coordinator (test performance/scalability)
+
+OTHER
+//TODO: Check out mqtt-connection package - may be possible to run (MQTT) brokers in code 

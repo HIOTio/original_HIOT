@@ -18,11 +18,12 @@
 					<md-input-container>
 						<input mdInput placeholder="Description" name="description" [(ngModel)]="deployment.description" >
 					</md-input-container>
-
+<!--
+//NOTE: think about not hiding this and letting the user specify an owner...
 					<md-select placeholder="Owner" [(ngModel)]="deployment.owner" floatPlaceholder="never" name="owner">
 						<md-option *ngFor="let user of deployment_users" [value]="user._id">{{ user.name }}</md-option>
 						<md-option [value]="new">Add User</md-option>
-					</md-select>
+					</md-select> -->
 					<md-slide-toggle class="example-margin" [color]="color" [checked]="checked" [(ngModel)]="deployment.active" name="isActive"> 
 						Active
 					</md-slide-toggle>

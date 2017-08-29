@@ -19,6 +19,7 @@ this.deployment={};
 AddDeployment = function(){
 //TODO: Add some serious validation here
 //TODO: Also, need to update the navigation when a deployment has been added - this might be better handled with websockets
+  this.deployment.owner = localStorage("currentUser")._id;
     this.deploymentService.add(this.deployment)
 .subscribe( newDeployment => {
     console.log(newDeployment);					   
@@ -28,13 +29,6 @@ AddDeployment = function(){
     
 }
     constructor(private deploymentService: DeploymentService){
-		this.deployment_users = [
-		  // TODO: add the logged in user to the deployment
-			{
-				"_id":"59a48db8a40a5a5d6253c44a",
-				"name" : 'Mark Healy'
-}
-		];
     }
 	  public ngOnInit() {
 //TODO: need to include a deployment type(Building, SCADA etc.)
