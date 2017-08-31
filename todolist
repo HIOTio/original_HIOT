@@ -24,6 +24,10 @@ Thing
 //TODO: Monitor uploads from sensors and re-sync as required
 //TODO: Check for memory leaks
 
+-- Broker
+//TODO: Security considerations and defined paths (e.g. only process messages from 1 level of upstream and downstream brokers/controllers)
+//TODO: Check how long it takes to chain a command across 5,10, 15 brokers
+
 KX
 //TODO: Push readings to kdb
 
@@ -40,15 +44,18 @@ Platform
 //TODO: Controller (server) logic
 //TODO: Authentication
 //TODO: Websockets and RX
+//TODO: Poll devices (get readings on demand)
 
 -- Device configuration
 //TODO: View current Device Configuration and Roles
-//TODO: Update device configuration
+//TODO: [x]Update device configuration
 //TODO: View device health
 //TODO: Validation selection of aggregator, broker etc. - i.e. ensure selected roles are deployed somewhere
 //TODO: Define Aggregator types and options
 //TODO: Ensure that aggregator polling intervals are synced with sensors
-//TODO: Upload handlers to devices (base64 encoded and included in config json, see handlers/config for details)
+//TODO: [x]Upload handlers to devices (base64 encoded and included in config json, see handlers/config for details)
+//TODO: Add npm libraries etc. with the uploaded files - may require an init script/function
+
 -- Operational
 //TODO: Health monitoring, alerts and reporting
 
@@ -56,8 +63,8 @@ Platform
 //TODO: Deployment templates/types
 //TODO: Add/Remove users from Deployments
 //TODO: Add/Remove devices from Deployments
-//TODO: Billing & usage limits
-//TODO: SCADA
+//FUTURE: Billing & usage limits
+//FUTURE: SCADA
 
 -- Automation
 //TODO: Functionality to automate responses to conditions (e.g. turn heating up/down etc.)
@@ -69,6 +76,7 @@ Platform
 -- Standalone Interfaces
 //TODO: Assign user rights to specific brokers/aggregators/groups
 //TODO: Build interfaces for cut-down views (e.g. control lighting on second floor)
+//TODO: Configure and deploy interfaces from platform (e.g. define templates and push/pull to/from local UIs like RPi touchscreen)
 
 -- Demo/PoCs
 //TODO: Arduino based device with sensor and controller
@@ -78,3 +86,4 @@ Platform
 
 OTHER
 //TODO: Check out mqtt-connection package - may be possible to run (MQTT) brokers in code 
+//TODO: Think about Node-Red integration...

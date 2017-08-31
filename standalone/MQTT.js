@@ -1,17 +1,14 @@
 var mqtt = require('mqtt')
 var config = require('./config')
-//FUTURE: messy, but need to do thie (for now) to get the mqtt server
-var config_json = require('./config.json')
 
-var handler = require('./handler')
-var client = mqtt.connect(config_json.mqttServer, {
+
+var client = mqtt.connect(config.mqttServer, {
   keepalive: 0,
   debug: false
 })
 
 client.on('connect', function () {
-  // TODO: set a flag for connection status and don't subscribe/publish unless connected
-  config.updateConfig()
+    
 })
 client.on('disconnect', function () {
   //TODO: need to handle MQTT disconnect
@@ -24,20 +21,8 @@ client.on('error', function (err) {
 client.on('message', function (topic, _message) {
   try {
     var message = JSON.parse(_message.toString())
-    // TODO: move this functionality to a handler, should be the same as controller messages (i.e. with message paths)
-    // handle special channels to get and set config
-    var commands=null
-    if(config.controllerCommands[topic]){
-        commands=config.controllerCommands[topic]
-    }
-    var resp=handler.getHandler(topic).handleMessage(topic, message,commands)
 
-    if(resp){
-      if(resp.topic){
-        //send a message
-        client.publish(resp.topic,JSON.stringify(resp.message))
-      }
-    }
+    
   } catch (err) {
     console.log(err)
   }

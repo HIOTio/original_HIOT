@@ -43,3 +43,7 @@ mikaeljorhult.brackets-todo
 mikailcolak.brackets-color-picker
 pflynn.github-utils
 zaggino.brackets-git
+
+F1B1D1 1 : main lights, sitting room
+F1B1D2 1 : spot lights, sittint room
+F1B2D1 1 : main lights, kichen

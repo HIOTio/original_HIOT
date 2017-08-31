@@ -1,14 +1,17 @@
 var base64 = require('file-base64')
 var handler = require('./handler')
 var fs = require('fs')
+//NOTE: need this up here to set some config details (e.g. device id and mqtt address)
+var config = require('./config.json')
 var mqtt = require('./MQTT')
 this.roles = []
 this.subscriptions = []
 this.isThing = false
 this.isAggregator = false
 this.isBroker = false
-var config
+
 this.updateConfig = function (configOut) {
+this.controllerCommands = []
   //TODO: [x]need to include a mechanism to pass handler files to the device
   //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
   if (!configOut) {
@@ -72,6 +75,8 @@ this.updateConfig = function (configOut) {
     // set up subscriptions for controllers
     for (i = 0; i < this.controllers.length; i++) {
       handler.addHandler(this.controllers[i].controller_channel, './handlers/' + this.controllers[i].handler, null, null)
+      //FUTURE: need to tidt this up and combine the handler and the config
+      this.controllerCommands[this.controllers[i].controller_channel] = this.controllers[i].commands
       this.subscriptions[this.controllers[i].controller_channel] = this.controllers[i].handler
     }
   } else {
