@@ -75,7 +75,7 @@ this.controllerCommands = []
     // set up subscriptions for controllers
     for (i = 0; i < this.controllers.length; i++) {
       handler.addHandler(this.controllers[i].controller_channel, './handlers/' + this.controllers[i].handler, null, null)
-      //FUTURE: need to tidt this up and combine the handler and the config
+      //FUTURE: need to tidy this up and combine the handler and the config
       this.controllerCommands[this.controllers[i].controller_channel] = this.controllers[i].commands
       this.subscriptions[this.controllers[i].controller_channel] = this.controllers[i].handler
     }
