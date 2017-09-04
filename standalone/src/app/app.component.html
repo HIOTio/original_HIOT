@@ -1,14 +1,14 @@
 <!--<div mdShow="false"><input type="text" [(ngModel)]="controller" />
 <input type="text" [(ngModel)]="command" >
 <input type="text" [(ngModel)]="parString" >
-<button  md-raised-button color="warn" (click)="sendCommand()">Send</button> 
+<button  md-raised-button color="warn" (click)="sendCommand()">Send</button>
 </div>-->
 
 dimming par 3= 0, par 4 = 160
 brighter, par 3= 1, par 4= 160
 Add delay option before turning all off (+5 seconds)
 <div>
-    <div fxLayout="row">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="8px">
         <div fxFlex="50">
         <h1>Living Room</h1>
         <div>
@@ -20,6 +20,12 @@ Add delay option before turning all off (+5 seconds)
             <div><button md-raised-button color="primary" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D1"},{"p":"p2","v":"1"},{"p":"p3","v":1}]})'>On</button>
             </div>
         </div>
+        <div fxLayout="row">
+          <div><button md-raised-button color="warn" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D1"},{"p":"p2","v":"1"},{"p":"p3","v":0},{"p":"p4","v":160}]})'>Dim</button>
+          </div>
+          <div><button md-raised-button color="primary" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D1"},{"p":"p2","v":"1"},{"p":"p3","v":1},{"p":"p4","v":160}]})'>Bright</button>
+          </div>
+      </div>
         <div>
             <h2>Spot Lights</h2>
         </div>
@@ -29,6 +35,12 @@ Add delay option before turning all off (+5 seconds)
             <div><button md-raised-button color="primary" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D2"},{"p":"p2","v":"1"},{"p":"p3","v":1}]})'>On</button>
             </div>
         </div>
+        <div fxLayout="row">
+          <div><button md-raised-button color="warn" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D2"},{"p":"p2","v":"1"},{"p":"p3","v":0},{"p":"p4","v":160}]})'>Dim</button>
+          </div>
+          <div><button md-raised-button color="primary" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B1D2"},{"p":"p2","v":"1"},{"p":"p3","v":1},{"p":"p4","v":160}]})'>Bright</button>
+          </div>
+      </div>
         <!--    <div><md-slider min="1" max="5" step="0.5" value="1.5"></md-slider>
 </div> -->
     </div>
@@ -38,7 +50,7 @@ Add delay option before turning all off (+5 seconds)
         <div>
             <h2>Main Lights</h2>
         </div>
-        
+
         <div fxLayout="row">
         <div><button md-raised-button color="warn" (click)='sendCommandPresetArgs("controller12345","0",{"p":[{"p":"p1","v":"F1B2D1"},{"p":"p2","v":"1"},{"p":"p3","v":0}]})'>Off</button>
         </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import {DataService} from './data.service';
+import { ObservableMedia } from '@angular/flex-layout';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,15 +22,15 @@ sendCommandPresetArgs=function(ctrl,cmd,par){
     console.log(params);
     this.dataService.sendMQTT(this.controller,this.command,params.p)
         .subscribe(res => this.users = res);
-    
+
 }
-    constructor(private dataService: DataService){
+    constructor(private dataService: DataService, private observableMedia: ObservableMedia){
     this.controller='controller12345';
     this.command="0";
     this.parString='{"p":"p1","v":"F1B1D1"}:{"p":"p2","v":"1"}:{"p":"p3","v":0}';
     this.dataService.getUsers()
         .subscribe(res => this.users = res);
-  
+
 
 }
 }
