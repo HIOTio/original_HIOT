@@ -1,6 +1,10 @@
 var mqtt = require('mqtt')
 var config = require('./config')
 //FUTURE: messy, but need to do thie (for now) to get the mqtt server
+
+//FUTURE: store an array of brokers and failover if the current one becomes unavailable
+//TODO: update all config files to change the MQTT topics - shorten the topic as much as possibe(e.g. s/t/b1/f2/g7/s15, not sensors/temperature/building1/floor2/group7/sensor15) - be carefule with wildcards
+//NOTE: this will make the broker code much easier to implement (e.g. broker path = topic)
 var config_json = require('./config.json')
 
 var handler = require('./handler')
@@ -18,6 +22,8 @@ client.on('disconnect', function () {
 })
 client.on('error', function (err) {
   //TODO: need to handle MQTT errors
+  //TODO: use an array of brokers and report up to platform if the first one(s) isn't available
+
   console.log(err)
 })
 
