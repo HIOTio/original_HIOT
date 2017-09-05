@@ -15,6 +15,8 @@ import { FuseNavbarComponent } from "./navbar/navbar.component";
 import { FuseQuickPanelComponent } from "./quick-panel/quick-panel.component";
 import { FuseToolbarComponent } from "./toolbar/toolbar.component";
 
+
+
 @NgModule({
     declarations: [
         FuseContentComponent,
@@ -40,4 +42,5 @@ import { FuseToolbarComponent } from "./toolbar/toolbar.component";
 
 export class FuseMainModule
 {
+
 }
