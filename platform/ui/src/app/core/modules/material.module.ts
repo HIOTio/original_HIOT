@@ -1,4 +1,4 @@
-import { CdkTableModule } from "@angular/cdk";
+import { CdkTableModule } from "@angular/cdk/table";
 import { NgModule } from "@angular/core";
 import {
     MdAutocompleteModule,
@@ -67,7 +67,7 @@ import {
         MdTabsModule,
         MdToolbarModule,
         MdTooltipModule,
-        CdkTableModule,
+       // CdkTableModule,
     ],
     exports: [
         MdAutocompleteModule,

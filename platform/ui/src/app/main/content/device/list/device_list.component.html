@@ -1,7 +1,5 @@
 <div class="page-layout blank p-24" perfect-scrollbar>
 
-	<div *ngFor="let device of devices  | async">
-		{{device.deviceId}}
-	</div>
-
+	<ng2-smart-table [settings]="settings" [source]="devices"></ng2-smart-table>
 </div>
+

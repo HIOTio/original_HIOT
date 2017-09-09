@@ -8,9 +8,9 @@
     "lint": "standard",
     "device-debug": "cd device-nodejs && nodemon --inspect",
     "device": "cd device-nodejs && nodemon",
-    "client": "cd platform/server_fuse && ng serve",
+    "client": "cd platform/ui && ng serve",
     "server": "cd platform/server && nodemon --inspect",
-    "m2m": "cd platform/m2m && nodemon --inspect",
+    "m2m": "cd platform/m2m && nodemon",
     "start-debug": "concurrent \"npm run device\" \"npm run client\" \"npm run server\" \"npm run m2m\" "
   },
   "repository": {
@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrent": "^0.3.2",
     "concurrently": "^3.5.0",
     "standard": "^10.0.3"
   }

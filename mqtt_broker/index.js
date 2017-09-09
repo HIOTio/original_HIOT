@@ -1,6 +1,6 @@
 var mosca  =require('mosca');
 
-var server = new mosca.Server({port:1884});
+var server = new mosca.Server({port:1883});
 
 server.on('clientConnected',function(client){
 });

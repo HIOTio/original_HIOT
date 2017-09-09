@@ -19,7 +19,7 @@ this.deployment={};
 AddDeployment = function(){
 //TODO: Add some serious validation here
 //TODO: Also, need to update the navigation when a deployment has been added - this might be better handled with websockets
-  this.deployment.owner = localStorage("currentUser")._id;
+  this.deployment.owner = JSON.parse(localStorage.getItem("currentUser"))._id;
     this.deploymentService.add(this.deployment)
 .subscribe( newDeployment => {
     console.log(newDeployment);					   

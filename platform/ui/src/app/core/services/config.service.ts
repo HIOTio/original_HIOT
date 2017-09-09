@@ -1,4 +1,4 @@
-import { Platform } from "@angular/cdk";
+import { Platform } from "@angular/cdk/platform";
 import { Injectable } from "@angular/core";
 import { NavigationStart, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
@@ -25,7 +25,7 @@ export class FuseConfigService
  this.defaultSettings = {
             layout          : {
                 navigation: "left", // 'right', 'left', 'top', none
-                toolbar   : "below", // 'above', 'below', none
+                toolbar   : "above", // 'above', 'below', none
                 footer    : "none", // 'above', 'below', none
             },
             colorClasses    : {

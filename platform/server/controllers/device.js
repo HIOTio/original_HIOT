@@ -19,10 +19,15 @@ exports.device_count = function (req, res, next) {
   })
 }
 exports.device_list_for_deployment = function (req, res, next) {
+  
+      //use query params to filter
   Device.find({
-    deployment: req.params.deployment
+    deployment: req.params.deployment,
+    location: req.query.location,
+    device_type: req.query.device_type
   }, function (err, list_devices) {
     if (err) {
+      
       return next(err)
     }
     res.send(list_devices)
