@@ -2,10 +2,11 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var SensorSchema = new Schema({
-  thing: {
-    type: Schema.Types.ObjectId,
-    ref: 'Thing'
-  },
+  channel: String,
+  sensorId: String,
+  description: String,
+  handler: String,
+  config:String,
   description: String,
   location: {
     type: Schema.Types.ObjectId,
@@ -14,7 +15,7 @@ var SensorSchema = new Schema({
   name: String,
   active: Boolean,
   added: Date,
-  pushInterval: Number,
+  poll: Number,
   sensortype: {
     type: Schema.Types.ObjectId,
     ref: 'Sensor_Types'

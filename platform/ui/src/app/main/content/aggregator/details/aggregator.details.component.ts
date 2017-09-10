@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './aggregator.details.component.html',
   styleUrls: ['./aggregator.details.component.css']
 })
-export class Aggregator.DetailsComponent implements OnInit {
+export class AggregatorDetailsComponent implements OnInit {
 
   constructor() { }
 

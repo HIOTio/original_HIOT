@@ -45,15 +45,33 @@ exports.aggregator_create = function (req, res, next) {
   req.sanitize('parent').trim()
   var errors = req.validationErrors()
   var aggregator = new Aggregator({
+    deployment: req.body.deployment,
+    name: req.body.name,
     description: req.body.description,
-    device: req.body.device,
-    parent: req.body.parent
+    topic: req.body.topic,
+    handler: req.body.handler
   })
   aggregator.save(function (err) {
     if (err) {
       return next(err)
     }
     res.redirect(aggregator.url)
+  })
+}
+
+
+exports.aggregator_fromList = function(req,res,next){
+  console.log(req.params.list)
+  Aggregator.find({
+    _id: {$in : JSON.parse(req.params.list)}
+  })
+ // .populate('handler') 
+  .exec( function (err, list_aggregators) {
+    if (err) {
+      return next(err)
+    }
+		// Successful, so render
+    res.send(list_aggregators)
   })
 }
 exports.aggregator_delete = function (req, res) {
@@ -74,13 +92,15 @@ exports.aggregator_delete = function (req, res) {
 }
 exports.aggregator_update = function (req, res) {
   console.log(req.body)
+  //TODO: what to do if the _id isn't found
   Aggregator.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
-    'description': req.body.description,
-    'parent': req.body.parent,
-    'active': req.body.active,
-    'added': req.body.added
+    deployment: req.body.deployment,
+    name: req.body.name,
+    description: req.body.description,
+    topic: req.body.topic,
+    handler: req.body.handler
   }, {
     upsert: false
   },

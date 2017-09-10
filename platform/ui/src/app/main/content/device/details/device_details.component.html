@@ -3,21 +3,49 @@
     
         <md-card *ngFor="let device of device  | async">
             <md-card-title md-tooltip="{{device.description}}">{{device.name}}
-                <button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
-    
-    
+                <button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </md-card-title>
+       
             <md-card-content>
-   
+                
+
+   <div>
+
+        <md-expansion-panel>
+                <md-expansion-panel-header>
+                  <md-panel-title>
+                        {{device.description}}
+                  </md-panel-title>
+                  <md-panel-description>
+                    {{device.deviceId}}
+                  </md-panel-description>
+                </md-expansion-panel-header>
+                <div>Device id, name and description</div>
+                <div>Location</div>
+                <div><b>MQTT server</b> -- address and portK</div>
+                <div>Roles</div>
+              </md-expansion-panel>
+              
+
+        
+
+        <md-tab-group>
+                <md-tab label="Sensors">Sensors</md-tab>
+                <md-tab label="Controllers">Controllers</md-tab>
+                <md-tab label="Health">Health</md-tab>
+                 
+<md-tab label="Aggregators"><aggregator-list [ids]="device.aggregators"></aggregator-list></md-tab>
+<md-tab label="Controllers">Controllers</md-tab>
+<md-tab label="Broker Details">Broker Details</md-tab>
+              </md-tab-group>
+
+   </div>
             </md-card-content>
             <md-card-actions>
-                <button md-raised-button>Deployment Details</button>
-                <button md-raised-button>Admin Tasks</button>
-                <button md-raised-button>Maps</button>
-                <button md-raised-button>Health</button>
-                <button md-raised-button>Reports</button>
-    {{device.deviceId}} | {{device._id}}
+                <button md-raised-button>Push Config to Device</button>
+                <button md-raised-button>Send Command</button>
+                <button md-raised-button>Reset Stats</button>
             </md-card-actions>
-            <device-list [deployment]='deployment._id'>this is the device list</device-list>
         </md-card>
     </div>
     

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Aggregator.DetailsComponent } from './aggregator.details.component';
+import { AggregatorDetailsComponent } from './aggregator.details.component';
 
 describe('Aggregator.DetailsComponent', () => {
-  let component: Aggregator.DetailsComponent;
-  let fixture: ComponentFixture<Aggregator.DetailsComponent>;
+  let component: AggregatorDetailsComponent;
+  let fixture: ComponentFixture<AggregatorDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Aggregator.DetailsComponent ]
+      declarations: [ AggregatorDetailsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Aggregator.DetailsComponent);
+    fixture = TestBed.createComponent(AggregatorDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

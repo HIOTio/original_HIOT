@@ -1,15 +1,15 @@
-<md-sidenav-container>
+<md-sidenav-container style="width:100%">
 
     <div id="fuse-main-content" fxFlexFill>
 
-        <!-- TOOLBAR: Above -->
-        <ng-container *ngIf="fuseSettings.layout.toolbar === 'above'">
-            <fuse-toolbar class="above" [class]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
-        </ng-container>
-        <!-- / TOOLBAR: Above -->
+        
 
         <div id="wrapper">
-
+<!-- TOOLBAR: Above -->
+<ng-container *ngIf="fuseSettings.layout.toolbar === 'above'" >
+        <fuse-toolbar class="above" [class]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
+    </ng-container>
+    <!-- / TOOLBAR: Above -->
             <fuse-navbar [folded]="false"
                          class="left-navbar"
                          *ngIf="fuseSettings.layout.navigation === 'left'"

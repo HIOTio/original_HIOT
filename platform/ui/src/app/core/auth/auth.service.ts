@@ -16,7 +16,11 @@ export class AuthenticationService {
 public options;
     public cred: Observable<any>;
     constructor(private http: Http) {
-        this.token=JSON.parse(localStorage.getItem("currentUser")).token;
+        if(localStorage.getItem("currentUser")){
+            this.token=JSON.parse(localStorage.getItem("currentUser")).token;
+        }else{
+            this.token="";
+        }
         const headers = new Headers();
         this.options = new RequestOptions();
         headers.append("Content-Type", "application/json");

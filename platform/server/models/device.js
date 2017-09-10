@@ -9,6 +9,20 @@ var DeviceSchema = new Schema({
     minlength: 16,
     maxlength: 16
   },
+  description: String,
+  name: String,
+  mqttServerIP: String,
+  mqttServerPort:String,
+  active: Boolean,
+  added: Date,
+  aggregators: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Aggregator'
+  }],
+  brokers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Broker'
+  }],
   make: {
     type: Schema.Types.ObjectId,
     ref: 'Device_Make'
@@ -29,21 +43,13 @@ var DeviceSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Deployment'
   },
-  added: Date,
-  Active: Boolean,
-  publications: [{
-    channel: String,
-    topic: {
-      type: Schema.Types.ObjectId,
-      ref: 'topic'
-    }
+  sensors:[{
+    type:Schema.Types.ObjectId,
+    ref:'Sensor'
   }],
-  subscriptions: [{
-    channel: String,
-    topic: {
-      type: Schema.Types.ObjectId,
-      ref: 'topic'
-    }
+  controllers:[{
+    type:Schema.Types.ObjectId,
+    ref:'Controller'
   }]
 })
 

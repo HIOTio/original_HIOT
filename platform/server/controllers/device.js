@@ -19,7 +19,6 @@ exports.device_count = function (req, res, next) {
   })
 }
 exports.device_list_for_deployment = function (req, res, next) {
-  
       //use query params to filter
   Device.find({
     deployment: req.params.deployment,
@@ -55,8 +54,15 @@ exports.device_create = function (req, res, next) {
     model: req.body.model,
     added: req.body.added,
     active: req.body.active,
-    subscriptions: req.body.subscriptions,
-    publications: req.body.publications
+    aggregators: req.body.aggregators,
+    deployment: req.body.deployment,
+    controllers: req.body.controller,
+    sensors: req.body.sensors,
+    health: req.body.health,
+    brokers: req.body.brokers,
+    name: req.body.name,
+    location:req.body.location,
+    description: req.body.description
   })
   device.save(function (err) {
     if (err) {
@@ -81,15 +87,22 @@ exports.device_delete = function (req, res, next) {
 }
 exports.device_update = function (req, res, next) {
   Device.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
     deviceId: req.body.deviceId,
     make: req.body.make,
     model: req.body.model,
     added: req.body.added,
     active: req.body.active,
-    subscriptions: req.body.subscriptions,
-    publications: req.body.publications
+    aggregators: req.body.aggregators,
+    deployment: req.body.deployment,
+    controllers: req.body.controller,
+    sensors: req.body.sensors,
+    health: req.body.health,
+    brokers: req.body.brokers,
+    name: req.body.name,
+    location:req.body.location,
+    description: req.body.description
   }, {
     upsert: false
   },

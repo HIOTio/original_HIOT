@@ -12,7 +12,7 @@ export class UserProfile {
 }
 @Injectable()
 export class AuthenticationService {
-    public token = "";
+    public token = null;
     public cred: Observable<any>;
     constructor(private http: Http) {
     }
@@ -44,7 +44,9 @@ export class AuthenticationService {
         const headers = new Headers();
         const options = new RequestOptions();
         headers.append("Content-Type", "application/json");
-        headers.append("Authorization", "JWT " + JSON.parse(localStorage.getItem("currentUser")).token);
+        if(localStorage.getItem("currentUser")){
+            headers.append("Authorization", "JWT " + JSON.parse(localStorage.getItem("currentUser")).token);
+        }
         options.headers = headers;
         return options;
     }
