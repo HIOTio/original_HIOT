@@ -1,48 +1,30 @@
 <md-sidenav-container style="width:100%">
 
-    <div id="hiot-main-content" fxFlexFill>
-
+    <div id="hiot-main-content" fxFlexFill  style="width:100%">
         
 
         <div id="wrapper">
 <!-- TOOLBAR: Above -->
-<ng-container *ngIf="settings.layout.toolbar === 'above'" >
+<ng-container *ngIf="meVisible" >
         <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
     </ng-container>
     <!-- / TOOLBAR: Above -->
             <hiot-navbar [folded]="false"
                          class="left-navbar"
-                         *ngIf="settings.layout.navigation === 'left'"
+                         *ngIf="meVisible"
                          [class]="settings.colorClasses.navbar">
             </hiot-navbar>
 
             <div class="content-wrapper">
 
-                <!-- TOOLBAR: Below -->
-                <ng-container *ngIf="settings.layout.toolbar === 'below'">
-                    <hiot-toolbar class="below" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
-                </ng-container>
-                <!-- / TOOLBAR: Below -->
 
                 <hiot-content></hiot-content>
 
-                <!-- FOOTER: Below -->
-                <ng-container *ngIf="settings.layout.footer === 'below'">
-                    <hiot-footer class="below" [class]="settings.colorClasses.footer"></hiot-footer>
-                </ng-container>
-                <!-- / FOOTER: Below -->
 
             </div>
 
-            <hiot-navbar [folded]="false" class="md-primary-700-bg right-navbar" *ngIf="settings.layout.navigation === 'right'"></hiot-navbar>
-
         </div>
 
-        <!-- FOOTER: Above -->
-        <ng-container *ngIf="settings.layout.footer === 'above'">
-            <hiot-footer class="above" [class]="settings.colorClasses.footer"></hiot-footer>
-        </ng-container>
-        <!-- FOOTER: Above -->
 
     </div>
 

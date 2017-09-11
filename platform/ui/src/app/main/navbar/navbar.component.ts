@@ -63,6 +63,7 @@ export class NavbarComponent implements OnInit, OnDestroy
             (event) => {
                 if ( event instanceof NavigationEnd )
                 {
+                    
                     if ( this.media.isActive("lt-lg") )
                     {
                         setTimeout(() => {

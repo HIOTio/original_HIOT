@@ -16,6 +16,21 @@ public display: boolean;
     {
      	this.navigation = [];
       this.display=false;
+      auth.userProfile.subscribe(
+          (profile)=>{
+              console.log(profile);
+            return this.http.get(this.configService.server + "/api/navigation/" + profile.profile._id, this.auth.getAuthHeaders())
+            .map(function(res){
+                this.display=true;
+                (res: Response) => res.json();
+                const my_menu = res.json();
+                
+            });
+
+
+          }
+       
+      )
     }
 
     /**
@@ -23,20 +38,10 @@ public display: boolean;
      * @returns {any[]}
      */
   
-    public getNavigation(): Observable<any[]>
+    public getNavigation(): any[]
     {
-      if(!localStorage.getItem("currentUser")){
-        console.log("no active user");
-        this.display=false;
-        return Observable.empty();
-      }
-        return this.http.get(this.configService.server + "/api/navigation/" + JSON.parse(localStorage.getItem("currentUser")).id, this.auth.getAuthHeaders())
-		.map(function(res){
-            this.display=true;
-			(res: Response) => res.json();
-			const my_menu = res.json();
-			return my_menu;
-		});
+        return this.navigation;
+        
     }
 
     /**

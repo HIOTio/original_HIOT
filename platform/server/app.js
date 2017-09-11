@@ -9,6 +9,7 @@ var JwtStrategy = passportJWT.Strategy
 var config = require('./config')
 var app = express()
 
+
 app.use(bodyParser.json())
 app.use(bodyParser.json())
 var cors = require('cors')

@@ -1,5 +1,5 @@
 export class Profile {
-    public id: number;
+    public _id: number;
     public username: string;
     public password: string;
     public firstName: string;

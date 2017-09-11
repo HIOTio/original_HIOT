@@ -78,16 +78,12 @@ export class ToolbarComponent
                 if ( event instanceof NavigationStart )
                 {
                     this.showSpinner = true;
-                    this.meVisible=false;
 
                 } else if ( event instanceof NavigationEnd )
                 {
                     this.showSpinner = false;
-                    console.log("navigation ended");
                     if(authservice.loggedIn()){
                         this.user=authservice.user();
-                        console.log(this.user);
-                        this.meVisible = true;
                     }
                 }
             });

@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
+import { Router } from '@angular/router';
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 import { Profile } from "../profile/profile.model";
 import { ConfigService }  from  "../services/config.service";
-import { Router } from '@angular/router';
 
 @Injectable()
 export class UserProfile {
@@ -17,13 +17,15 @@ export class AuthenticationService {
     public token = "";
 public options;
     public cred: Observable<any>;
-    public userProfile: Observable<UserProfile>;
+    public userProfile: Observable<any>;
     constructor(
         private http: Http, 
         private configService: ConfigService,
         private router: Router
         
     ) {
+        this.userProfile = new Observable<any>();
+        console.log(this.userProfile)
         //delete any existing user profile and token
         if(localStorage.getItem("currentUser")){
             this.token="";
@@ -39,6 +41,12 @@ public options;
     public user(){
         if(localStorage.getItem("currentUser")){
             return JSON.parse(localStorage.getItem("currentUser")).profile;
+        }
+        return null;
+    }
+    public creds(){
+        if(localStorage.getItem("currentUser")){
+            return JSON.parse(localStorage.getItem("currentUser"));
         }
         return null;
     }

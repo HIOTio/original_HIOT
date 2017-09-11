@@ -12,7 +12,12 @@ exports.profile_auth = function (req, res, next) {
     }
     if (profile == null) {
       res.setHeader('WWW-Authenticate', 'Basic realm="need login"')
-      res.send(401)
+      res.status(401).send({
+        success:false,
+        error: 'Please try again',
+        token: null,
+        profile:null
+      })
     } else {
       profile.comparePassword(req.body.password, function (err, isMatch) {
         if (err) {

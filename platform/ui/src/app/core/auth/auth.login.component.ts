@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
     public model: any = {};
     public loading = false;
     public returnUrl: string;
+    public error: string;
     constructor(
         private authenticationService: AuthenticationService, 
         private router: Router
@@ -30,12 +31,15 @@ export class LoginComponent implements OnInit {
             (Response) => {
                 this.loading = false;
                 console.log(Response);
+                this.error=null;
                 this.router.navigate([this.returnUrl]);
 //TODO: redirect the user somewhere ...
             },
             (err) => {
 //TODO: need to handle the login failure properly
                 this.loading=false;
+                this.error= err;
+                console.log("there was an error");
                 console.log(err);
             },
          );

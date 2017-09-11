@@ -14,7 +14,7 @@ import { Observable } from "rxjs/Observable";
 export class NavigationComponent
 {
     public meVisible:boolean;
-    public navigation: Observable<any[]>;
+    public navigation: any[];
     public display: boolean;
     constructor(
         private navigationService: NavigationService,
@@ -23,16 +23,16 @@ export class NavigationComponent
     {
         router.events.subscribe(
             (event) => {
+                console.log(event);
                 if ( event instanceof NavigationStart )
                 {
                     this.meVisible=false;
 
                 } else if ( event instanceof NavigationEnd )
                 {
+                    console.log("in nav component - nav ended");
                     console.log(authService.loggedIn());
-                    if(authService.loggedIn()){
-                        this.meVisible = true;
-                    }
+                    this.loadNav();
                 }
             });
       this.loadNav();
