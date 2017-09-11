@@ -3,13 +3,13 @@ import { Animations } from "../../animations";
 import { MatColors } from "../../matColors";
 
 @Component({
-    selector     : "fuse-material-color-picker",
+    selector     : "hiot-material-color-picker",
     templateUrl  : "./material-color-picker.component.html",
     styleUrls    : ["./material-color-picker.component.scss"],
     animations   : [Animations.slideInLeft, Animations.slideInRight],
     encapsulation: ViewEncapsulation.None,
 })
-export class FuseMaterialColorPickerComponent implements OnInit, OnChanges
+export class MaterialColorPickerComponent implements OnInit, OnChanges
 {
     public colors: any;
     public selectedColor: any;

@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
-import { FuseConfigService } from "../../services/config.service";
+import { ConfigService } from "../../services/config.service";
 
 @Component({
-    selector   : "fuse-search-bar",
+    selector   : "hiot-search-bar",
     templateUrl: "./search-bar.component.html",
     styleUrls  : ["./search-bar.component.scss"],
 })
-export class FuseSearchBarComponent implements OnInit
+export class SearchBarComponent implements OnInit
 {
     public collapsed: boolean;
     public toolbarColor: string;
@@ -15,12 +15,12 @@ export class FuseSearchBarComponent implements OnInit
     public onSettingsChanged: Subscription;
 
     constructor(
-        private fuseConfig: FuseConfigService,
+        private config: ConfigService,
     )
     {
         this.collapsed = true;
         this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+            this.config.onSettingsChanged
                 .subscribe(
                     (newSettings) => {
                         this.toolbarColor = newSettings.colorClasses.toolbar;

@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef, OnInit } from "@angular/core";
 
 @Directive({
-    selector: "[fuseWidgetToggle]",
+    selector: "[widgetToggle]",
 })
-export class FuseWidgetToggleDirective implements OnInit, AfterViewInit
+export class WidgetToggleDirective implements OnInit, AfterViewInit
 {
 
     constructor(public el: ElementRef)

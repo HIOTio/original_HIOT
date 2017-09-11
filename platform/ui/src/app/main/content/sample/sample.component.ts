@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector   : "fuse-sample",
+    selector   : "hiot-sample",
     templateUrl: "./sample.component.html",
     styleUrls  : ["./sample.component.scss"],
 })
-export class FuseSampleComponent
+export class SampleComponent
 {
     constructor()
     {

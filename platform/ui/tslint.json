@@ -105,13 +105,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "fuse",
+            "hiot",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
-            "fuse",
+            "hiot",
             "kebab-case"
         ],
         "use-input-property-decorator": true,

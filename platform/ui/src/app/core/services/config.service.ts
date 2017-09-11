@@ -4,7 +4,7 @@ import { NavigationStart, Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
-export class FuseConfigService
+export class ConfigService
 {
     public settings: any;
     public defaultSettings: any;

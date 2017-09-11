@@ -3,12 +3,12 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { Animations } from "../../core/animations";
 
 @Component({
-    selector   : "fuse-content",
+    selector   : "hiot-content",
     templateUrl: "./content.component.html",
     styleUrls  : ["./content.component.scss"],
     animations : [Animations.routerTransition],
 })
-export class FuseContentComponent implements OnInit
+export class ContentComponent implements OnInit
 {
     public; @HostBinding("@routerTransition") routeAnimationState = false;
 

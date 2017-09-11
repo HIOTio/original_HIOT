@@ -9,34 +9,32 @@ import { ColorPickerModule } from "ngx-color-picker";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { MaterialModule } from "./material.module";
 
-import { FuseNavbarService } from "../../main/navbar/navbar.service";
-import { FuseConfirmDialogComponent } from "../components/confirm-dialog/confirm-dialog.component";
-import { FuseCountdownComponent } from "../components/countdown/countdown.component";
-import { FuseHljsComponent } from "../components/hljs/hljs.component";
-import { FuseMaterialColorPickerComponent } from "../components/material-color-picker/material-color-picker.component";
-import { FuseNavigationService } from "../components/navigation/navigation.service";
-import { FuseIfOnDomDirective } from "../directives/fuse-if-on-dom/fuse-if-on-dom.directive";
-import { FuseMdSidenavHelperDirective, FuseMdSidenavTogglerDirective } from "../directives/md-sidenav-helper/md-sidenav-helper.directive";
-import { FuseMdSidenavHelperService } from "../directives/md-sidenav-helper/md-sidenav-helper.service";
-import { FusePipesModule } from "../pipes/pipes.module";
-import { FuseMatchMedia } from "../services/match-media.service";
+import { NavbarService } from "../../main/navbar/navbar.service";
+import { CountdownComponent } from "../components/countdown/countdown.component";
+import { HljsComponent } from "../components/hljs/hljs.component";
+import { MaterialColorPickerComponent } from "../components/material-color-picker/material-color-picker.component";
+import { NavigationService } from "../components/navigation/navigation.service";
+import { IfOnDomDirective } from "../directives/if-on-dom/if-on-dom.directive";
+import { MdSidenavHelperDirective, MdSidenavTogglerDirective } from "../directives/md-sidenav-helper/md-sidenav-helper.directive";
+import { MdSidenavHelperService } from "../directives/md-sidenav-helper/md-sidenav-helper.service";
+import { PipesModule } from "../pipes/pipes.module";
+import { MatchMedia } from "../services/match-media.service";
 
 @NgModule({
     declarations   : [
-        FuseMdSidenavHelperDirective,
-        FuseMdSidenavTogglerDirective,
-        FuseConfirmDialogComponent,
-        FuseCountdownComponent,
-        FuseHljsComponent,
-        FuseIfOnDomDirective,
-        FuseMaterialColorPickerComponent,
+        MdSidenavHelperDirective,
+        MdSidenavTogglerDirective,
+        CountdownComponent,
+        HljsComponent,
+        IfOnDomDirective,
+        MaterialColorPickerComponent,
     ],
     imports        : [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
         FormsModule,
-        FusePipesModule,
+        PipesModule,
         PerfectScrollbarModule,
         ReactiveFormsModule,
         ColorPickerModule,
@@ -48,27 +46,26 @@ import { FuseMatchMedia } from "../services/match-media.service";
         MaterialModule,
         CommonModule,
         FormsModule,
-        FuseMdSidenavHelperDirective,
-        FuseMdSidenavTogglerDirective,
-        FusePipesModule,
-        FuseCountdownComponent,
-        FuseHljsComponent,
+        MdSidenavHelperDirective,
+        MdSidenavTogglerDirective,
+        PipesModule,
+        CountdownComponent,
+        HljsComponent,
         PerfectScrollbarModule,
         ReactiveFormsModule,
         ColorPickerModule,
         NgxDnDModule,
         NgxDatatableModule,
-        FuseIfOnDomDirective,
-        FuseMaterialColorPickerComponent,
+        IfOnDomDirective,
+        MaterialColorPickerComponent,
     ],
     entryComponents: [
-        FuseConfirmDialogComponent,
     ],
     providers      : [
-        FuseNavigationService,
-        FuseMatchMedia,
-        FuseNavbarService,
-        FuseMdSidenavHelperService,
+        NavigationService,
+        MatchMedia,
+        NavbarService,
+        MdSidenavHelperService,
     ],
 })
 

@@ -1,16 +1,16 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ObservableMedia } from "@angular/flex-layout";
 import { Subscription } from "rxjs/Subscription";
-import { FuseConfigService } from "../../services/config.service";
-import { FuseMatchMedia } from "../../services/match-media.service";
-import { FuseNavigationService } from "../navigation/navigation.service";
+import { ConfigService } from "../../services/config.service";
+import { MatchMedia } from "../../services/match-media.service";
+import { NavigationService } from "../navigation/navigation.service";
 
 @Component({
-    selector   : "fuse-shortcuts",
+    selector   : "hiot-shortcuts",
     templateUrl: "./shortcuts.component.html",
     styleUrls  : ["./shortcuts.component.scss"],
 })
-export class FuseShortcutsComponent implements OnInit, OnDestroy
+export class ShortcutsComponent implements OnInit, OnDestroy
 {
     public shortcutItems: any[] = [];
     public navigationItems: any[];
@@ -27,15 +27,15 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
     constructor(
         private renderer: Renderer2,
         private observableMedia: ObservableMedia,
-        private fuseMatchMedia: FuseMatchMedia,
-        private fuseNavigationService: FuseNavigationService,
-        private fuseConfig: FuseConfigService,
+        private matchMedia: MatchMedia,
+        private NavigationService: NavigationService,
+        private config: ConfigService,
     )
     {
-        this.filteredNavigationItems = this.navigationItems = this.fuseNavigationService.getFlatNavigation();
+        this.filteredNavigationItems = this.navigationItems = this.NavigationService.getFlatNavigation();
 
         this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+            this.config.onSettingsChanged
                 .subscribe(
                     (newSettings) => {
                         this.toolbarColor = newSettings.colorClasses.toolbar;
@@ -74,7 +74,7 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
         ];
 
         this.matchMediaSubscription =
-            this.fuseMatchMedia.onMediaChange.subscribe(() => {
+            this.matchMedia.onMediaChange.subscribe(() => {
                 if ( this.observableMedia.isActive("gt-sm") )
                 {
                     this.hideMobileShortcutsPanel();

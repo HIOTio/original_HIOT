@@ -4,7 +4,7 @@ import { Inject, Injectable } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 
 @Injectable()
-export class FuseSplashScreenService
+export class SplashScreenService
 {
     public splashScreenEl;
     public player: AnimationPlayer;
@@ -15,7 +15,7 @@ export class FuseSplashScreenService
         private router: Router,
     )
     {
-        this.splashScreenEl = this.document.body.querySelector("#fuse-splash-screen");
+        this.splashScreenEl = this.document.body.querySelector("#hiot-splash-screen");
 
         const hideOnLoad = this.router.events.subscribe((event) => {
                 if ( event instanceof NavigationEnd )

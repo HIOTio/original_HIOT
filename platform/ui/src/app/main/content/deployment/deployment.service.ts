@@ -4,12 +4,12 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 import {AuthenticationService } from "../../../core/auth/auth.service";
-import {FuseConfigService} from "../../../core/services/config.service";
+import {ConfigService} from "../../../core/services/config.service";
 import {Deployment} from "./deployment.model";
 @Injectable()
 export class DeploymentService {
     public deployments= {};
-  constructor(private http: Http, private auth: AuthenticationService, private config: FuseConfigService) {
+  constructor(private http: Http, private auth: AuthenticationService, private config: ConfigService) {
 
   }
  public handleError(error: Response) {

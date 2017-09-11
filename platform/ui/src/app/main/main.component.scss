@@ -1,6 +1,6 @@
-@import "src/app/core/scss/fuse";
+@import "src/app/core/scss/hiot";
 
-fuse-main {
+hiot-main {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -33,7 +33,7 @@ fuse-main {
                 height: auto !important;
             }
 
-            #fuse-main-content {
+            #hiot-main-content {
                 display: flex;
                 flex: 1;
                 flex-direction: column;
@@ -51,7 +51,7 @@ fuse-main {
                         flex: 1;
                         overflow: hidden;
 
-                        fuse-content {
+                        hiot-content {
                             position: relative;
                             display: flex;
                             flex: 1;

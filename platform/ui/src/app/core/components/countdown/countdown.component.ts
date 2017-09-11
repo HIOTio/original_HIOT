@@ -3,11 +3,11 @@ import * as moment from "moment";
 import { Observable } from "rxjs/Rx";
 
 @Component({
-    selector   : "fuse-countdown",
+    selector   : "hiot-countdown",
     templateUrl: "./countdown.component.html",
     styleUrls  : ["./countdown.component.scss"],
 })
-export class FuseCountdownComponent implements OnInit
+export class CountdownComponent implements OnInit
 {
   
   @Input("eventDate") eventDate;

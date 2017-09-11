@@ -2,12 +2,12 @@ import { Component } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 
 @Component({
-    selector   : "fuse-toolbar",
+    selector   : "hiot-toolbar",
     templateUrl: "./toolbar.component.html",
     styleUrls  : ["./toolbar.component.scss"],
 })
 
-export class FuseToolbarComponent
+export class ToolbarComponent
 {
     public userStatusOptions: any[];
     public languages: any;

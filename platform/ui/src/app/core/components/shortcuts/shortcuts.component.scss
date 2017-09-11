@@ -1,10 +1,10 @@
-@import 'src/app/core/scss/fuse';
+@import 'src/app/core/scss/hiot';
 
 :host {
 
     @include media-breakpoint-down('sm') {
 
-        #fuse-shortcuts {
+        #hiot-shortcuts {
 
             &.show-mobile-panel {
                 position: absolute;

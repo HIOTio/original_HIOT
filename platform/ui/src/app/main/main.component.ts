@@ -1,31 +1,31 @@
 import { Component, ElementRef, HostBinding, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
-import { FuseConfigService } from "../core/services/config.service";
+import { ConfigService } from "../core/services/config.service";
 
 @Component({
-    selector     : "fuse-main",
+    selector     : "hiot-main",
     templateUrl  : "./main.component.html",
     styleUrls    : ["./main.component.scss"],
     encapsulation: ViewEncapsulation.None,
 })
-export class FuseMainComponent implements OnInit, OnDestroy
+export class MainComponent implements OnInit, OnDestroy
 {
     public onSettingsChanged: Subscription;
-    public fuseSettings: any;
+    public settings: any;
     public; @HostBinding("class.disable-perfect-scrollbar") disableCustomScrollbars;
     
     constructor(
         private _renderer: Renderer2,
         private _elementRef: ElementRef,
-        private fuseConfig: FuseConfigService,
+        private config: ConfigService,
     )
     {
         this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+            this.config.onSettingsChanged
                 .subscribe(
                     (newSettings) => {
-                        this.fuseSettings = newSettings;
-                        this.disableCustomScrollbars = !this.fuseSettings.customScrollbars;
+                        this.settings = newSettings;
+                        this.disableCustomScrollbars = !this.settings.customScrollbars;
                     },
                 );
     }

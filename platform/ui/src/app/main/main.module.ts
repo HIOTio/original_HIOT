@@ -3,43 +3,43 @@ import { RouterModule } from "@angular/router";
 
 import { SharedModule } from "../core/modules/shared.module";
 
-import { FuseNavigationModule } from "../core/components/navigation/navigation.module";
-import { FuseSearchBarModule } from "../core/components/search-bar/search-bar.module";
-import { FuseShortcutsModule } from "../core/components/shortcuts/shortcuts.module";
-import { FuseThemeOptionsComponent } from "../core/components/theme-options/theme-options.component";
-import { FuseContentComponent } from "./content/content.component";
-import { FuseFooterComponent } from "./footer/footer.component";
-import { FuseMainComponent } from "./main.component";
-import { FuseNavbarToggleDirective } from "./navbar/navbar-toggle.directive";
-import { FuseNavbarComponent } from "./navbar/navbar.component";
-import { FuseQuickPanelComponent } from "./quick-panel/quick-panel.component";
-import { FuseToolbarComponent } from "./toolbar/toolbar.component";
+import { NavigationModule } from "../core/components/navigation/navigation.module";
+import { SearchBarModule } from "../core/components/search-bar/search-bar.module";
+import { ShortcutsModule } from "../core/components/shortcuts/shortcuts.module";
+import { ThemeOptionsComponent } from "../core/components/theme-options/theme-options.component";
+import { ContentComponent } from "./content/content.component";
+import { FooterComponent } from "./footer/footer.component";
+import { MainComponent } from "./main.component";
+import { NavbarToggleDirective } from "./navbar/navbar-toggle.directive";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { QuickPanelComponent } from "./quick-panel/quick-panel.component";
+import { ToolbarComponent } from "./toolbar/toolbar.component";
 
 
 @NgModule({
     declarations: [
-        FuseContentComponent,
-        FuseFooterComponent,
-        FuseMainComponent,
-        FuseNavbarComponent,
-        FuseToolbarComponent,
-        FuseNavbarToggleDirective,
-        FuseThemeOptionsComponent,
-        FuseQuickPanelComponent
+        ContentComponent,
+        FooterComponent,
+        MainComponent,
+        NavbarComponent,
+        ToolbarComponent,
+        NavbarToggleDirective,
+        ThemeOptionsComponent,
+        QuickPanelComponent
         ],
     imports     : [
         SharedModule,
         RouterModule,
-        FuseNavigationModule,
-        FuseShortcutsModule,
-        FuseSearchBarModule,
+        NavigationModule,
+        ShortcutsModule,
+        SearchBarModule,
     ],
     exports     : [
-        FuseMainComponent,
+        MainComponent,
     ],
 })
 
-export class FuseMainModule
+export class MainModule
 {
 
 }

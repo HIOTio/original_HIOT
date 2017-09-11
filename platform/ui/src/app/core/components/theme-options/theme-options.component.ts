@@ -1,33 +1,33 @@
 import { animate, AnimationBuilder, AnimationPlayer, style } from "@angular/animations";
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
-import { FuseConfigService } from "../../services/config.service";
+import { ConfigService } from "../../services/config.service";
 
 @Component({
-    selector   : "fuse-theme-options",
+    selector   : "hiot-theme-options",
     templateUrl: "./theme-options.component.html",
     styleUrls  : ["./theme-options.component.scss"],
 })
-export class FuseThemeOptionsComponent implements OnInit, OnDestroy
+export class ThemeOptionsComponent implements OnInit, OnDestroy
 {
      @ViewChild("openButton") openButton;
      @ViewChild("panel") panel;
 
     public player: AnimationPlayer;
-    public fuseSettings: any;
+    public settings: any;
 
     public onSettingsChanged: Subscription;
 
     constructor(
         private animationBuilder: AnimationBuilder,
-        private fuseConfig: FuseConfigService,
+        private config: ConfigService,
     )
     {
         this.onSettingsChanged =
-            this.fuseConfig.onSettingsChanged
+            this.config.onSettingsChanged
                 .subscribe(
                     (newSettings) => {
-                        this.fuseSettings = newSettings;
+                        this.settings = newSettings;
                     },
                 );
     }
@@ -38,7 +38,7 @@ export class FuseThemeOptionsComponent implements OnInit, OnDestroy
 
     public onSettingsChange()
     {
-        this.fuseConfig.setSettings(this.fuseSettings);
+        this.config.setSettings(this.settings);
     }
 
     public closeBar()

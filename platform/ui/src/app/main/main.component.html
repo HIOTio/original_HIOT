@@ -1,57 +1,57 @@
 <md-sidenav-container style="width:100%">
 
-    <div id="fuse-main-content" fxFlexFill>
+    <div id="hiot-main-content" fxFlexFill>
 
         
 
         <div id="wrapper">
 <!-- TOOLBAR: Above -->
-<ng-container *ngIf="fuseSettings.layout.toolbar === 'above'" >
-        <fuse-toolbar class="above" [class]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
+<ng-container *ngIf="settings.layout.toolbar === 'above'" >
+        <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
     </ng-container>
     <!-- / TOOLBAR: Above -->
-            <fuse-navbar [folded]="false"
+            <hiot-navbar [folded]="false"
                          class="left-navbar"
-                         *ngIf="fuseSettings.layout.navigation === 'left'"
-                         [class]="fuseSettings.colorClasses.navbar">
-            </fuse-navbar>
+                         *ngIf="settings.layout.navigation === 'left'"
+                         [class]="settings.colorClasses.navbar">
+            </hiot-navbar>
 
             <div class="content-wrapper">
 
                 <!-- TOOLBAR: Below -->
-                <ng-container *ngIf="fuseSettings.layout.toolbar === 'below'">
-                    <fuse-toolbar class="below" [class]="fuseSettings.colorClasses.toolbar"></fuse-toolbar>
+                <ng-container *ngIf="settings.layout.toolbar === 'below'">
+                    <hiot-toolbar class="below" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
                 </ng-container>
                 <!-- / TOOLBAR: Below -->
 
-                <fuse-content></fuse-content>
+                <hiot-content></hiot-content>
 
                 <!-- FOOTER: Below -->
-                <ng-container *ngIf="fuseSettings.layout.footer === 'below'">
-                    <fuse-footer class="below" [class]="fuseSettings.colorClasses.footer"></fuse-footer>
+                <ng-container *ngIf="settings.layout.footer === 'below'">
+                    <hiot-footer class="below" [class]="settings.colorClasses.footer"></hiot-footer>
                 </ng-container>
                 <!-- / FOOTER: Below -->
 
             </div>
 
-            <fuse-navbar [folded]="false" class="md-primary-700-bg right-navbar" *ngIf="fuseSettings.layout.navigation === 'right'"></fuse-navbar>
+            <hiot-navbar [folded]="false" class="md-primary-700-bg right-navbar" *ngIf="settings.layout.navigation === 'right'"></hiot-navbar>
 
         </div>
 
         <!-- FOOTER: Above -->
-        <ng-container *ngIf="fuseSettings.layout.footer === 'above'">
-            <fuse-footer class="above" [class]="fuseSettings.colorClasses.footer"></fuse-footer>
+        <ng-container *ngIf="settings.layout.footer === 'above'">
+            <hiot-footer class="above" [class]="settings.colorClasses.footer"></hiot-footer>
         </ng-container>
         <!-- FOOTER: Above -->
 
     </div>
 
     <!-- QUICK PANEL -->
-    <md-sidenav fuseMdSidenavHelper="quick-panel" align="end">
-        <fuse-quick-panel></fuse-quick-panel>
+    <md-sidenav MdSidenavHelper="quick-panel" align="end">
+        <hiot-quick-panel></hiot-quick-panel>
     </md-sidenav>
     <!-- / QUICK PANEL -->
 
 </md-sidenav-container>
 
-<fuse-theme-options></fuse-theme-options>
+<hiot-theme-options></hiot-theme-options>

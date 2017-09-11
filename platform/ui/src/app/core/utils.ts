@@ -1,4 +1,4 @@
-export class FuseUtils
+export class Utils
 {
 
     public static filterArrayByString(mainArr, searchText)

@@ -2,20 +2,20 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { SharedModule } from "../../modules/shared.module";
-import { FuseShortcutsComponent } from "./shortcuts.component";
+import { ShortcutsComponent } from "./shortcuts.component";
 
 @NgModule({
     declarations: [
-        FuseShortcutsComponent,
+        ShortcutsComponent,
     ],
     imports     : [
         SharedModule,
         RouterModule,
     ],
     exports     : [
-        FuseShortcutsComponent,
+        ShortcutsComponent,
     ],
 })
-export class FuseShortcutsModule
+export class ShortcutsModule
 {
 }

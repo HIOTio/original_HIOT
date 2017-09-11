@@ -2,20 +2,20 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { SharedModule } from "../../modules/shared.module";
-import { FuseSearchBarComponent } from "./search-bar.component";
+import { SearchBarComponent } from "./search-bar.component";
 
 @NgModule({
     declarations: [
-        FuseSearchBarComponent,
+        SearchBarComponent,
     ],
     imports     : [
         SharedModule,
         RouterModule,
     ],
     exports     : [
-        FuseSearchBarComponent,
+        SearchBarComponent,
     ],
 })
-export class FuseSearchBarModule
+export class SearchBarModule
 {
 }

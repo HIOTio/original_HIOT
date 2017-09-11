@@ -14,12 +14,11 @@ import { AppComponent } from "./app.component";
 import { AuthGuard } from "./core/auth/auth.guard";
 import { AuthenticationService} from "./core/auth/auth.service";
 import { SharedModule } from "./core/modules/shared.module";
-import { FuseConfigService } from "./core/services/config.service";
-import { FuseSplashScreenService } from "./core/services/splash-screen.service";
+import { ConfigService } from "./core/services/config.service";
+import { SplashScreenService } from "./core/services/splash-screen.service";
 import { DashboardModule } from "./main/content/dashboard/dashboard.module";
 import { DeploymentModule } from "./main/content/deployment/deployment.module";
-import { FuseSampleModule } from "./main/content/sample/sample.module";
-import { FuseMainModule } from "./main/main.module";
+import { MainModule } from "./main/main.module";
 import  {LoginComponent } from "./core/auth/auth.login.component";
 const appRoutes: Routes = [
 
@@ -48,16 +47,15 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         SharedModule,
         PerfectScrollbarModule.forRoot(),
-        FuseMainModule,
-        FuseSampleModule,
+        MainModule,
 		DeploymentModule,
 		DashboardModule,
 		FlexLayoutModule,
 		ChartModule
     ],
     providers   : [
-        FuseSplashScreenService,
-        FuseConfigService,
+        SplashScreenService,
+        ConfigService,
 		AuthenticationService,
 		AuthGuard,
     ],

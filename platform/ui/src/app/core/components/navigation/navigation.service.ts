@@ -4,14 +4,15 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 import {AuthenticationService } from "../../../core/auth/auth.service";
+import {ConfigService } from "../../services/config.service";
 @Injectable()
-export class FuseNavigationService
+export class NavigationService
 {
     public onNavCollapseToggled = new EventEmitter<any>();
     public navigation: any[];
     public flatNavigation: any[] = [];
 public display: boolean;
-    constructor(private http: Http, private auth: AuthenticationService)
+    constructor(private http: Http, private auth: AuthenticationService, private configService: ConfigService)
     {
      	this.navigation = [];
       this.display=false;
@@ -29,7 +30,7 @@ public display: boolean;
         this.display=false;
         return Observable.empty();
       }
-        return this.http.get("http://localhost:3000/api/navigation/" + JSON.parse(localStorage.getItem("currentUser")).id, this.auth.getAuthHeaders())
+        return this.http.get(this.configService.server + "/api/navigation/" + JSON.parse(localStorage.getItem("currentUser")).id, this.auth.getAuthHeaders())
 		.map(function(res){
             this.display=true;
 			(res: Response) => res.json();

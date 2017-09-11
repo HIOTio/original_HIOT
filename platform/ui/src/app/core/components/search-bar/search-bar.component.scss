@@ -1,15 +1,15 @@
-@import "src/app/core/scss/fuse";
+@import "src/app/core/scss/hiot";
 
 :host {
 
-    .fuse-search-bar {
+    .hiot-search-bar {
         height: 64px;
         font-size: 13px;
         @include media-breakpoint-down('xs') {
             height: 56px;
         }
-        .fuse-search-bar-expander,
-        .fuse-search-bar-collapser {
+        .hiot-search-bar-expander,
+        .hiot-search-bar-collapser {
             cursor: pointer;
             padding: 0 20px;
             margin: 0;
@@ -22,7 +22,7 @@
             }
         }
 
-        .fuse-search-bar-loader {
+        .hiot-search-bar-loader {
             width: 64px !important;
             height: 64px !important;
             line-height: 64px !important;
@@ -32,11 +32,11 @@
             }
         }
 
-        .fuse-search-bar-collapser {
+        .hiot-search-bar-collapser {
             display: none;
         }
 
-        #fuse-search-bar-input {
+        #hiot-search-bar-input {
             display: none;
             min-height: 64px;
             background-color: transparent;
@@ -51,11 +51,11 @@
             left: 0;
             z-index: 10;
 
-            #fuse-search-bar-input {
+            #hiot-search-bar-input {
                 display: block;
             }
 
-            .fuse-search-bar-collapser {
+            .hiot-search-bar-collapser {
                 display: block;
             }
         }
@@ -63,7 +63,7 @@
 
     body {
 
-        &.fuse-search-bar-expanded {
+        &.hiot-search-bar-expanded {
 
             #toolbar {
                 z-index: 999 !important;

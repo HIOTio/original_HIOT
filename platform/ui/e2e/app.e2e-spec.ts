@@ -1,10 +1,10 @@
-import { Fuse2Page } from "./app.po";
+import { HiotPage } from "./app.po";
 
-describe("fuse2 App", () => {
-  let page: Fuse2Page;
+describe("hiot App", () => {
+  let page: HiotPage;
 
   beforeEach(() => {
-    page = new Fuse2Page();
+    page = new HiotPage();
   });
 
   it("should display welcome message", () => {

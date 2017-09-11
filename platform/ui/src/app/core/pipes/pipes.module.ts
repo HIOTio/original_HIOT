@@ -25,7 +25,7 @@ import { KeysPipe } from "./keys.pipe";
     ],
 })
 
-export class FusePipesModule
+export class PipesModule
 {
 
 }

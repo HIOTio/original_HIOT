@@ -1,21 +1,21 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { Animations } from "../../../animations";
-import { FuseNavigationService } from "../navigation.service";
+import { NavigationService } from "../navigation.service";
 
 @Component({
-    selector   : "fuse-nav-collapse",
+    selector   : "hiot-nav-collapse",
     templateUrl: "./nav-collapse.component.html",
     styleUrls  : ["./nav-collapse.component.scss"],
     animations : [Animations.slideInOut],
 })
-export class FuseNavCollapseComponent implements OnInit
+export class NavCollapseComponent implements OnInit
 {
      @Input() item: any;
      @HostBinding("class") classes = "nav-collapse nav-item";
     @HostBinding("class.open") public isOpen = false;
 
-    constructor(private navigationService: FuseNavigationService, private router: Router)
+    constructor(private navigationService: NavigationService, private router: Router)
     {
         /**
          * When navigation changed

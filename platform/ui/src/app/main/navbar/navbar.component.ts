@@ -3,18 +3,18 @@ import { ObservableMedia } from "@angular/flex-layout";
 import { NavigationEnd, Router } from "@angular/router";
 import { PerfectScrollbarDirective } from "ngx-perfect-scrollbar";
 import { Subscription } from "rxjs/Subscription";
-import { FuseNavigationService } from "../../core/components/navigation/navigation.service";
-import { FuseMatchMedia } from "../../core/services/match-media.service";
-import { FuseMainComponent } from "../main.component";
-import { FuseNavbarService } from "./navbar.service";
+import { NavigationService } from "../../core/components/navigation/navigation.service";
+import { MatchMedia } from "../../core/services/match-media.service";
+import { MainComponent } from "../main.component";
+import { NavbarService } from "./navbar.service";
 
 @Component({
-    selector     : "fuse-navbar",
+    selector     : "hiot-navbar",
     templateUrl  : "./navbar.component.html",
     styleUrls    : ["./navbar.component.scss"],
     encapsulation: ViewEncapsulation.None,
 })
-export class FuseNavbarComponent implements OnInit, OnDestroy
+export class NavbarComponent implements OnInit, OnDestroy
 {
     public; @HostBinding("class.close") isClosed: boolean;
     @HostBinding("class.folded") isFoldedActive: boolean;
@@ -25,17 +25,17 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
 
     public matchMediaWatcher: Subscription;
     constructor(
-        private fuseMainComponentEl: FuseMainComponent,
-        private fuseMatchMedia: FuseMatchMedia,
-        private fuseNavigationService: FuseNavigationService,
-        private navBarService: FuseNavbarService,
+        private mainComponentEl: MainComponent,
+        private matchMedia: MatchMedia,
+        private NavigationService: NavigationService,
+        private navBarService: NavbarService,
         public media: ObservableMedia,
         private router: Router,
     )
     {
         navBarService.setNavBar(this);
       
-        this.fuseNavigationService.onNavCollapseToggled.subscribe(() => {
+        this.NavigationService.onNavCollapseToggled.subscribe(() => {
 
             setTimeout(() => {
                 this.perfectScrollbarDirective.update();
@@ -43,7 +43,7 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
         });
 
         this.matchMediaWatcher =
-            this.fuseMatchMedia.onMediaChange
+            this.matchMedia.onMediaChange
                 .subscribe((mediaStep) => {
                     setTimeout(() => {
 
@@ -144,14 +144,14 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
     public activateFolded()
     {
         this.isFoldedActive = true;
-        this.fuseMainComponentEl.addClass("fuse-nav-bar-folded");
+        this.mainComponentEl.addClass("hiot-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
     public deActivateFolded()
     {
         this.isFoldedActive = false;
-        this.fuseMainComponentEl.removeClass("fuse-nav-bar-folded");
+        this.mainComponentEl.removeClass("hiot-nav-bar-folded");
         this.isFoldedOpen = false;
     }
 
@@ -171,13 +171,13 @@ export class FuseNavbarComponent implements OnInit, OnDestroy
     {
         if ( this.isClosed )
         {
-            this.fuseMainComponentEl.addClass("fuse-nav-bar-opened");
-            this.fuseMainComponentEl.removeClass("fuse-nav-bar-closed");
+            this.mainComponentEl.addClass("hiot-nav-bar-opened");
+            this.mainComponentEl.removeClass("hiot-nav-bar-closed");
         }
         else
         {
-            this.fuseMainComponentEl.addClass("fuse-nav-bar-closed");
-            this.fuseMainComponentEl.removeClass("fuse-nav-bar-opened");
+            this.mainComponentEl.addClass("hiot-nav-bar-closed");
+            this.mainComponentEl.removeClass("hiot-nav-bar-opened");
         }
     }
 

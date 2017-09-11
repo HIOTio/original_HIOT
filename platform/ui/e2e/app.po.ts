@@ -1,6 +1,6 @@
 import { browser, by, element } from "protractor";
 
-export class Fuse2Page {
+export class HiotPage {
   public navigateTo() {
     return browser.get("/");
   }

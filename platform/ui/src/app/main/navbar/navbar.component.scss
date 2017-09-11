@@ -1,8 +1,8 @@
-@import "../../core/scss/fuse";
+@import "../../core/scss/hiot";
 
-fuse-main {
+hiot-main {
 
-    &.fuse-nav-bar-folded {
+    &.hiot-nav-bar-folded {
 
         .content-wrapper {
 
@@ -23,7 +23,7 @@ fuse-main {
     }
 }
 
-fuse-navbar {
+hiot-navbar {
     display: flex;
     flex-direction: column;
     width: 256px;

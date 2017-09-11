@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { MdSidenav } from "@angular/material";
 
 @Injectable()
-export class FuseMdSidenavHelperService
+export class MdSidenavHelperService
 {
     public sidenavInstances: MdSidenav[];
 

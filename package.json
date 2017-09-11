@@ -11,7 +11,12 @@
     "client": "cd platform/ui && ng serve",
     "server": "cd platform/server && nodemon --inspect",
     "m2m": "cd platform/m2m && nodemon",
-    "start-debug": "concurrent \"npm run device\" \"npm run client\" \"npm run server\" \"npm run m2m\" "
+    "install-device": "cd device-nodejs && npm install && nodemon",
+    "install-client": "cd platform/ui && npm install && ng serve",
+    "install-server": "cd platform/server && npm install && nodemon",
+    "install-m2m": "cd platform/m2m && npm install && nodemon",
+    "start-debug": "concurrent \"npm run device\" \"npm run client\" \"npm run server\" \"npm run m2m\" ",
+    "install-start": "concurrent \"npm run install-device\" \"npm run install-client\" \"npm run install-server\" \"npm run install-m2m\" "
   },
   "repository": {
     "type": "git",

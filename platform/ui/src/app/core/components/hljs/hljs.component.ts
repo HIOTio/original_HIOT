@@ -2,11 +2,11 @@ import { Component, ContentChild, ElementRef, Input, OnInit } from "@angular/cor
 import * as hljs from "highlight.js";
 
 @Component({
-    selector : "fuse-hljs",
+    selector : "hiot-hljs",
     template : " ",
     styleUrls: ["./hljs.component.scss"],
 })
-export class FuseHljsComponent implements OnInit
+export class HljsComponent implements OnInit
 {
     public hljs: any;
 

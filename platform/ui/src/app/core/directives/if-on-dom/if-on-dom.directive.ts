@@ -1,9 +1,9 @@
 import { AfterContentChecked, Directive, ElementRef, TemplateRef, ViewContainerRef } from "@angular/core";
 
 @Directive({
-    selector: "[fuseIfOnDom]",
+    selector: "[hiotIfOnDom]",
 })
-export class FuseIfOnDomDirective implements AfterContentChecked
+export class IfOnDomDirective implements AfterContentChecked
 {
     public isCreated = false;
 

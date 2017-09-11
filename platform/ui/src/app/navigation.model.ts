@@ -4,7 +4,7 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 import {AuthenticationService } from "./core/auth/auth.service";
-export class FuseNavigation
+export class Navigation
 {
     public items: any[];
 
