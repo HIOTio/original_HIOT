@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostBinding, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { Observable, Subscription} from 'rxjs';
 import { ConfigService } from "../core/services/config.service";
-import { AuthenticationService } from "../core/auth/auth.service";
+import { AuthenticationService, Profile } from "../core/auth/auth.service";
 
 @Component({
     selector     : "hiot-main",
@@ -12,7 +12,9 @@ import { AuthenticationService } from "../core/auth/auth.service";
 })
 export class MainComponent implements OnInit, OnDestroy
 {
-    public meVisible: boolean;
+
+    public user: Profile;
+    subscription: Subscription;
     public onSettingsChanged: Subscription;
     public settings: any;
     public; @HostBinding("class.disable-perfect-scrollbar") disableCustomScrollbars;
@@ -25,6 +27,8 @@ export class MainComponent implements OnInit, OnDestroy
         private authService: AuthenticationService
     )
     {
+        this.subscription = this.authService.creds().subscribe(profile => { this.user=profile;console.log(profile); });
+  
         this.onSettingsChanged =
             this.config.onSettingsChanged
                 .subscribe(
@@ -33,19 +37,7 @@ export class MainComponent implements OnInit, OnDestroy
                         this.disableCustomScrollbars = !this.settings.customScrollbars;
                     },
                 );
-                router.events.subscribe(
-                    (event) => {
-                        if ( event instanceof NavigationStart )
-                        {
-                            this.meVisible=false;
-        
-                        } else if ( event instanceof NavigationEnd )
-                        {
-                            if(authService.loggedIn()){
-                                this.meVisible = true;
-                            }
-                        }
-                    });
+
     }
 
     public ngOnInit()

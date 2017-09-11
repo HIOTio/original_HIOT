@@ -1,18 +1,18 @@
 import { Component, ViewEncapsulation } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { Observable, Subscription} from 'rxjs';
 import {AuthenticationService } from '../../auth/auth.service';
 import { NavigationService } from "./navigation.service";
 
-import { Observable } from "rxjs/Observable";
 @Component({
     selector     : "hiot-navigation",
     templateUrl  : "./navigation.component.html",
     styleUrls    : ["./navigation.component.scss"],
     encapsulation: ViewEncapsulation.None,
-    providers:[AuthenticationService]
 })
 export class NavigationComponent
 {
+    subscription: Subscription;
     public meVisible:boolean;
     public navigation: any[];
     public display: boolean;
@@ -21,26 +21,22 @@ export class NavigationComponent
         private authService: AuthenticationService,
         private router: Router)
     {
-        router.events.subscribe(
-            (event) => {
-                console.log(event);
-                if ( event instanceof NavigationStart )
-                {
-                    this.meVisible=false;
-
-                } else if ( event instanceof NavigationEnd )
-                {
-                    console.log("in nav component - nav ended");
-                    console.log(authService.loggedIn());
-                    this.loadNav();
-                }
-            });
+ 
       this.loadNav();
     }
     public loadNav(){
         //TODO: subscribe to this...
-		this.navigation = this.navigationService.getNavigation();
-        this.display=this.navigationService.display;
+        this.subscription = this.authService.creds().subscribe(profile => { 
+            this.navigationService.getNavigation()
+            .subscribe((res)=>{
+                this.navigation=res;            
+                this.display=this.navigationService.display;
+                console.log(this.navigation); 
+            })
+
+        });
+        
+		
         
     }
 

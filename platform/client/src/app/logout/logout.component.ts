@@ -5,7 +5,6 @@ import {AuthenticationService} from "../auth/auth.service";
   selector: "app-logout",
   templateUrl: "./logout.component.html",
   styleUrls: ["./logout.component.css"],
-    providers : [AuthenticationService],
 })
 export class LogoutComponent implements OnInit {
 

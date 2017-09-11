@@ -22,6 +22,7 @@ canActivate: [AuthGuard],
 
 	path : "deployments",
 	component : DeploymentListComponent,
+    canActivate: [AuthGuard],
 	},
 
 ];

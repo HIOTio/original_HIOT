@@ -5,7 +5,6 @@ import {AuthenticationService } from "./auth.service";
 @Component({
     moduleId: module.id,
     templateUrl: "auth.login.html",
-    providers: [AuthenticationService],
 })
 export class LoginComponent implements OnInit {
 
@@ -33,14 +32,10 @@ export class LoginComponent implements OnInit {
                 console.log(Response);
                 this.error=null;
                 this.router.navigate([this.returnUrl]);
-//TODO: redirect the user somewhere ...
             },
             (err) => {
-//TODO: need to handle the login failure properly
                 this.loading=false;
                 this.error= err;
-                console.log("there was an error");
-                console.log(err);
             },
          );
 

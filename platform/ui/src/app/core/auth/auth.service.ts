@@ -1,79 +1,85 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Router } from '@angular/router';
+import { Observable, BehaviorSubject } from "rxjs";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
-import { Profile } from "../profile/profile.model";
 import { ConfigService }  from  "../services/config.service";
 
-@Injectable()
-export class UserProfile {
-    public profile: Profile;
-    public token: String;
+export class Profile{
+    profile:{_id:0};
+    authenticated:boolean;
+    constructor(){
+        this.authenticated=false;
+        
+    }
 }
 @Injectable()
 export class AuthenticationService {
     public token = "";
 public options;
-    public cred: Observable<any>;
-    public userProfile: Observable<any>;
+    cred=new BehaviorSubject(new Profile);
+    public profile:Profile;
     constructor(
         private http: Http, 
         private configService: ConfigService,
         private router: Router
         
     ) {
-        this.userProfile = new Observable<any>();
-        console.log(this.userProfile)
-        //delete any existing user profile and token
+        this.profile={
+            authenticated: false,
+            profile:null
+        }
+        
         if(localStorage.getItem("currentUser")){
-            this.token="";
+        // TODO: Update this to check the existing token against the server and log the user in if it's still valid
+           this.token="";
             localStorage.removeItem("currentUser");
-            localStorage.removeItem("token");
+            localStorage.removeItem("token"); 
         }
         const headers = new Headers();
         this.options = new RequestOptions();
         headers.append("Content-Type", "application/json");
-        headers.append("Authorization", "JWT " + this.token);
         this.options.headers = headers;
     }
-    public user(){
-        if(localStorage.getItem("currentUser")){
-            return JSON.parse(localStorage.getItem("currentUser")).profile;
-        }
-        return null;
-    }
-    public creds(){
-        if(localStorage.getItem("currentUser")){
-            return JSON.parse(localStorage.getItem("currentUser"));
-        }
-        return null;
-    }
-    public login(username: string, password: string, redirectUrl: string): Observable<UserProfile> {
-        this.cred =  this.http.post(this.configService.server + "/auth", {username, password}) // ...using post request
-                         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error: any) => Observable.throw(error.json().error || "Server error")); //...errors if any
 
-        this.cred.subscribe((res) => {
-            console.log(res.profile);
+    public creds(): Observable<any>{
+        return this.cred.asObservable();
+    }
+    public login(username: string, password: string, redirectUrl: string): Observable<any> {
+        this.http.post(this.configService.server + "/auth", {username, password}) // ...using post request
+                         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+                         .catch((error: any) => Observable.throw(error.json().error || "Server error")) //...errors if any
+.subscribe((res) => {
         this.token = "JWT " + res.token;
-        this.userProfile=res.profile;
+        this.profile.profile=res.profile;
+        this.profile.authenticated=true;
+            this.cred.next(this.profile);
+            console.log(res);
+            const headers = new Headers();
+            this.options = new RequestOptions();
+            headers.append("Content-Type", "application/json");
+            headers.append("Authorization", this.token);
+            
+        this.options.headers = headers;
         localStorage.setItem("currentUser", JSON.stringify({ username, id: res.profile._id, token: res.token, profile:res.profile }));
         });
     
         return this.cred;
     }
-    public loggedIn(){
-         return !!localStorage.getItem("currentUser");
 
-
+    public userId(){
+            return  this.profile.profile._id;
+  
     }
     public logout() {
-        this.cred = null;
         this.token = "";
         localStorage.removeItem("currentUser");
-        this.userProfile=new Observable<UserProfile>();
+        this.profile={
+            profile:null,
+            authenticated:false
+        };
+        this.cred.next(this.profile);
         this.redirect('/login');
     }
     public getToken(){

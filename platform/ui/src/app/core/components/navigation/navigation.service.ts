@@ -1,8 +1,8 @@
 import { EventEmitter, Injectable} from "@angular/core";
 import { Headers, Http, Response } from "@angular/http";
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
 import {AuthenticationService } from "../../../core/auth/auth.service";
 import {ConfigService } from "../../services/config.service";
 @Injectable()
@@ -10,27 +10,20 @@ export class NavigationService
 {
     public onNavCollapseToggled = new EventEmitter<any>();
     public navigation: any[];
+    private profile: Observable<any>;
     public flatNavigation: any[] = [];
 public display: boolean;
-    constructor(private http: Http, private auth: AuthenticationService, private configService: ConfigService)
+    constructor(
+        private http: Http, 
+        private auth: AuthenticationService, 
+        private configService: ConfigService)
     {
      	this.navigation = [];
       this.display=false;
-      auth.userProfile.subscribe(
-          (profile)=>{
-              console.log(profile);
-            return this.http.get(this.configService.server + "/api/navigation/" + profile.profile._id, this.auth.getAuthHeaders())
-            .map(function(res){
-                this.display=true;
-                (res: Response) => res.json();
-                const my_menu = res.json();
-                
-            });
-
-
-          }
-       
-      )
+      this.profile=auth.creds();
+     
+      
+  
     }
 
     /**
@@ -38,9 +31,14 @@ public display: boolean;
      * @returns {any[]}
      */
   
-    public getNavigation(): any[]
+    public getNavigation(): Observable<any[]>
     {
-        return this.navigation;
+        return   this.http.get(this.configService.server + "/api/navigation/" + this.auth.userId(), this.auth.getAuthHeaders())
+            .map(function(res){
+                (res: Response) => res.json();
+                console.log(res.json());
+                return res.json();
+            });
         
     }
 

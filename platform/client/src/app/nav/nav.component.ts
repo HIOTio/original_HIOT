@@ -14,7 +14,9 @@ export class NavComponent implements OnInit {
     public ngOnInit() {
     }
     public authed(){
-        return this.authService.loggedIn();
+        return this.authService.cred.subscribe(function(profile){
+            return profile.authentication;
+        });
 
     }
 

@@ -15,7 +15,6 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { QuickPanelComponent } from "./quick-panel/quick-panel.component";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 
-
 @NgModule({
     declarations: [
         ContentComponent,
@@ -36,7 +35,7 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
     ],
     exports     : [
         MainComponent,
-    ],
+    ]
 })
 
 export class MainModule

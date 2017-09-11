@@ -20,6 +20,7 @@ import { DashboardModule } from "./main/content/dashboard/dashboard.module";
 import { DeploymentModule } from "./main/content/deployment/deployment.module";
 import { MainModule } from "./main/main.module";
 import  {LoginComponent } from "./core/auth/auth.login.component";
+
 const appRoutes: Routes = [
 
   {

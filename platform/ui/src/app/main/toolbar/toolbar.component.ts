@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import {AuthenticationService } from '../../core/auth/auth.service';
-
+import {Observable } from 'rxjs';
 @Component({
     selector   : "hiot-toolbar",
     templateUrl: "./toolbar.component.html",
@@ -15,11 +15,11 @@ export class ToolbarComponent
     public selectedLanguage: any;
     public showSpinner: boolean;
     public meVisible: boolean;
-    private user: any;
+    private user: Observable<any>;
     constructor(private router: Router, private authservice: AuthenticationService)
     {
-        this.user=authservice.user;
-        console.log(this.user());
+        this.user=authservice.creds();
+        console.log(this.user);
         this.userStatusOptions = [
             {
                 title: "Online",
@@ -72,21 +72,8 @@ export class ToolbarComponent
         ];
 
         this.selectedLanguage = this.languages[0];
-
-        router.events.subscribe(
-            (event) => {
-                if ( event instanceof NavigationStart )
-                {
-                    this.showSpinner = true;
-
-                } else if ( event instanceof NavigationEnd )
-                {
-                    this.showSpinner = false;
-                    if(authservice.loggedIn()){
-                        this.user=authservice.user();
-                    }
-                }
-            });
+         
+            
     }
     public logout(){
         this.authservice.logout();

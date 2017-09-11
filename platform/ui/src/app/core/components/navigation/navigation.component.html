@@ -1,5 +1,5 @@
 <div id="main-navigation" class="nav">
-	<ng-container *ngFor="let item of navigation | async">
+	<ng-container *ngFor="let item of navigation">
 
 		<hiot-nav-subheader *ngIf="item.type=='subheader'" [item]="item"></hiot-nav-subheader>
 

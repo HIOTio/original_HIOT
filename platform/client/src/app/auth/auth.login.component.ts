@@ -5,7 +5,6 @@ import {AuthenticationService } from "./auth.service";
 @Component({
     moduleId: module.id,
     templateUrl: "auth.login.html",
-    providers: [AuthenticationService],
 })
 export class LoginComponent implements OnInit {
 
