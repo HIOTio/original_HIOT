@@ -2,24 +2,25 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var AggregatorSchema = new Schema({
-  device: {
-    type: Schema.Types.ObjectId,
-    ref: 'Device',
-    required: true
+  name: String,
+  deployment: {
+    type:Schema.Types.ObjectId,
+    ref:'Deployment'
   },
   description: String,
-  parent: {
+  topic: String,
+  handler: {
     type: Schema.Types.ObjectId,
-    ref: 'Device'
+    ref: 'Handler'
   },
   added: Date,
   active: Boolean
 })
 AggregatorSchema
-  .virtual('url')
-  .get(function () {
-    return '/api/aggregator/' + this._id
-  })
+	.virtual('url')
+	.get(function () {
+  return '/api/aggregator/' + this._id
+})
 
 // Compile model from schema
 module.exports = mongoose.model('Aggregator', AggregatorSchema)

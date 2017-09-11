@@ -3,15 +3,14 @@ var Schema = mongoose.Schema
 
 var ControllerSchema = new Schema({
   description: String,
-  thing: {
+  name: String,
+  channel: String,
+  handler: {
     type: Schema.Types.ObjectId,
-    ref: 'Thing'
+    ref: 'Handler'
   },
-  added: Date,
-  commands: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Controller_Command'
-  }]
+  broker: String,
+  added: Date
 })
 ControllerSchema
 	.virtual('url')
