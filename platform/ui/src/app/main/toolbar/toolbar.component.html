@@ -1,4 +1,4 @@
-<md-toolbar class="p-0 mat-elevation-z1">
+<md-toolbar class="p-0 mat-elevation-z1" *ngIf="meVisible" >
 xxx
 	<div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
@@ -24,7 +24,7 @@ xxx
 			<button md-button [mdMenuTriggerFor]="userMenu" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar" src="assets/images/avatars/profile.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Mark Healy</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{user.username }}</span>
                     <md-icon class="s-16" fxHide.xs>keyboard_arrow_down</md-icon>
                 </div>
             </button>
@@ -41,8 +41,8 @@ xxx
                     <span>Inbox</span>
                 </button>
 
-				<button md-menu-item class="">
-                    <md-icon>exit_to_app</md-icon>
+				<button md-menu-item class="" (click)="logout()">
+                    <md-icon >exit_to_app</md-icon>
                     <span>Logout</span>
                 </button>
 

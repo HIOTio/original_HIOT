@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
+import { Router } from '@angular/router';
 import {AuthenticationService } from "./auth.service";
 @Component({
     moduleId: module.id,
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
     public loading = false;
     public returnUrl: string;
     constructor(
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService, 
+        private router: Router
+    ) { }
 
     public ngOnInit() {
         // reset login status
@@ -23,15 +26,17 @@ export class LoginComponent implements OnInit {
 
     public login(user) {
         this.loading = true;
-        this.authenticationService.login(user.username, user.password).subscribe(
+        this.authenticationService.login(user.username, user.password,this.returnUrl).subscribe(
             (Response) => {
                 this.loading = false;
                 console.log(Response);
+                this.router.navigate([this.returnUrl]);
 //TODO: redirect the user somewhere ...
             },
             (err) => {
 //TODO: need to handle the login failure properly
                 this.loading=false;
+                console.log(err);
             },
          );
 

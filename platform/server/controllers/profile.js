@@ -2,7 +2,6 @@ var Profile = require('../models/profile')
 var config = require('../config')
 var jwt = require('jsonwebtoken')
 exports.profile_auth = function (req, res, next) {
-    console.log("about to search")
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
@@ -28,14 +27,19 @@ exports.profile_auth = function (req, res, next) {
 
           res.send({
             success: true,
-            message: 'Enjoy your token!',
+            message: 'Authenticated',
             token: token,
             profile: profile
           })
         } else {
             console.log("auth failed")
           res.setHeader('WWW-Authenticate', 'Basic realm="need login"')
-          res.send(401)
+          res.status(401).send({
+            success:false,
+            error: 'Please try again',
+            token: null,
+            profile:null
+          })
         }
       })
     }

@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
                 console.log(Response);
             },
             (err) => {
-                console.log("Aw crappity");
                 console.log(err);
             },
          );

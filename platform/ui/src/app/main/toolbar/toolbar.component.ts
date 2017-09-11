@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import {AuthenticationService } from '../../core/auth/auth.service';
 
 @Component({
     selector   : "hiot-toolbar",
@@ -13,9 +14,12 @@ export class ToolbarComponent
     public languages: any;
     public selectedLanguage: any;
     public showSpinner: boolean;
-
-    constructor(private router: Router)
+    public meVisible: boolean;
+    private user: any;
+    constructor(private router: Router, private authservice: AuthenticationService)
     {
+        this.user=authservice.user;
+        console.log(this.user());
         this.userStatusOptions = [
             {
                 title: "Online",
@@ -74,14 +78,23 @@ export class ToolbarComponent
                 if ( event instanceof NavigationStart )
                 {
                     this.showSpinner = true;
-                }
-                if ( event instanceof NavigationEnd )
+                    this.meVisible=false;
+
+                } else if ( event instanceof NavigationEnd )
                 {
                     this.showSpinner = false;
+                    console.log("navigation ended");
+                    if(authservice.loggedIn()){
+                        this.user=authservice.user();
+                        console.log(this.user);
+                        this.meVisible = true;
+                    }
                 }
             });
     }
-
+    public logout(){
+        this.authservice.logout();
+    }
     public search(value)
     {
         // Do your search here...

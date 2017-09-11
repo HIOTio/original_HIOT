@@ -6,10 +6,10 @@ import { ConfigService }  from  "../services/config.service";
 @Injectable()
 export class ProfileService {
     constructor(private http: Http, private configService: ConfigService) { }
-
     public getById(id: number) {
         return this.http.get(this.configService.server + "/api/profile/" + id, this.jwt()).map((response: Response) => response.json());
     }
+
     public create(user: Profile) {
 		console.log(user);
   return this.http.post(this.configService.server + "/register", user, this.jwt()).map((response: Response) => response.json());
