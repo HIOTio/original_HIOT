@@ -6,7 +6,6 @@ import { SharedModule } from "../core/modules/shared.module";
 import { NavigationModule } from "../core/components/navigation/navigation.module";
 import { SearchBarModule } from "../core/components/search-bar/search-bar.module";
 import { ShortcutsModule } from "../core/components/shortcuts/shortcuts.module";
-import { ThemeOptionsComponent } from "../core/components/theme-options/theme-options.component";
 import { ContentComponent } from "./content/content.component";
 import { FooterComponent } from "./footer/footer.component";
 import { MainComponent } from "./main.component";
@@ -23,7 +22,6 @@ import { ToolbarComponent } from "./toolbar/toolbar.component";
         NavbarComponent,
         ToolbarComponent,
         NavbarToggleDirective,
-        ThemeOptionsComponent,
         QuickPanelComponent
         ],
     imports     : [

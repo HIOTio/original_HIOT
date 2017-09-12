@@ -28,7 +28,7 @@ exports.deployment_create = function (req, res, next) {
         description: req.body.description,
         name: req.body.name,
         deploymentType: req.body.deploymentType,
-        owner: JSON.parse(localSettings("currentUser")).id
+        owner: req.body.id
     })
     deployment.save(function (err) {
         if (err) {
