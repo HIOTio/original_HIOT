@@ -52,6 +52,7 @@ hiot-main {
                         display: flex;
                         flex-direction: column;
                         flex: 1;
+                        width:100vw;
                         overflow: hidden;
 
                         hiot-content {
@@ -59,7 +60,7 @@ hiot-main {
                             display: flex;
                             flex: 1;
                             flex-direction: row;
-                            width: 100%;
+                            width: 100vw;
 
                             > *:not(router-outlet):not(.ps__scrollbar-x-rail):not(.ps__scrollbar-y-rail) {
                                 display: flex;

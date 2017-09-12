@@ -1,37 +1,45 @@
+<md-sidenav-container>
+        
+            <div id="hiot-main-content" fxFlexFill>
+        
+                <!-- TOOLBAR: Above -->
+                <ng-container *ngIf="user.authenticated">
+                    <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
+                </ng-container>
+                <!-- / TOOLBAR: Above -->
+        
+        
+                <div id="wrapper">
+        
+                    <!-- NAVBAR: Left -->
+                    <hiot-navbar [folded]="false"
+                                          class="left-navbar" [class]="settings.colorClasses.navbar"
+                                          *ngIf="user.authenticated">
+                    </hiot-navbar>
+                    <!-- / NAVBAR: Left -->
+        
+                    <div class="content-wrapper" fxFlexFill>
+        
+          
+        
+                        <hiot-content></hiot-content>
+       
+                    </div>
 
-<md-sidenav-container >
-        <ng-container *ngIf="user.authenticated" >
-                <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
-            </ng-container>
-    <div id="hiot-main-content" fxFlexFill  >
-            <div id="wrapper">
-
- 
-            <hiot-navbar [folded]="false"
-                         class="left-navbar"
-                         *ngIf="user.authenticated"
-                         [class]="settings.colorClasses.navbar">
-            </hiot-navbar>
-
-            <div class="content-wrapper">
-
-
-                <hiot-content></hiot-content>
-
-
+        
+                </div>
+        
+              
+        
             </div>
-
-        </div>
-
-
-    </div>
-
-    <!-- QUICK PANEL -->
-    <md-sidenav MdSidenavHelper="quick-panel" align="end">
-        <hiot-quick-panel></hiot-quick-panel>
-    </md-sidenav>
-    <!-- / QUICK PANEL -->
-
-</md-sidenav-container>
-
-<hiot-theme-options></hiot-theme-options>
+        
+            <!-- QUICK PANEL -->
+            <md-sidenav MdSidenavHelper="quick-panel" align="end">
+                <hiot-quick-panel></hiot-quick-panel>
+            </md-sidenav>
+            <!-- / QUICK PANEL -->
+        
+        </md-sidenav-container>
+        
+        <hiot-theme-options></hiot-theme-options>
+        
