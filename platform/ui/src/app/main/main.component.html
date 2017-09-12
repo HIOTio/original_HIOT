@@ -1,15 +1,12 @@
 
-<md-sidenav-container style="width:100%">
+<md-sidenav-container >
+        <ng-container *ngIf="user.authenticated" >
+                <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
+            </ng-container>
+    <div id="hiot-main-content" fxFlexFill  >
+            <div id="wrapper">
 
-    <div id="hiot-main-content" fxFlexFill  style="width:100%">
-        
-
-        <div id="wrapper">
-<!-- TOOLBAR: Above -->
-<ng-container *ngIf="user.authenticated" >
-        <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
-    </ng-container>
-    <!-- / TOOLBAR: Above -->
+ 
             <hiot-navbar [folded]="false"
                          class="left-navbar"
                          *ngIf="user.authenticated"

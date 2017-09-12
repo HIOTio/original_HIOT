@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { NavigationEnd, NavigationStart, Router } from "@angular/router";
-import {AuthenticationService } from '../../core/auth/auth.service';
-import {Observable } from 'rxjs';
+import {AuthenticationService, Profile } from '../../core/auth/auth.service';
+import {Observable, Subscription } from 'rxjs';
+import { SharedModule} from '../../core/modules/shared.module';
 @Component({
     selector   : "hiot-toolbar",
     templateUrl: "./toolbar.component.html",
@@ -12,14 +13,18 @@ export class ToolbarComponent
 {
     public userStatusOptions: any[];
     public languages: any;
+    subscription: Subscription;
     public selectedLanguage: any;
     public showSpinner: boolean;
     public meVisible: boolean;
     private user: Observable<any>;
-    constructor(private router: Router, private authservice: AuthenticationService)
+    constructor(private router: Router, private authService: AuthenticationService)
     {
-        this.user=authservice.creds();
-        console.log(this.user);
+        this.subscription = this.authService.creds()
+        .subscribe(profile => { 
+            this.user=profile.profile;
+            console.log(this.user); });
+        
         this.userStatusOptions = [
             {
                 title: "Online",
@@ -76,7 +81,7 @@ export class ToolbarComponent
             
     }
     public logout(){
-        this.authservice.logout();
+        this.authService.logout();
     }
     public search(value)
     {

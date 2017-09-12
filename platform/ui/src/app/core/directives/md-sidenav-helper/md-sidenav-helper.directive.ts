@@ -89,5 +89,6 @@ export class MdSidenavTogglerDirective
     onClick()
     {
         this.mdSidenavService.getSidenav(this.id).toggle();
+        console.log("trying to toggle" + this.id);
     }
 }

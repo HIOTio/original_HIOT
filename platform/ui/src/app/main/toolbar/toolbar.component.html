@@ -3,7 +3,22 @@
 	<div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
 
 		<div fxFlex fxLayout="row" fxLayoutAlign="start center">
-
+                <div class="navbar-header">
+                        
+                            <div class="logo">
+                                <span class="logo-icon">H</span>
+                                <span class="logo-text">HIOT</span>
+                            </div>
+                        
+                            <button md-button class="toggle-button-navbar mat-icon-button" hiotNavbar="toggleFold" fxHide.lt-lg>
+                                <md-icon>menu</md-icon>
+                            </button>
+                        
+                            <button md-button class="toggle-button-navbar mat-icon-button" hiotNavbar="closeBar" fxHide.gt-md>
+                                <md-icon>arrow_back</md-icon>
+                            </button>
+                        
+                        </div>
 			<button md-button class="toggle-button-navbar mat-icon-button" Navbar="openBar" fxHide.gt-md>
                 <md-icon>menu</md-icon>
             </button>
@@ -24,7 +39,7 @@
 			<button md-button [mdMenuTriggerFor]="userMenu" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar" src="assets/images/avatars/profile.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>{{user.username }}</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{user.firstmame }} {{user.lastname}}</span>
                     <md-icon class="s-16" fxHide.xs>keyboard_arrow_down</md-icon>
                 </div>
             </button>
@@ -72,7 +87,7 @@
 
 			<div class="toolbar-separator"></div>
 
-			<button md-icon-button class="mat-icon-button quick-panel-toggle-button" MdSidenavToggler="quick-panel" aria-label="Toggle quick panel">
+			<button md-icon-button class="mat-icon-button quick-panel-toggle-button" MdSidenavToggler="hiot-quick-panel" aria-label="Toggle quick panel">
                 <md-icon class="icon">format_list_bulleted</md-icon>
             </button>
 

@@ -1,5 +1,7 @@
 @import "src/app/core/scss/hiot";
-
+.mat-drawer-content{
+    width:100%;
+}
 hiot-main {
     display: flex;
     flex-direction: column;
@@ -43,6 +45,7 @@ hiot-main {
                     display: flex;
                     position: relative;
                     flex: 1;
+                    height:100vh;
                     overflow: hidden;
 
                     .content-wrapper {
