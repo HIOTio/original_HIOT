@@ -17,7 +17,14 @@ var CoordinatorSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Deployment',
     required: true
+  },
+  channels:[
+    {
+        channelId:String,
+        description: String,
+        function: String
   }
+]
 })
 
 CoordinatorSchema
