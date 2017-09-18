@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var CoordinatorSchema = new Schema({
+  coordinatorId:String,
   description: String,
   added: {
     type: Date,
@@ -15,11 +16,6 @@ var CoordinatorSchema = new Schema({
   deployment: {
     type: Schema.Types.ObjectId,
     ref: 'Deployment',
-    required: true
-  },
-  device: {
-    type: Schema.Types.ObjectId,
-    ref: 'Device',
     required: true
   }
 })

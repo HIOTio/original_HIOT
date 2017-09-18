@@ -10,6 +10,7 @@
 
 var isActive=boolean;
 var coordinatorDeviceId;
+var coordinatorDescription;
 var coordinators=[];
 var channels=[
     {
