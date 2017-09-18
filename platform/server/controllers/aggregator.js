@@ -37,12 +37,6 @@ exports.aggregator_create = function (req, res, next) {
   req.checkBody('description', 'Each aggregator needs a description').notEmpty()
   req.sanitize('description').escape()
   req.sanitize('description').trim()
-  req.checkBody('device', 'Each aggregator needs a description').notEmpty()
-  req.sanitize('device').escape()
-  req.sanitize('device').trim()
-  req.checkBody('parent', 'Each aggregator needs a description').notEmpty()
-  req.sanitize('parent').escape()
-  req.sanitize('parent').trim()
   var errors = req.validationErrors()
   var aggregator = new Aggregator({
     deployment: req.body.deployment,

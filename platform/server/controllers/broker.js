@@ -10,7 +10,9 @@ exports.broker_list = function (req, res, next) {
   })
 }
 exports.broker_list_for_deployment = function (req, res, next) {
-  Broker.find({}, function (err, list_broker) {
+  Broker.find({
+    deployment:req.params.deployment
+  }, function (err, list_broker) {
     if (err) {
       return next(err)
     }
@@ -20,7 +22,7 @@ exports.broker_list_for_deployment = function (req, res, next) {
 }
 exports.broker_detail = function (req, res, next) {
   Broker.find({
-    _id: req.params.id
+    _id: req.params._id
   }, function (err, broker) {
     if (err) {
       return next(err)
@@ -31,9 +33,9 @@ exports.broker_detail = function (req, res, next) {
 }
 exports.broker_create = function (req, res, next) {
   var broker = new Broker({
-    deviceId: req.body.deviceId,
+    deployment: req.body.deployment,
     description: req.body.description,
-    parent: req.body.parent,
+    topic: req.body.topic,
     added: req.body.added,
     active: req.body.active
   })
@@ -60,10 +62,11 @@ exports.broker_delete = function (req, res, next) {
 }
 exports.broker_update = function (req, res, next) {
   Broker.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
+    deployment: req.body.deployment,
     description: req.body.description,
-    parent: req.body.parent,
+    topic: req.body.topic,
     added: req.body.added,
     active: req.body.active
   }, {

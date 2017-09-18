@@ -14,7 +14,8 @@ var AggregatorSchema = new Schema({
     ref: 'Handler'
   },
   added: Date,
-  active: Boolean
+  active: Boolean,
+  poll:Number
 })
 AggregatorSchema
 	.virtual('url')

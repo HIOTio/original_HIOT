@@ -11,8 +11,18 @@ var DeviceSchema = new Schema({
   },
   description: String,
   name: String,
-  mqttServerIP: String,
-  mqttServerPort:String,
+  isBroker: Boolean,
+  isAggregator: Boolean,
+  hasSensors: Boolean,
+  isController: Boolean,
+  isCoordinator: Boolean,
+  mqttBrokers:[{
+    mqttServerIP: String,
+    mqttServerPort:String,
+    priority:Number
+  }
+  ],
+
   active: Boolean,
   added: Date,
   aggregators: [{

@@ -22,11 +22,16 @@ exports.device_make_detail = function (req, res) {
   })
 }
 exports.device_make_create = function (req, res, next) {
-  var DeviceMake = new DeviceMake({
+  var deviceMake = new DeviceMake({
     description: req.body.description,
     added: req.body.added
   })
-  res.redirect(303, doc.url)
+  deviceMake.save(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect(deviceMake.url)
+})
 }
 exports.device_make_delete = function (req, res) {
   DeviceMake.findOneAndUpdate({

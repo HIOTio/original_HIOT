@@ -20,11 +20,19 @@ exports.device_count = function (req, res, next) {
 }
 exports.device_list_for_deployment = function (req, res, next) {
       //use query params to filter
-  Device.find({
-    deployment: req.params.deployment,
-    location: req.query.location,
-    device_type: req.query.device_type
-  }, function (err, list_devices) {
+      var query={}
+      if(req.params.deployment){
+        query.deployment=req.params.deployment;
+      }
+      if(req.params.location){
+        //TODO: need to include any child locations, including nested ones
+        query.location=req.params.location
+      }
+      if(req.query.handler){
+        //TODO: need to include make/model/
+        query.handler=req.params.handler
+      }
+  Device.find(query, function (err, list_devices) {
     if (err) {
       
       return next(err)
@@ -50,19 +58,24 @@ exports.device_create = function (req, res, next) {
   var errors = req.validationErrors()
   var device = new Device({
     deviceId: req.body.deviceId,
+    deployment: req.body.deployment,
+    name: req.body.name,
+    description: req.body.description,
+    location:req.body.location,
     make: req.body.make,
     model: req.body.model,
+    mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
     active: req.body.active,
+    isBroker: Boolean,
+    isAggregator: Boolean,
+    hasSensors: Boolean,
+    isController: Boolean,
+    isCoordinator: Boolean,
     aggregators: req.body.aggregators,
-    deployment: req.body.deployment,
-    controllers: req.body.controller,
+    controllers: req.body.controllers,
     sensors: req.body.sensors,
-    health: req.body.health,
-    brokers: req.body.brokers,
-    name: req.body.name,
-    location:req.body.location,
-    description: req.body.description
+    brokers: req.body.brokers
   })
   device.save(function (err) {
     if (err) {
@@ -90,19 +103,24 @@ exports.device_update = function (req, res, next) {
     _id: req.body._id
   }, {
     deviceId: req.body.deviceId,
+    deployment: req.body.deployment,
+    name: req.body.name,
+    description: req.body.description,
+    location:req.body.location,
     make: req.body.make,
     model: req.body.model,
+    mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
     active: req.body.active,
+    isBroker: Boolean,
+    isAggregator: Boolean,
+    hasSensors: Boolean,
+    isController: Boolean,
+    isCoordinator: Boolean,
     aggregators: req.body.aggregators,
-    deployment: req.body.deployment,
-    controllers: req.body.controller,
+    controllers: req.body.controllers,
     sensors: req.body.sensors,
-    health: req.body.health,
-    brokers: req.body.brokers,
-    name: req.body.name,
-    location:req.body.location,
-    description: req.body.description
+    brokers: req.body.brokers
   }, {
     upsert: false
   },

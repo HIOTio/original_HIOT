@@ -1,4 +1,6 @@
+
 module.exports = {
+  //TODO: re-write this to use the topic path to identify where to send the message
   upstream: function (topic, message) {
         // pass a message up to the next level
 

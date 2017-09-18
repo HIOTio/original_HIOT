@@ -1,2 +1,2 @@
 var config=require('./config')
-config.updateConfig()
+config.loadConfig()

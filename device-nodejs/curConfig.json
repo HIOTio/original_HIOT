@@ -1,0 +1,32 @@
+
+        "controllers": [{
+            "id": "controller1",
+            "controller_channel": "controller12345",
+            "description": "lighting controller, first floor",
+            "handler": "thing/controllers/demo_controller",
+            "commands": [{
+                "c": 0,
+                "e": "/home/pi/lightwaverf-pi/send",
+                "p": [{
+                    "p": "p1",
+                    "r": true
+                }, {
+                    "p": "p2",
+                    "r": true
+                }, {
+                    "p": "p3",
+                    "r": true
+                }]
+            }]
+        }, {
+            "id": "controller2",
+            "controller_channel": "controllerX",
+            "description": "lighting controller, second floor",
+            "handler": "thing/controllers/demo_controller",
+            "broker": "secondBroker"
+        }]
+    },
+
+    "device_id": "device10",
+    "isThing": true
+}

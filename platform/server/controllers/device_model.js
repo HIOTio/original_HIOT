@@ -24,9 +24,15 @@ exports.device_model_detail = function (req, res, next) {
 exports.device_model_create = function (req, res, next) {
   var deviceModel = new DeviceModel({
     description: req.body.description,
+    make:req.body.make,
     added: req.body.added
   })
-  res.redirect(303, deviceModel.url)
+  deviceModel.save(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect(deviceModel.url)
+})
 }
 exports.device_model_delete = function (req, res, next) {
   DeviceModel.findOneAndUpdate({

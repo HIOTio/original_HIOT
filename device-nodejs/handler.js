@@ -12,7 +12,7 @@ this.addHandler = function (index, file, poll, object) {
         }, object.poll))
       } else {
         // subscriptions will be handled by the mqtt.onMessage event.
-        // not sure if there are other use cases that we need to loow at
+        // not sure if there are other use cases that we need to look at
 
       }
     } else {

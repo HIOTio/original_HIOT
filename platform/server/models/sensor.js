@@ -7,7 +7,6 @@ var SensorSchema = new Schema({
   description: String,
   handler: String,
   config:String,
-  description: String,
   location: {
     type: Schema.Types.ObjectId,
     ref: 'Location'
@@ -20,10 +19,6 @@ var SensorSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Sensor_Types'
   },
-  coordinator_groups: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Coordinator_Groups'
-  }],
   sensor_readings: [{
     type: Schema.Types.ObjectId,
     ref: 'Sensor_Reading'

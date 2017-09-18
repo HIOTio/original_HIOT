@@ -7,6 +7,10 @@ var HandlerSchema = new Schema({
     aggregator:Boolean,
     controller:Boolean,
     description: String,
+    deployment:{
+        type: Schema.Types.ObjectId,
+        ref:'deployment'
+    },
     path: String,
     commands: [{
         type:Schema.Types.ObjectId,

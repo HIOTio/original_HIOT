@@ -31,7 +31,11 @@ exports.param_create = function (req, res, next) {
     max: req.body.max,
     default: req.body.default
   })
-  res.redirect(303, param.url)
+  param.save(function(err){
+    if(!err){
+        res.redirect(303, param.url)
+    }
+  })
 }
 exports.param_delete = function (req, res, next) {
   Param.findOneAndUpdate({

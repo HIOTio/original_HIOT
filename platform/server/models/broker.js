@@ -2,15 +2,11 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var BrokerSchema = new Schema({
-  deviceId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Device',
-    required: true
-  },
+  topic:String, //wildcard on this topic
   description: String,
-  parent: {
+  deployment: {
     type: Schema.Types.ObjectId,
-    ref: 'Device'
+    ref:'deployment'
   },
   added: Date,
   active: Boolean

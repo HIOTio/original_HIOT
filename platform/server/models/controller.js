@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var ControllerSchema = new Schema({
+  controllerId:String,
   description: String,
   name: String,
   channel: String,
@@ -9,7 +10,6 @@ var ControllerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Handler'
   },
-  broker: String,
   added: Date
 })
 ControllerSchema

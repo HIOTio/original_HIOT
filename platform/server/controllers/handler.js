@@ -36,8 +36,10 @@ exports.handler_create = function (req, res, next) {
     name:req.body.name,
     aggregator:req.body.aggregator,
     controller:req.body.controller,
+    deployment: req.body.deployment,
     description: req.body.description,
     path: req.body.path,
+    commands: req.body.commands
   })
   handler.save(function (err) {
     if (err) {
@@ -62,14 +64,15 @@ exports.handler_delete = function (req, res, next) {
 }
 exports.handler_update = function (req, res, next) {
   Handler.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
-    thing: req.body.thing,
+    tname:req.body.name,
+    aggregator:req.body.aggregator,
+    controller:req.body.controller,
+    deployment: req.body.deployment,
     description: req.body.description,
-    name: req.body.name,
-    commands: req.body.commands,
-    added: req.body.added,
-    active: req.body.active
+    path: req.body.path,
+    commands: req.body.commands
   }, {
     upsert: false
   },

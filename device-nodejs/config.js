@@ -2,7 +2,29 @@ var base64 = require('file-base64')
 var handler = require('./handler')
 var fs = require('fs')
 //NOTE: need this up here to set some config details (e.g. device id and mqtt address)
-var config = require('./config.json')
+
+/*
+Start-up:
+ 1 - read config file
+ 2 - set device ID
+ 3 - check if I'm a broker
+ 4.a - if I am, create a list of brokers with just localhost in it
+ 4.b - if I'm not, create list of MQTT brokers
+ 5 - create list of subscriptions and handlers (need to tidy up current stuff)
+ 6 - Do I have sensors?
+ 7 - Do I have controllers?
+ 8 - Am I an aggregator?
+ 9 - Am I a coordinator
+
+
+Re-load config:
+1 - validate new configuration
+  -- Make sure the required data is included
+2 - remove subscriptions, handlers etc.
+3 - run start-up 
+
+*/
+this.myConfig={};
 var mqtt = require('./MQTT')
 this.roles = []
 this.subscriptions = []
@@ -10,15 +32,12 @@ this.isThing = false
 this.isAggregator = false
 this.isBroker = false
 
-this.updateConfig = function (configOut) {
-this.controllerCommands = []
-  //TODO: [x]need to include a mechanism to pass handler files to the device
-  //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
-  if (!configOut) {
-    config = require('./config.json')
-  } else {
-    console.log("got new config")
-    config = configOut
+function validateConfig(conf){
+  //Validate the supplied config and return true if it's OK
+  return true;
+}
+function saveConfig(conf){
+  if(validateConfig(conf)){
     fs.writeFile('./config.json', JSON.stringify(config), function (err) {
       if (err) {
         return
@@ -32,18 +51,44 @@ this.controllerCommands = []
             console.log(err)
           }
           console.log('file written to ' + location);
+          this.setConfig(conf);
         });
       }
     })
   }
-  console.log(config.device_id)
-  this.device_id = config.device_id
-  this.sensors = config.thing.sensors
-  this.device_id = config.device_id
-  this.controllers = config.thing.controllers
-  this.aggregators = config.aggregators
-  this.brokers = config.brokers
-  this.brokerFrom = config.brokerFrom
+}
+
+this.loadConfig=function(){
+  //load the config from file and assign to config
+  var confTemp=require('./config.json');
+  if(validateConfig(confTemp)){
+    this.setConfig(confTemp);
+  }
+}
+this.setConfig=function(conf){
+  this.myConfig=conf;
+  this.updateConfig(conf);
+}
+
+this.updateConfig = function (conf) {
+  console.log(this.myConfig);
+this.controllerCommands = []
+  //TODO: [x]need to include a mechanism to pass handler files to the device
+  //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
+  if (conf) {
+    console.log("got new config")
+    //TODO: sanity check the config before writing to disk
+    //TODO: look at importin npm packages if needed, also look to remove unused packages 
+    this.myConfig = conf
+  }
+  console.log(this.myConfig.device_id)
+  this.device_id = this.myConfig.device_id
+  this.sensors = this.myConfig.thing.sensors
+  this.device_id = this.myConfig.device_id
+  this.controllers = this.myConfig.thing.controllers
+  this.aggregators = this.myConfig.aggregators
+  this.brokers = this.myConfig.brokers
+  this.brokerFrom = this.myConfig.brokerFrom
   // unsubscribe from MQTT topics
   for (var ind in this.subscriptions) {
     var index = ind
@@ -61,8 +106,8 @@ this.controllerCommands = []
   handler.addHandler('admin_' + this.device_id, './handlers/device/admin', null, null)
   // clear any previously assigned roles
   this.roles = []
-  if (config.thing) {
-    this.thing = config.thing
+  if (this.myConfig.thing) {
+    this.thing = this.myConfig.thing
     this.isThing = true
     this.sensors = this.thing.sensors
     this.controllers = this.thing.controllers
@@ -82,8 +127,8 @@ this.controllerCommands = []
   } else {
     this.isThing = false
   }
-  if (config.aggregators) {
-    this.aggregators = config.aggregators
+  if (this.myConfig.aggregators) {
+    this.aggregators = this.myConfig.aggregators
     this.isAggregator = true
     this.roles['AGGREGATOR'] = true
     for (i = 0; i < this.aggregators.length; i++) {
@@ -100,10 +145,21 @@ this.controllerCommands = []
   } else {
     this.isAggregator = false
   }
-  if (config.brokers) {
-    this.brokers = config.brokers
+  if (this.myConfig.brokers) {
+    this.brokers = this.myConfig.brokers
     this.isBroker = true
     this.roles['BROKER'] = true
+    //TODO: set up local mosca server
+    var mosca  =require('mosca');
+    var server = new mosca.Server({port:1883});
+    server.on('clientConnected',function(client){
+    });
+    server.on('published',function(packet,client){
+    });
+    server.on('ready',setup);
+    function setup(){
+      console.log("running local MQTT broker");
+    }
     for (i = 0; i < this.brokers.length; i++) {
       handler.addHandler(this.brokers[i].channel, './handlers/' + this.brokers[i].handler, null, null)
       this.subscriptions[this.brokers[i].channel] = this.brokers[i].handler
@@ -115,15 +171,18 @@ this.controllerCommands = []
   for (index in this.subscriptions) {
     mqtt.subscribe(index)
   }
+  fs.writeFile('./curConfig.json',JSON.stringify(this.getConfig()));
 }
 this.getConfig = function () {
-  return JSON.stringify(this)
+  return JSON.stringify(this.myConfig)
 }
 var empty = function () {
 
 }
 module.exports = {
-  getConfig: this.getConfig,
+  loadConfig: this.loadConfig, // read the config from file
+  getConfig: this.getConfig, //return the current config
+  setConfig: this.setConfig,
   roles: this.roles,
   handlers: this.handlers,
   subscriptions: this.subscriptions,
@@ -135,7 +194,6 @@ module.exports = {
   aggregators: this.aggregators,
   thing: this.thing,
   brokers: this.brokers,
-  brokerFrom: this.brokerFrom,
-
+  brokerFrom: this.brokerFrom, // shouldn't need this
   updateConfig: this.updateConfig
 }

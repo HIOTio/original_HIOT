@@ -9,7 +9,18 @@ exports.location_list = function (req, res, next) {
     res.send(list_locations)
   })
 }
-
+exports.location_list_by_deployment = function (req, res, next) {
+  console.log(req.params.deployment)
+  Location.find({
+    deployment:req.params.deployment
+  }, function (err, list_locations) {
+    if (err) {
+      return next(err)
+    }
+		// Successful, so render
+    res.send(list_locations)
+  })
+}
 exports.location_detail = function (req, res, next) {
   Location.find({
     _id: req.params.id
@@ -24,10 +35,16 @@ exports.location_detail = function (req, res, next) {
 exports.location_create = function (req, res, next) {
   var location = new Location({
     description: req.body.description,
+    deployment:req.body.deployment,
     parent: req.body.parent,
     added: req.body.added
   })
-  res.redirect(303, location.url)
+  location.save(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect(location.url)
+  })
 }
 exports.location_delete = function (req, res, next) {
   Location.findOneAndUpdate({
