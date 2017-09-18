@@ -55,7 +55,7 @@ public options;
         this.profile.profile=res.profile;
         this.profile.authenticated=true;
             this.cred.next(this.profile);
-            console.log(res);
+        //    console.log(res);
             const headers = new Headers();
             this.options = new RequestOptions();
             headers.append("Content-Type", "application/json");
@@ -92,7 +92,7 @@ public options;
 
 
     private redirect(route: string) {
-        console.log("redirecting to " + route);
+      //  console.log("redirecting to " + route);
         this.router.navigate([route]);
     }
 }

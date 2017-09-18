@@ -36,7 +36,7 @@ public display: boolean;
         return   this.http.get(this.configService.server + "/api/navigation/" + this.auth.userId(), this.auth.getAuthHeaders())
             .map(function(res){
                 (res: Response) => res.json();
-                console.log(res.json());
+            //    console.log(res.json());
                 return res.json();
             });
         

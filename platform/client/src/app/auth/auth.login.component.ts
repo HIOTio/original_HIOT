@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(user.username, user.password).subscribe(
             (Response) => {
                 this.loading = false;
-                console.log(Response);
+        //        console.log(Response);
             },
             (err) => {
-                console.log(err);
+         //       console.log(err);
             },
          );
 

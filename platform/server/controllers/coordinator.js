@@ -37,7 +37,7 @@ exports.coordinator_create = function (req, res, next) {
   req.sanitize('description').escape()
   req.sanitize('description').trim()
   var errors = req.validationErrors()
-  console.log(req.body)
+ // console.log(req.body)
   var coordinator = new Coordinator({
     description: req.body.description,
     added: req.body.added,

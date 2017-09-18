@@ -5,9 +5,9 @@ exports.profile_auth = function (req, res, next) {
   Profile.findOne({
     username: req.body.username
   }, function (err, profile) {
-      console.log(profile)
+ //     console.log(profile)
     if (err) {
-      console.log(err)
+  //    console.log(err)
       return next(err)
     }
     if (profile == null) {
@@ -21,7 +21,7 @@ exports.profile_auth = function (req, res, next) {
     } else {
       profile.comparePassword(req.body.password, function (err, isMatch) {
         if (err) {
-          console.log(err)
+     //     console.log(err)
           return next(err)
         }
         if (isMatch) {
@@ -37,7 +37,7 @@ exports.profile_auth = function (req, res, next) {
             profile: profile
           })
         } else {
-            console.log("auth failed")
+     //       console.log("auth failed")
           res.setHeader('WWW-Authenticate', 'Basic realm="need login"')
           res.status(401).send({
             success:false,
@@ -94,14 +94,14 @@ exports.profile_create = function (req, res, next) {
     lastname: req.body.lastname,
       email:req.body.email
   })
-  console.log("starting to save")
+ // console.log("starting to save")
   profile.save(function (err, doc) {
-      console.log("attempted to save")
+  //    console.log("attempted to save")
     if (err) {
-        console.log(err)
+  //      console.log(err)
       return next(err)
     }
-      console.log("ok")
+  //    console.log("ok")
     res.status(200).json({
         
       'msg': 'Congrats, your profile has been created',

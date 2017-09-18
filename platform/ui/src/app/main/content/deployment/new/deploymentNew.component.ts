@@ -20,7 +20,7 @@ export class DeploymentNewComponent {
         this.deployment.owner = this.authService.userId();
         this.deploymentService.add(this.deployment)
             .subscribe(newDeployment => {
-                console.log(newDeployment);
+          //      console.log(newDeployment);
             },
             error => this.errorMessage = <any>error);
 

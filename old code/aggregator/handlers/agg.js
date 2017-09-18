@@ -13,8 +13,8 @@ module.exports = {
     readings[args.channel] = []
   },
   parse: function (message, sensor) {
-    console.log(sensor)
-    console.log(message.toString())
+  //  console.log(sensor)
+  //  console.log(message.toString())
   }
 }
 

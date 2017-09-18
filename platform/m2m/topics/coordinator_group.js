@@ -13,19 +13,19 @@ var client = mqtt.connect(MQTT_ADDR, {
   debug: true
 })
 client.on('connect', function () {
-  console.log('Subscribed to - ' + MQTT_TOPIC)
+//  console.log('Subscribed to - ' + MQTT_TOPIC)
   client.subscribe(MQTT_TOPIC)
 })
 client.on('message', function (topic, message) {
   SensorReading.create(JSON.parse(message.toString()), function (err, readings) {
-    console.log("received messange on topic '" + topic.toString() + "'")
+  //  console.log("received messange on topic '" + topic.toString() + "'")
     if (err) {
-      console.log(err)
+  //    console.log(err)
     } else {
 
     }
   })
 })
 client.on('error', function (err) {
-  console.log(err)
+ // console.log(err)
 })

@@ -18,7 +18,7 @@ export class DeviceListComponent
       this.deviceService.list(this.deployment).subscribe((data) =>{
         this.devices = new LocalDataSource(data);
         this.devices.load(data);
-        console.log(data);
+      //  console.log(data);
   });
 }
 

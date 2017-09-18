@@ -12,14 +12,14 @@ export class AppComponent {
     command="0";
     parString='';
 sendCommandPresetArgs=function(ctrl,cmd,par){
-    console.log(par);
+ //   console.log(par);
     this.dataService.sendMQTT(ctrl,cmd,par.p)
         .subscribe(res => this.users = res);
 }
     sendCommand = function(){
-    console.log("in sendCommand");
+ //   console.log("in sendCommand");
         var params=JSON.parse(this.parString);
-    console.log(params);
+  //  console.log(params);
     this.dataService.sendMQTT(this.controller,this.command,params.p)
         .subscribe(res => this.users = res);
 

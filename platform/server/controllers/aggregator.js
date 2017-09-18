@@ -55,7 +55,7 @@ exports.aggregator_create = function (req, res, next) {
 
 
 exports.aggregator_fromList = function(req,res,next){
-  console.log(req.params.list)
+ // console.log(req.params.list)
   Aggregator.find({
     _id: {$in : JSON.parse(req.params.list)}
   })
@@ -85,7 +85,7 @@ exports.aggregator_delete = function (req, res) {
   })
 }
 exports.aggregator_update = function (req, res) {
-  console.log(req.body)
+ // console.log(req.body)
   //TODO: what to do if the _id isn't found
   Aggregator.findOneAndUpdate({
     _id: req.body._id

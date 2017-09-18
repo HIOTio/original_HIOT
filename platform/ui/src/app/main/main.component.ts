@@ -27,7 +27,7 @@ export class MainComponent implements OnInit, OnDestroy
         private authService: AuthenticationService
     )
     {
-        this.subscription = this.authService.creds().subscribe(profile => { this.user=profile;console.log(profile); });
+        this.subscription = this.authService.creds().subscribe(profile => { this.user=profile; });
   
         this.onSettingsChanged =
             this.config.onSettingsChanged

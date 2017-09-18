@@ -16,7 +16,7 @@ this.addHandler = function (index, file, poll, object) {
 
       }
     } else {
-      console.log(err)
+    //  console.log(err)
     }
   })
 }

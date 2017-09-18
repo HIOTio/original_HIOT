@@ -40,15 +40,15 @@ module.exports = {
     return resp
   },
   message: function (args) {
-    console.log(args.channel)
+ //   console.log(args.channel)
     return JSON.stringify({
       'aggregates': getAggregate(args),
       'readings': getReadings(args)
     })
   },
   parse: function (message, sensor) {
-    console.log(sensor)
-    console.log(message.toString())
+ //   console.log(sensor)
+ //   console.log(message.toString())
   },
   handleMessage: function (topic, message) {
     if (!data[topic]) {

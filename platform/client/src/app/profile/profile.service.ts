@@ -11,7 +11,7 @@ export class ProfileService {
         return this.http.get("http://localhost:3000/api/profile/" + id, this.jwt()).map((response: Response) => response.json());
     }
     public create(user: Profile) {
-		console.log(user);
+	//	console.log(user);
   return this.http.post("http://localhost:3000/register", user, this.jwt()).map((response: Response) => response.json());
     }
     public update(user: Profile) {

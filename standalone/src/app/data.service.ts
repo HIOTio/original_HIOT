@@ -13,6 +13,6 @@ getUsers(){
 }
     sendMQTT(controller,command,params){
     return this.http.post("/api/mqtt_send",{topic:controller, c:command,p:params})
-            .map(function(result) {this.result = result;console.log(this.result);});
+            .map(function(result) {this.result = result;});
 }
 }

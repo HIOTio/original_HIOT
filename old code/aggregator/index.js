@@ -23,22 +23,22 @@ for (var i = 0; i < config.publications.length; i++) {}
 client.on('connect', function () {
   for (var i = 0; i < config.subscriptions.length; i++) {
     client.subscribe(config.subscriptions[i].channel)
-    console.log("Subscribed to channel '" + config.subscriptions[i].channel + "' using handler '" + config.subscriptions[i].handler)
+ //   console.log("Subscribed to channel '" + config.subscriptions[i].channel + "' using handler '" + config.subscriptions[i].handler)
     msg_handlers[config.subscriptions[i].handler] = require('./handlers/' + config.subscriptions[i].handler)
     messaging[config.subscriptions[i].channel] = config.subscriptions[i]
   }
-  console.log(msg_handlers)
+//  console.log(msg_handlers)
 })
 
 function publish (channel) {
-  console.log("Publishing message on channel '" + channel.channel + "'")
-  console.log(agg_mods)
+//  console.log("Publishing message on channel '" + channel.channel + "'")
+//  console.log(agg_mods)
   client.publish(channel.channel, agg_mods[channel.handler].message(channel))
 }
 
 // set up publications
 for (var i = 0; i < config.publications.length; i++) {
-  console.log('setting up Sensor ' + config.publications[i].channel)
+//  console.log('setting up Sensor ' + config.publications[i].channel)
   agg_mods[config.publications[i].handler] = require('./handlers/' + config.publications[i].handler)
   setInterval(publish, config.publications[i].interval, config.publications[i])
 }

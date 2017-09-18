@@ -40,9 +40,9 @@ var health = function () {
 }
 
 var dump = function () {
-  console.log(myIP())
-  console.log(platform())
-  console.log(health())
+ // console.log(myIP())
+//  console.log(platform())
+//  console.log(health())
 }
 
 dump()

@@ -17,12 +17,12 @@ export class DeploymentService {
     return Observable.throw(error.json().error || 'Server error');
   }
         private extractData(res: Response) {
-    console.log("got a response");
+  //  console.log("got a response");
 	let body = res.json();
         return body.data || {};
     }
    public add(deployment: Deployment): Observable<Deployment>{
-    console.log(this.config);
+//    console.log(this.config);
         return this.http.post(this.config.server + "/api/deployment", deployment, this.auth.getAuthHeaders()) 
                          .map(this.extractData)
            .catch(this.handleError); 

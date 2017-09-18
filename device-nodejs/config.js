@@ -48,9 +48,9 @@ function saveConfig(conf){
         var location ='./handlers/' + config.files[a].location;
         base64.decode(config.files[a].file,  location, function (err, output) {
           if(err){
-            console.log(err)
+        //    console.log(err)
           }
-          console.log('file written to ' + location);
+     //     console.log('file written to ' + location);
           this.setConfig(conf);
         });
       }
@@ -71,17 +71,17 @@ this.setConfig=function(conf){
 }
 
 this.updateConfig = function (conf) {
-  console.log(this.myConfig);
+ // console.log(this.myConfig);
 this.controllerCommands = []
   //TODO: [x]need to include a mechanism to pass handler files to the device
   //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
   if (conf) {
-    console.log("got new config")
+  //  console.log("got new config")
     //TODO: sanity check the config before writing to disk
     //TODO: look at importin npm packages if needed, also look to remove unused packages 
     this.myConfig = conf
   }
-  console.log(this.myConfig.device_id)
+ // console.log(this.myConfig.device_id)
   this.device_id = this.myConfig.device_id
   this.sensors = this.myConfig.thing.sensors
   this.device_id = this.myConfig.device_id
@@ -158,7 +158,7 @@ this.controllerCommands = []
     });
     server.on('ready',setup);
     function setup(){
-      console.log("running local MQTT broker");
+    //  console.log("running local MQTT broker");
     }
     for (i = 0; i < this.brokers.length; i++) {
       handler.addHandler(this.brokers[i].channel, './handlers/' + this.brokers[i].handler, null, null)

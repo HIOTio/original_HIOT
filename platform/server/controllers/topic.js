@@ -22,7 +22,7 @@ exports.topic_detail = function (req, res, next) {
   })
 }
 exports.topic_create = function (req, res, next) {
-  console.log(req.body.fields)
+ // console.log(req.body.fields)
   var topic = new Topic({
     description: req.body.description,
     added: req.body.added,

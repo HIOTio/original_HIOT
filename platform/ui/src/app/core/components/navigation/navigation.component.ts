@@ -31,7 +31,7 @@ export class NavigationComponent
             .subscribe((res)=>{
                 this.navigation=res;            
                 this.display=this.navigationService.display;
-                console.log(this.navigation); 
+             //   console.log(this.navigation); 
             })
 
         });

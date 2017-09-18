@@ -23,7 +23,8 @@ export class ToolbarComponent
         this.subscription = this.authService.creds()
         .subscribe(profile => { 
             this.user=profile.profile;
-            console.log(this.user); });
+           // console.log(this.user); 
+        });
         
         this.userStatusOptions = [
             {
@@ -86,6 +87,6 @@ export class ToolbarComponent
     public search(value)
     {
         // Do your search here...
-        console.log(value);
+     //   console.log(value);
     }
 }

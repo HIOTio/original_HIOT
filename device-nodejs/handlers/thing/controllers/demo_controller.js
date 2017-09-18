@@ -6,7 +6,7 @@ module.exports = {
     try {
     } catch (e) {
       // not valid command -> just ignore it for now
-      console.log(e)
+  //    console.log(e)
     }
       /*
       
@@ -34,9 +34,9 @@ module.exports = {
           parameters += message.p[a].v + ' '
       }
       exec ('' + commands[message.c].e + ' ' + parameters, function(err,stdout,stderr){
-          console.log("Error" + err)
-          console.log("Std out" + stdout);
-          console.log("Std Err" + stderr)
+      //    console.log("Error" + err)
+       //   console.log("Std out" + stdout);
+        //  console.log("Std Err" + stderr)
       })
   }
 }

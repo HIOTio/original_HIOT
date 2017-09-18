@@ -25,7 +25,7 @@ client.on('error', function (err) {
   //TODO: need to handle MQTT errors
   //TODO: use an array of brokers and report up to platform if the first one(s) isn't available
 
-  console.log(err)
+ // console.log(err)
 })
 
 client.on('message', function (topic, _message) {
@@ -46,14 +46,14 @@ client.on('message', function (topic, _message) {
       }
     }
   } catch (err) {
-    console.log(err)
+ //   console.log(err)
   }
 })
 
 this.unsub = function (topic) {
   client.unsubscribe(topic, function (err) {
     if (err) {
-      console.log(err)
+   //   console.log(err)
     }
   })
 }

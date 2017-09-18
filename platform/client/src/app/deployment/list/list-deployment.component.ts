@@ -20,7 +20,7 @@ export class ListDeploymentComponent implements OnInit {
 
   public ngOnInit() {
       this.deployments = this.deploymentService.list();
-      console.log(this.deployments);
+  //    console.log(this.deployments);
   }
 
     public saveChanges(){

@@ -10,7 +10,7 @@ exports.location_list = function (req, res, next) {
   })
 }
 exports.location_list_by_deployment = function (req, res, next) {
-  console.log(req.params.deployment)
+ // console.log(req.params.deployment)
   Location.find({
     deployment:req.params.deployment
   }, function (err, list_locations) {

@@ -15,7 +15,7 @@ client.on('disconnect', function () {
 })
 client.on('error', function (err) {
   //TODO: need to handle MQTT errors
-  console.log(err)
+ // console.log(err)
 })
 
 client.on('message', function (topic, _message) {
@@ -24,14 +24,14 @@ client.on('message', function (topic, _message) {
 
     
   } catch (err) {
-    console.log(err)
+  //  console.log(err)
   }
 })
 
 this.unsub = function (topic) {
   client.unsubscribe(topic, function (err) {
     if (err) {
-      console.log(err)
+    //  console.log(err)
     }
   })
 }

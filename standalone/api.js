@@ -17,7 +17,7 @@ router.get('/users', (req, res) => {
          res.json(response)
     })
 router.post('/mqtt_send',function(req,res){
-    console.log(req.body);
+   // console.log(req.body);
     mqtt.publish(req.body.topic,JSON.stringify({
         "c":req.body.c,
         "p": req.body.p

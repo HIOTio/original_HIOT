@@ -11,7 +11,7 @@ export class ProfileService {
     }
 
     public create(user: Profile) {
-		console.log(user);
+	//	console.log(user);
   return this.http.post(this.configService.server + "/register", user, this.jwt()).map((response: Response) => response.json());
     }
     public update(user: Profile) {

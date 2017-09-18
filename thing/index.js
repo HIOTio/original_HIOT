@@ -8,5 +8,5 @@ var sensors = config.sensors
 var controllers = config.controllers
 
 config.client.on('message', function (topic, _message) {
-  console.log("received message '" + _message + "' on topic '" + topic + "'")
+ // console.log("received message '" + _message + "' on topic '" + topic + "'")
 })

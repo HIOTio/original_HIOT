@@ -57,7 +57,7 @@ exports.deployment_role_create = function (req, res, next) {
   })
 }
 exports.deployments_for_user = function (userId) {
-  console.log('in exports')
+//  console.log('in exports')
   DeploymentRole.find({
     profile: userId
   }).populate('deployment').exec(function (err, deployment_role) {
@@ -65,8 +65,8 @@ exports.deployments_for_user = function (userId) {
       return err
     }
 
-    console.log(deployment_role)
-    console.log('finished in deployment_role')
+//    console.log(deployment_role)
+//    console.log('finished in deployment_role')
     return deployment_role
   })
 }
@@ -82,7 +82,7 @@ exports.deployment_role_detail_by_profile = function (req, res, next) {
   })
 }
 exports.deployment_role_update = function (req, res) {
-  console.log(req.body)
+//  console.log(req.body)
   DeploymentRole.findOneAndUpdate({
     _id: req.body.id
   }, {

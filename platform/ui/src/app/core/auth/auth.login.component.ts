@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(user.username, user.password,this.returnUrl).subscribe(
             (Response) => {
                 this.loading = false;
-                console.log(Response);
+             //   console.log(Response);
                 this.error=null;
                 this.router.navigate([this.returnUrl]);
             },

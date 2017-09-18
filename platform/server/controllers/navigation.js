@@ -37,7 +37,7 @@ exports.navigation_list = function (req, res, next) {
     })
   }
   for (var i = 0; i < data[0].length; i++) {
-    console.log(data[0][i].deployment.name)
+ //   console.log(data[0][i].deployment.name)
     children.push({
       'title': data[0][i].deployment.name,
       'url': '/deployment/' + data[0][i].deployment._id,
@@ -74,7 +74,7 @@ exports.navigation_list = function (req, res, next) {
     'icon': 'insert_chart'
   })
 
-  console.log(my_menu)
+//  console.log(my_menu)
   res.send(my_menu)
 })
 }
