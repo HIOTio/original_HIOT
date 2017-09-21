@@ -8,6 +8,7 @@ import { DeviceCountComponent} from "./list/device.count.component";
 import { DeviceListComponent} from "./list/device_list.component";
 import { DeviceDetailsComponent} from './details/device_details.component';
 import {AggregatorListComponent } from "../aggregator/list/aggregator.list.component";
+import {RoleRenderComponent} from "./list/roleRender.component";
 
 const routes = [
     {
@@ -27,12 +28,16 @@ canActivate: [AuthGuard],
 		DeviceListComponent,
         DeviceCountComponent,
         DeviceDetailsComponent,
-        AggregatorListComponent
+        AggregatorListComponent,
+        RoleRenderComponent
+    ],
+    entryComponents:[
+        RoleRenderComponent
     ],
     imports     : [
         SharedModule,
         RouterModule.forChild(routes),
-        Ng2SmartTableModule
+        Ng2SmartTableModule,
     ],
     exports     : [
 		DeviceListComponent,

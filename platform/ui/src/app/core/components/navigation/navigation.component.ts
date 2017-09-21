@@ -25,13 +25,12 @@ export class NavigationComponent
       this.loadNav();
     }
     public loadNav(){
-        //TODO: subscribe to this...
         this.subscription = this.authService.creds().subscribe(profile => { 
             this.navigationService.getNavigation()
             .subscribe((res)=>{
                 this.navigation=res;            
                 this.display=this.navigationService.display;
-             //   console.log(this.navigation); 
+                console.log(this.navigation); 
             })
 
         });

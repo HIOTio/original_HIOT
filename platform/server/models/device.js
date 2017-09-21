@@ -35,7 +35,7 @@ var DeviceSchema = new Schema({
   }],
   make: {
     type: Schema.Types.ObjectId,
-    ref: 'Device_Make'
+    ref: 'DeviceMake'
   },
   health: [{
     type: Schema.Types.ObjectId,
@@ -43,7 +43,7 @@ var DeviceSchema = new Schema({
   }],
   model: {
     type: Schema.Types.ObjectId,
-    ref: 'Device_Model'
+    ref: 'DeviceModel'
   },
   location: {
     type: Schema.Types.ObjectId,

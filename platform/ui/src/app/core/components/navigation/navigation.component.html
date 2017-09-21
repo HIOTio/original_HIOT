@@ -1,5 +1,5 @@
 <div id="main-navigation" class="nav">
-	<ng-container *ngFor="let item of navigation">
+<!--	<ng-container *ngFor="let item of navigation">
 
 		<hiot-nav-subheader *ngIf="item.type=='subheader'" [item]="item"></hiot-nav-subheader>
 
@@ -8,4 +8,14 @@
 		<hiot-nav-collapse *ngIf="item.type=='nav-collapse'" [item]="item"></hiot-nav-collapse>
 
 	</ng-container>
+-->
+<div  *ngFor="let item of navigation" class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+<div *ngIf="item.children"><button md-button [mdMenuTriggerFor]="menu">{{item.title}}</button>
+<md-menu #menu="mdMenu">
+<button md-menu-item *ngFor="let line of item.children" [routerLink]="[line.url]">{{line.title}}</button>
+	</md-menu>
+</div>
+<div *ngIf="!item.children"><button md-button [routerLink]="[item.url]">{{item.title}}</button>
+	</div>
+</div>
 </div>

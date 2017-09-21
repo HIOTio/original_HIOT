@@ -28,7 +28,7 @@ exports.deployment_create = function (req, res, next) {
         description: req.body.description,
         name: req.body.name,
         deploymentType: req.body.deploymentType,
-        owner: req.body.id
+        owner: req.body.owner
     })
     deployment.save(function (err) {
         if (err) {

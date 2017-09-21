@@ -2,22 +2,13 @@
         
             <div id="hiot-main-content" fxFlexFill>
         
-                <!-- TOOLBAR: Above -->
                 <ng-container *ngIf="user.authenticated">
                     <hiot-toolbar class="above" [class]="settings.colorClasses.toolbar"></hiot-toolbar>
                 </ng-container>
-                <!-- / TOOLBAR: Above -->
-        
+          
         
                 <div id="wrapper">
-        
-                    <!-- NAVBAR: Left 
-                    <hiot-navbar [folded]="false"
-                                          class="left-navbar" [class]="settings.colorClasses.navbar"
-                                          *ngIf="user.authenticated">
-                    </hiot-navbar>
-                    <!-- / NAVBAR: Left -->
-        
+
                     <div class="content-wrapper" fxFlexFill>
         
           

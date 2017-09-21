@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
 import {DeviceService} from "../device.service";
 import { Ng2SmartTableModule, LocalDataSource  } from 'ng2-smart-table';
-
+import {RoleRenderComponent} from './roleRender.component';
 @Component({
     selector   : "device-list",
     templateUrl: "./device_list.component.html",
@@ -31,16 +31,28 @@ export class DeviceListComponent
         title: 'ID'
       },
       make: {
+        valuePrepareFunction: (make) => {
+          return make.description;
+      },
         editable:false,
         title: 'Make'
       },
       model: {
         editable:false,
+        valuePrepareFunction: (model) => {
+          return model.description;
+      },
         title: 'Model'
       },
       functions: {
         editable:false,
-        title: 'Functions'
+        title: 'Functions',
+        valuePrepareFunction: (functions,device) => {
+          console.log(device);
+           return device;
+        },
+        type: 'custom',
+        renderComponent: RoleRenderComponent
       }
     }
   };

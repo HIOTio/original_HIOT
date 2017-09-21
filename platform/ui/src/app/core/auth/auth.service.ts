@@ -26,6 +26,7 @@ public options;
         private router: Router
         
     ) {
+        //TODO: update this to check validity (e.g. age) of any local token before clearing it
         this.profile={
             authenticated: false,
             profile:null
@@ -33,7 +34,7 @@ public options;
         
         if(localStorage.getItem("currentUser")){
         // TODO: Update this to check the existing token against the server and log the user in if it's still valid
-           this.token="";
+            this.token="";
             localStorage.removeItem("currentUser");
             localStorage.removeItem("token"); 
         }

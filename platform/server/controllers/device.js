@@ -32,7 +32,10 @@ exports.device_list_for_deployment = function (req, res, next) {
         //TODO: need to include make/model/
         query.handler=req.params.handler
       }
-  Device.find(query, function (err, list_devices) {
+  Device.find(query)
+  .populate("make")
+  .populate("model")
+  .exec( function (err, list_devices) {
     if (err) {
       
       return next(err)

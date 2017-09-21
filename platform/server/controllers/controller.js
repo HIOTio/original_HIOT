@@ -37,11 +37,14 @@ exports.controller_create = function (req, res, next) {
   req.sanitize('thing').trim()
   var errors = req.validationErrors()
   var controller = new Controller({
+    description:req.body.description,
+    deployment:req.body.deployment,
+    controllerId:req.body.controllerId,
+    name:req.body.name,
+    channel:req.body.channel,
+    handler:req.body.handler,
     thing: req.body.thing,
-    description: req.body.description,
-    commands: req.body.commands,
     added: req.body.added,
-    name: req.body.name,
     active: req.body.active
   })
   controller.save(function (err) {
@@ -67,12 +70,15 @@ exports.controller_delete = function (req, res, next) {
 }
 exports.controller_update = function (req, res, next) {
   Controller.findOneAndUpdate({
-    _id: req.body.id
+    _id: req.body._id
   }, {
+    description:req.body.description,
+    deployment:req.body.deployment,
+    controllerId:req.body.controllerId,
+    name:req.body.name,
+    channel:req.body.channel,
+    handler:req.body.handler,
     thing: req.body.thing,
-    description: req.body.description,
-    name: req.body.name,
-    commands: req.body.commands,
     added: req.body.added,
     active: req.body.active
   }, {

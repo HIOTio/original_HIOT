@@ -36,7 +36,7 @@ var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 })
 passport.use(strategy)
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: ['http://localhost:4200','http://localhost:3000']
 }))
 app.use(passport.initialize())
 
@@ -48,6 +48,7 @@ app.use('/api', passport.authenticate('jwt', {
 
 // Routing
 // no auth
+app.options('*', cors());
 var r_no_auth = require('./routes/no_auth')
 // with auth
 var r_aggregator = require('./routes/aggregator')

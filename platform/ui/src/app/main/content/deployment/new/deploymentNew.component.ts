@@ -17,6 +17,7 @@ export class DeploymentNewComponent {
     AddDeployment = function () {
         //TODO: Add some serious validation here
         //TODO: Also, need to update the navigation when a deployment has been added - this might be better handled with websockets
+        console.log(this.authService.userId());
         this.deployment.owner = this.authService.userId();
         this.deploymentService.add(this.deployment)
             .subscribe(newDeployment => {
