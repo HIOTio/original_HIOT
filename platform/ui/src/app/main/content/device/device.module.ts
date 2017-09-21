@@ -9,7 +9,7 @@ import { DeviceListComponent} from "./list/device_list.component";
 import { DeviceDetailsComponent} from './details/device_details.component';
 import {AggregatorListComponent } from "../aggregator/list/aggregator.list.component";
 import {RoleRenderComponent} from "./list/roleRender.component";
-
+import {ViewRenderComponent} from "./list/viewRender.component";
 const routes = [
     {
         path     : "device/:id",
@@ -29,10 +29,12 @@ canActivate: [AuthGuard],
         DeviceCountComponent,
         DeviceDetailsComponent,
         AggregatorListComponent,
-        RoleRenderComponent
+        RoleRenderComponent,
+        ViewRenderComponent
     ],
     entryComponents:[
-        RoleRenderComponent
+        RoleRenderComponent,
+        ViewRenderComponent
     ],
     imports     : [
         SharedModule,

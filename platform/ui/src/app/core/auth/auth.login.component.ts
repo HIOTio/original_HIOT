@@ -29,9 +29,12 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(user.username, user.password,this.returnUrl).subscribe(
             (Response) => {
                 this.loading = false;
-             //   console.log(Response);
                 this.error=null;
-                this.router.navigate([this.returnUrl]);
+                if(!Response.authenticated){
+                    this.error = "Please try again";
+                }else{
+                    this.router.navigate([this.returnUrl]);
+                }
             },
             (err) => {
                 this.loading=false;

@@ -48,9 +48,9 @@ public options;
         return this.cred.asObservable();
     }
     public login(username: string, password: string, redirectUrl: string): Observable<any> {
-        this.http.post(this.configService.server + "/auth", {username, password}) // ...using post request
-                         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-                         .catch((error: any) => Observable.throw(error.json().error || "Server error")) //...errors if any
+        this.http.post(this.configService.server + "/auth", {username, password}) 
+                         .map((res: Response) => res.json()) 
+                         .catch((error: any) => Observable.throw(error.json().error || "Server error"))
 .subscribe((res) => {
         this.token = "JWT " + res.token;
         this.profile.profile=res.profile;
