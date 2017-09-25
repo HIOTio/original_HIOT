@@ -22,7 +22,11 @@ var DeviceSchema = new Schema({
     priority:Number
   }
   ],
-
+  compatibility:{
+    type:String,
+    enum:['HIOT_Node','HIOT_Other','MQTT_Only'],
+    default:'MQTT_Only'
+  },
   active: Boolean,
   added: Date,
   aggregators: [{

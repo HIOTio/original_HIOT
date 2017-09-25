@@ -1,5 +1,13 @@
 {
-    "mqttServer": "mqtt://192.168.1.10",
+    "mqttServers": [
+        {
+            "server":"mqtt://127.0.0.1",
+            "port":1883
+        },
+                {
+            "server":"mqtt://127.0.0.1",
+            "port":1883
+        }],
     "roles": ["THING"],
     "subscriptions": [],
     "isTing": false,

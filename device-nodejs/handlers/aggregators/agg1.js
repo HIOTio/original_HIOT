@@ -10,6 +10,7 @@ module.exports = {
     var mean = 0
     var count = 0
     var sensorReadings = []
+    console.log(args)
     for (var i = 0; i < args.topics.length; i++) {
       if (data[args.topics[i]]) {
         sensorReadings = data[args.topics[i]]

@@ -6,6 +6,7 @@ module.exports={
     if (topic.startsWith('_CFG_Set')) {
         config.updateConfig(message.config);
       } else if (topic.startsWith('_CFG_Get')) {
+        
         mqtt.publish(message.sender, config.getConfig())
 
       }

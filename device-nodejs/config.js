@@ -24,13 +24,33 @@ Re-load config:
 3 - run start-up 
 
 */
-this.myConfig={};
-var mqtt = require('./MQTT')
-this.roles = []
-this.subscriptions = []
-this.isThing = false
-this.isAggregator = false
-this.isBroker = false
+
+//TODO: create seperate files for aggregator, controller etc. functionality
+//TODO: sort out end to end across index, config, mqtt etc.
+/*
+  config should just return config.json to index
+  let index create all the objects etc
+  mqtt should return a reference to the server back to index
+  index should handle onMessage etc, by calling controller, aggregate etcs.
+  controller and aggregate etc. should be self contained, if the device is an aggregator, let aggregator look after it
+
+*/
+var myConfig={};
+var mqtt = {};
+var mqttServer= {};
+var roles = []
+var subscriptions = []
+var isThing = false
+var isAggregator = false
+var isBroker = false
+var controllerCommands=[]
+var mqttSubscriptions=[]
+var handlers=[]
+var aggregators=[]
+var sensors=[]
+var controllers=[]
+var brokers=[]
+var thing={}
 
 function validateConfig(conf){
   //Validate the supplied config and return true if it's OK
@@ -51,149 +71,165 @@ function saveConfig(conf){
         //    console.log(err)
           }
      //     console.log('file written to ' + location);
-          this.setConfig(conf);
+          setConfig(conf);
         });
       }
     })
   }
 }
 
-this.loadConfig=function(){
+loadConfig=function(){
   //load the config from file and assign to config
   var confTemp=require('./config.json');
   if(validateConfig(confTemp)){
-    this.setConfig(confTemp);
+    setConfig(confTemp);
   }
 }
-this.setConfig=function(conf){
-  this.myConfig=conf;
-  this.updateConfig(conf);
+setConfig=function(conf){
+  myConfig=conf;
+  updateConfig(conf);
 }
 
-this.updateConfig = function (conf) {
- // console.log(this.myConfig);
-this.controllerCommands = []
+updateConfig = function (conf) {
+ // console.log(myConfig);
+controllerCommands = []
   //TODO: [x]need to include a mechanism to pass handler files to the device
   //TODO: [x]need to double-check the logic- _CFG_Set has to run twice before the device_id will change
   if (conf) {
   //  console.log("got new config")
     //TODO: sanity check the config before writing to disk
     //TODO: look at importin npm packages if needed, also look to remove unused packages 
-    this.myConfig = conf
+    myConfig = conf
   }
- // console.log(this.myConfig.device_id)
-  this.device_id = this.myConfig.device_id
-  this.sensors = this.myConfig.thing.sensors
-  this.device_id = this.myConfig.device_id
-  this.controllers = this.myConfig.thing.controllers
-  this.aggregators = this.myConfig.aggregators
-  this.brokers = this.myConfig.brokers
-  this.brokerFrom = this.myConfig.brokerFrom
+ // console.log(myConfig.device_id)
+  device_id = myConfig.device_id
+  sensors = null
+  if(myConfig.thing){  
+    sensors = myConfig.thing.sensors
+  }
+  device_id = myConfig.device_id
+  
+  if(myConfig.thing){  
+    controllers = myConfig.thing.controllers
+  }
+  aggregators = myConfig.aggregators
+  brokers = myConfig.brokers
+  brokerFrom = myConfig.brokerFrom
   // unsubscribe from MQTT topics
-  for (var ind in this.subscriptions) {
+  //make sure we've set up mqtt first
+  if(mqtt){
+  for (var ind in subscriptions) {
     var index = ind
-    delete this.subscriptions[index]
+    delete subscriptions[index]
     mqtt.unsub(index)
   }
+}
   // clear timers for polling
   handler.clearHandlers()
   // add two special channels to get and set configuration
-  this.subscriptions['_CFG_Set' + this.device_id] = './handlers/config'
-  handler.addHandler('_CFG_Set' + this.device_id, './handlers/config', null, null)
-  this.subscriptions['_CFG_Get' + this.device_id] = './handlersr/config'
-  handler.addHandler('_CFG_Get' + this.device_id, './handlers/config', null, null)
-  this.subscriptions['admin_' + this.device_id] = 'admin_' + this.device_id
-  handler.addHandler('admin_' + this.device_id, './handlers/device/admin', null, null)
+  subscriptions['_CFG_Set' + device_id] = './handlers/config'
+  handler.addHandler('_CFG_Set' + device_id, './handlers/config', null, null)
+  subscriptions['_CFG_Get' + device_id] = './handlersr/config'
+  handler.addHandler('_CFG_Get' + device_id, './handlers/config', null, null)
+  subscriptions['admin_' + device_id] = 'admin_' + device_id
+  handler.addHandler('admin_' + device_id, './handlers/device/admin', null, null)
   // clear any previously assigned roles
-  this.roles = []
-  if (this.myConfig.thing) {
-    this.thing = this.myConfig.thing
-    this.isThing = true
-    this.sensors = this.thing.sensors
-    this.controllers = this.thing.controllers
-    this.roles.push('THING')
-    for (var i = 0; i < this.thing.sensors.length; i++) {
-      handler.addHandler(this.sensors[i].handler, './handlers/' + this.sensors[i].handler, this.sensors[i].poll, this.sensors[i])
-      // moved this into the addHandler function to ensure it executes in sequence
+  roles = []
+  if (myConfig.thing) {
+    thing = myConfig.thing
+    isThing = true
+    sensors = thing.sensors
+    controllers = thing.controllers
+    roles.push('THING')
+    for (var i = 0; i < thing.sensors.length; i++) {
+      console.log(sensors[i]);
+      handler.addHandler(sensors[i].channel, './handlers/' + sensors[i].handler, sensors[i].poll, sensors[i])
+     // moved this into the addHandler function to ensure it executes in sequence
       // setInterval(publish, sensors[i].poll, sensors[i]);
     }
     // set up subscriptions for controllers
-    for (i = 0; i < this.controllers.length; i++) {
-      handler.addHandler(this.controllers[i].controller_channel, './handlers/' + this.controllers[i].handler, null, null)
+    for (i = 0; i < controllers.length; i++) {
+      handler.addHandler(controllers[i].controller_channel, './handlers/' + controllers[i].handler, null, null)
       //FUTURE: need to tidy this up and combine the handler and the config
-      this.controllerCommands[this.controllers[i].controller_channel] = this.controllers[i].commands
-      this.subscriptions[this.controllers[i].controller_channel] = this.controllers[i].handler
+      controllerCommands[controllers[i].controller_channel] = controllers[i].commands
+      subscriptions[controllers[i].controller_channel] = controllers[i].handler
     }
   } else {
-    this.isThing = false
+    isThing = false
   }
-  if (this.myConfig.aggregators) {
-    this.aggregators = this.myConfig.aggregators
-    this.isAggregator = true
-    this.roles['AGGREGATOR'] = true
-    for (i = 0; i < this.aggregators.length; i++) {
-      handler.addHandler(this.aggregators[i].handler, './handlers/' + this.aggregators[i].handler, this.aggregators[i].poll, this.aggregators[i])
+  if (myConfig.aggregators) {
+    aggregators = myConfig.aggregators
+    isAggregator = true
+    roles['AGGREGATOR'] = true
+    for (i = 0; i < aggregators.length; i++) {
+      handler.addHandler(aggregators[i].channel, './handlers/' + aggregators[i].handler, aggregators[i].poll, aggregators[i])
       // TODO: [x]bit more work to be done here - need to subscribe to and collate all the relevant sensor messages
-      for (var j = 0; j < this.aggregators[i].topics.length; j++) {
+      for (var j = 0; j < aggregators[i].topics.length; j++) {
         // subscribe to the topic
-        handler.addHandler(this.aggregators[i].topics[j], './handlers/' + this.aggregators[i].handler, null, {
+     /*   handler.addHandler(aggregators[i].topics[j], './handlers/' + aggregators[i].handler, null, {
           isAggTopic: true
-        })
-        this.subscriptions[this.aggregators[i].topics[j]] = this.aggregators[i].handler
+        }) */
+        subscriptions[aggregators[i].topics[j]] = aggregators[i].handler
       }
     }
   } else {
-    this.isAggregator = false
-  }
-  if (this.myConfig.brokers) {
-    this.brokers = this.myConfig.brokers
-    this.isBroker = true
-    this.roles['BROKER'] = true
-    //TODO: set up local mosca server
+    isAggregator = false
+  } 
+  //TODO: need to update this mess - define the connection for the MQTT server (mosca or others) and then set up the MQTT functionality as before
+  if (myConfig.brokers) {
+    brokers = myConfig.brokers
+    isBroker = true
+    roles['BROKER'] = true
+   //Set up local Mosca as our mqtt server
     var mosca  =require('mosca');
-    var server = new mosca.Server({port:1883});
-    server.on('clientConnected',function(client){
-    });
-    server.on('published',function(packet,client){
-    });
-    server.on('ready',setup);
-    function setup(){
-    //  console.log("running local MQTT broker");
-    }
-    for (i = 0; i < this.brokers.length; i++) {
-      handler.addHandler(this.brokers[i].channel, './handlers/' + this.brokers[i].handler, null, null)
-      this.subscriptions[this.brokers[i].channel] = this.brokers[i].handler
+    mqttServer= new mosca.Server({port:myConfig.mqttServers[0].mqttPort});
+    mqttServer.on('clientConnected', function(client) {
+      console.log('client connected', client.id);
+  });
+  mqttServer.on('published', function(packet, client) {
+    console.log('Published', packet.payload);
+  });
+    for (i = 0; i < brokers.length; i++) {
+      handler.addHandler(brokers[i].channel, './handlers/' + brokers[i].handler, null, null)
+      subscriptions[brokers[i].channel] = brokers[i].handler
     }
   } else {
-    this.isBroker = false
+    isBroker = false
+    mqttServer = mqtt.connect(config_json.mqttServer, {
+      keepalive: 0,
+      debug: false
+    })
   }
+  mqtt= require('./MQTT')
+  mqtt.init(myConfig.mqttServers[0],controllerCommands);
   // add all of the subscribed channels/topics
-  for (index in this.subscriptions) {
-    mqtt.subscribe(index)
+  for (index in subscriptions) {
+    mqtt.subscribe(index);
   }
-  fs.writeFile('./curConfig.json',JSON.stringify(this.getConfig()));
+ // fs.writeFile('./curConfig.json',JSON.stringify(getConfig()));
 }
-this.getConfig = function () {
-  return JSON.stringify(this.myConfig)
+getConfigJSON = function () {
+  return JSON.stringify(myConfig)
 }
 var empty = function () {
 
 }
 module.exports = {
-  loadConfig: this.loadConfig, // read the config from file
-  getConfig: this.getConfig, //return the current config
-  setConfig: this.setConfig,
-  roles: this.roles,
-  handlers: this.handlers,
-  subscriptions: this.subscriptions,
-  isTing: this.isThing,
-  isAggregator: this.isAggregator,
-  isBroker: this.isBroker,
-  sensors: this.sensors,
-  controllers: this.controllers,
-  aggregators: this.aggregators,
-  thing: this.thing,
-  brokers: this.brokers,
-  brokerFrom: this.brokerFrom, // shouldn't need this
-  updateConfig: this.updateConfig
+  loadConfig: loadConfig, // read the config from file
+  getConfigJSON: getConfigJSON, //return the current config
+  setConfig: setConfig,
+  saveConfig: saveConfig,
+  controllerCommands: controllerCommands,
+  roles: roles,
+  handlers: handlers,
+  subscriptions: subscriptions,
+  isThing: isThing,
+  isAggregator: isAggregator,
+  isBroker: isBroker,
+  sensors: sensors,
+  controllers: controllers,
+  aggregators: aggregators,
+  thing: thing,
+  brokers: brokers,
+  updateConfig: updateConfig
 }
