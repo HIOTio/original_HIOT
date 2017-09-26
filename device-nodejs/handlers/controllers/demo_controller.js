@@ -11,17 +11,17 @@ module.exports = {
       /*
       
       Structure of a command
-      {
-        "sender":"sending device" - ignore for now
-        "c": "commandID" - integer value
+    {
+        "sender":"sending device" ,
+        "c": "commandID" ,
         "p":[
             {
                 "id":"p1",
                 "value":"parameter value"
             }
-            ...
+       
         ]
-      }
+      }  
       
       => need to "lookup relevant command (based on "topic") - probably best to include a config file and read from there??
       
@@ -34,6 +34,7 @@ module.exports = {
           parameters += message.p[a].v + ' '
       }
       exec ('' + commands[message.c].e + ' ' + parameters, function(err,stdout,stderr){
+        //TODO: need to return status (err or OK etc.)
       //    console.log("Error" + err)
        //   console.log("Std out" + stdout);
         //  console.log("Std Err" + stderr)

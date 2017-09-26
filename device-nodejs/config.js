@@ -35,6 +35,84 @@ Re-load config:
   controller and aggregate etc. should be self contained, if the device is an aggregator, let aggregator look after it
 
 */
+
+
+
+/*
+  -- getConfig - load the current configuration
+
+  -- setConfig - validate, save and apply supplied config JSON
+
+
+*/
+var _config = {
+  roles:{
+    broker:false,
+    coordinator: false,
+    aggregator:false,
+    sensor:false,
+    controller:false,
+  },
+  roleChannels:{
+    broker:[],
+    coordinator:[],
+    aggregator:[],
+    sensor:[],
+    controller:[]
+  },
+  moscaEnabled:false,
+  moscaPort:1884,
+  mqttServers:[],
+  device:{
+    hiotId:'',
+    name:'',
+    description:'',
+  }
+}
+function getRoles(){
+  var roles={
+    broker:false,
+    coordinator: false,
+    aggregator:false,
+    sensor:false,
+    controller:false,
+  }
+  if(_config.roleChannels.aggregator.length>0) roles.aggregator=true
+  if(_config.roleChannels.broker.length>0) roles.broker=true
+  if(_config.roleChannels.coordinator.length>0) roles.coordinator=true
+  if(_config.roleChannels.sensor.length>0) roles.sensor=true
+  if(_config.roleChannels.controller.length>0) roles.controller=true
+  return roles
+}
+module.exports={
+  getConfig: function(){
+    //reload the configuration from disk
+    var confTemp=require('./config.json');
+    _config.roleChannels=confTemp.roleChannels,
+    _config.moscaEnabled=confTemp.moscaEnabled,
+    _config.moscaPort=confTemp.moscaPort,
+    _config.mqttServers=confTemp.mqttServers,
+    _config.device=confTemp.device
+    return {
+      roles:getRoles(),
+      device:_config.device,
+      roleChannels:_config.roleChannels,
+      moscaEnabled:_config.moscaEnabled,
+      moscaPort:_config.moscaPort,
+      mqttServers:_config.mqttServers,
+      device:_config.device
+    }
+  },
+  setConfig: function(config){
+    //need some validation in here
+
+    //Write to config.json
+
+    //return new config (to be reapplied in index.js)
+  }
+}
+
+// Consider everything below here to be legacy code
 var myConfig={};
 var mqtt = {};
 var mqttServer= {};
@@ -214,6 +292,10 @@ getConfigJSON = function () {
 var empty = function () {
 
 }
+
+
+
+/*
 module.exports = {
   loadConfig: loadConfig, // read the config from file
   getConfigJSON: getConfigJSON, //return the current config
@@ -233,3 +315,4 @@ module.exports = {
   brokers: brokers,
   updateConfig: updateConfig
 }
+*/
