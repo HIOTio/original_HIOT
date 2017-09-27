@@ -57,6 +57,11 @@ var channels=[
         func:"ErrorMessages"
     },
     {
+        ch:"e",
+        desc:"Error message from the deployment",
+        func:"ErrorMessages"
+    },
+    {
         ch:"R",
         desc:"response from the platform",
         func:"responseMessages"

@@ -16,10 +16,12 @@ if(_config.moscaEnabled){
     localMqttServer= new mosca.Server({port:_config.moscaPort});
     //FUTURE: monitor status connections and traffic for local MQTT server
 }
+// set up device messaging - config etc
+
 // Role: Aggregator( aggList, mqttServer) - pass a list of mqttServers so that the aggregator can choose/swith
 aggregator.init(_config.roleChannels.aggregator,_config.mqttServers)
 // Role: Broker (brokerList, mqttServer)
-
+broker.init(_config.roleChannels.broker,_config.mqttServers)
 // Role: Sensor (sensorList,mqttServer)
 sensor.init(_config.roleChannels.sensor,_config.mqttServers)
 // Role: Controller (controllerList, mqttServer)

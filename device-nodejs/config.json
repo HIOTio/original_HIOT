@@ -6,15 +6,34 @@
     },
     "roleChannels":{
         "broker":[{
-            "broker": "demoBroker",
-            "channel": "brok_level1",
-            "devices": ["controller1"],
-            "handler": "brokers/demo_broker"
-        }, {
-            "broker": "secondBroker",
-            "channel": "broker_br2",
-            "devices": ["device15", "device1", "device_xyx"],
-            "handler": "brokers/demo_broker"
+            "broker": "gateway",
+            "Description": "Forward to subnets 1/1/1, 1/2/2 and 1/3/8",
+            "myPaths": [
+                {
+                    "in":"1/1/1/#",
+                    "out":"1/1/2/3" 
+                },
+                {
+                   "in":"1/2/2/#",
+                   "out":"1/3/3/3"
+                },
+                {
+                    "in":"1/3/8/#",
+                    "out":"1/3/6"
+                },
+                {
+                   "in": "1/4/8/5/+",
+                   "out":"1/9/6/4"
+                } ],
+            "handler": "brokers/demo_broker",
+            "active":true
+        },
+        {
+            "broker": "localBroker",
+            "Description": "Manage local devices on 1/3/8/4",
+            "myPaths": ["1/3/8/4/+"],
+            "handler": "brokers/demo_broker",
+            "active": false
         }],
         "coordinator":[],
         "aggregator":[{
@@ -75,7 +94,7 @@
             "sensor_id": "597fb1f6b3c4f917ec37a93c",
             "description": "temperature sensor #2, floor 1",
             "handler": "sensors/rand_sensor",
-            "poll": 8000,
+            "poll": 80000,
             "config": {
                 "minValue": 14,
                 "range": 17
@@ -86,7 +105,7 @@
             "sensor_id": "597fb1f6b3c4f917ec37a93q",
             "description": "measure air quality (CO2 level) - 0 perfect air quality, 10 terrible",
             "handler": "sensors/rand_sensor",
-            "poll": 6000,
+            "poll": 60000,
             "config": {
                 "some_random_config_item": "This could be a GPIO pin number, memory address, device id etc",
                 "minValue": 0,
