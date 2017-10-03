@@ -64,9 +64,4 @@ module.exports = {
 
 }
 
-function getReadings (agg) {
-  return 0
-}
-function getAggregate (agg) {
-  return 0
-}
+

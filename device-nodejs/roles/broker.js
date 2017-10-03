@@ -93,15 +93,33 @@ function init(brokers,mqttServer){
     mqttClient= mqtt.connect ({
         server:mqttServer[0].server, 
         port:mqttServer[0].port})
-    for(var i=0;i<channels.length;i++){
         //set up all channels for each ACTIVE broker
         for(var j=0;j<brokers.length;j++){
             //and for each path in the broker, ignoring inactive ones
             if(brokers[j].active){
                 for (var k=0;k<brokers[j].myPaths.length;k++){
+                    
+    for(var i=0;i<channels.length;i++){
                     subscriptions.push(channels[i].ch + "/" + brokers[j].myPaths[k].in)
-                    myPaths[brokers[j].myPaths[k].in]= brokers[j].myPaths[k].out
+                    //subscribe to responses as well
+                    subscriptions.push(channels[i].ch + "/" + brokers[j].myPaths[k].out)
                 }
+                var wildcard=0
+                var _inTopic=brokers[j].myPaths[k].in
+                if(_inTopic.endsWith("#")){
+                    wildcard=2
+                    _inTopic=_inTopic.slice(0,_inTopic.length-2)
+                }else if( _inTopic.endsWith("+")){
+                    wildcard=1
+                    _inTopic=_inTopic.slice(0,_inTopic.length-2)
+                }else{
+                    _inTopic=_inTopic.slice(0,_inTopic.length-1)
+                }
+                    myPaths[_inTopic]={
+                        out:brokers[j].myPaths[k].out,
+                        wildcard:wildcard
+                    } 
+                   
             }
         }
     }
@@ -116,11 +134,13 @@ function init(brokers,mqttServer){
           var channel =getChannel(ch)
           // make sure we get a valid channel, just in case
           if(channel){
-                        //forward on the response
+              //forward on the response
+              console.log(topic)
           var out=getOutPath(topic)
           console.log(out)
           if(out){
-            mqttClient.publish(_message.toString(),ch + "/" + out)
+              console.log("publishing on "+ch + "/" + out)
+            mqttClient.publish(ch + "/" + out,_message.toString())
 
           }
             //drop the first character and slash from the topic to match requests and responses
@@ -137,7 +157,7 @@ function init(brokers,mqttServer){
             console.log(timers)
             //does this channel require a response  
             if(channel.resp){
-                console.log(topic + " needs a response")
+                console.log(topic + " needs a response on topic")
                 //set up a timer for this response, issue a warning back to the platform if not received in time
                 if(!timers[channel.respCh]){
                     timers[channel.respCh]=[]
@@ -157,13 +177,15 @@ function init(brokers,mqttServer){
                                     var _this = this
                                     var retry=0;
                                     return function(){
+                                        //TODO: see if we've gotten a response yet
+
                                         retry++
                                         if(retry>retries){
                                             //remove the timer
                                             clearInterval(_this)
                                             return
                                         }
-                                        console.log("Topic " + topic +": attempt " + retry + " of " + retries)
+                                        console.log("Topic " + topic +": wait " + retry + " of " + retries)
                                         // this is where the updates
                                     }
                                 }(topic,channel,retries),
@@ -187,20 +209,14 @@ function getChannel(char){
     return null
 }
 function getOutPath(topic){
-    console.log(myPaths.length)
-    for (var i=0;i<myPaths.length;i++){
-        var _topic = topic.toString()
-        var _inTopic = myPaths[i].in.toString()
-        //check if the topic contains myPath.in
-        console.log(_inTopic)
-        if(_inTopic.endsWith("#")|| _inTopic.endsWith("+")){
-            //drop wildcard and last slash from mypath.in
-            console.log(_intopic.slice(0,len(intopic)-2))
-            if(_topic.startsWith(_intopic.slice(0,len(intopic)-2))){
-                return myPaths[i].out
-            }
+    var _topic = topic.toString()
+    _topic=topic.slice(2) //remove the channel and the first slash
+    console.log(myPaths)
+    //need to iterate through the paths because the inbound topic could be any length due to wildcards
+    for (path in myPaths){
+        if(_topic.startsWith(path)){
+        return myPaths[path].out
         }
-        
     }
     return null
 }
