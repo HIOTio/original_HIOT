@@ -40,8 +40,7 @@ var channels=[
     {
         ch:"X",
         desc:"Execute Command on Device",
-        resp:true,
-        resp:"x",
+        respCh:"x",
         retries:10,
         timeout:1000
     },{
@@ -101,8 +100,6 @@ function init(brokers,mqttServer){
                     
     for(var i=0;i<channels.length;i++){
                     subscriptions.push(channels[i].ch + "/" + brokers[j].myPaths[k].in)
-                    //subscribe to responses as well
-                    subscriptions.push(channels[i].ch + "/" + brokers[j].myPaths[k].out)
                 }
                 var wildcard=0
                 var _inTopic=brokers[j].myPaths[k].in
@@ -135,29 +132,26 @@ function init(brokers,mqttServer){
           // make sure we get a valid channel, just in case
           if(channel){
               //forward on the response
-              console.log(topic)
           var out=getOutPath(topic)
-          console.log(out)
           if(out){
-              console.log("publishing on "+ch + "/" + out)
             mqttClient.publish(ch + "/" + out,_message.toString())
 
           }
             //drop the first character and slash from the topic to match requests and responses
             var _topic=topic.toString().slice(2)  
             // is this a response to a previous message
+
             if(timers[ch]){
                 if(timers[ch][_topic]){
                     //clear the entry from the list of timers
-                    clearInterval(timers[ch][_topic].setInterval)
+                    clearInterval(timers[ch][_topic]._setInterval)
                     delete timers[ch][_topic]
                 }
             }
             
-            console.log(timers)
             //does this channel require a response  
-            if(channel.resp){
-                console.log(topic + " needs a response on topic")
+            console.log(channel)
+            if(channel.respCh){
                 //set up a timer for this response, issue a warning back to the platform if not received in time
                 if(!timers[channel.respCh]){
                     timers[channel.respCh]=[]
@@ -170,32 +164,38 @@ function init(brokers,mqttServer){
                 if(channel.retries){
                     retries=channel.retries
                 }
-                
-                timers[channel.respCh][_topic]= {
-                            setInterval: setInterval(
-                                function(topic,channel,retries) {
-                                    var _this = this
-                                    var retry=0;
-                                    return function(){
-                                        //TODO: see if we've gotten a response yet
+                var si=setInterval(
+                    function(topic,channel,retries) {
+                        var _this = this
+                        var retry=0;
+                        return function(){
+                            //TODO: see if we've gotten a response yet
 
-                                        retry++
-                                        if(retry>retries){
-                                            //remove the timer
-                                            clearInterval(_this)
-                                            return
-                                        }
-                                        console.log("Topic " + topic +": wait " + retry + " of " + retries)
-                                        // this is where the updates
-                                    }
-                                }(topic,channel,retries),
-                          
-                               interval)
+                            retry++
+                            if(retry>retries){
+                                //remove the timer
+                                mqttClient.publish("e/" + topic, JSON.stringify({
+                                    err: "Timeout",
+                                    errorMsg: "no response received"
+                                }))
+                                clearInterval(si)
+                                return
+                            }
+                            console.log("Topic " + topic +": wait " + retry + " of " + retries)
+                            // this is where the updates
+                        }
+                    }(topic,channel,retries),
+              
+                   interval)
+                timers[channel.respCh][_topic]= {
+                            _setInterval: si
                         }
                     }
                 }
         } catch (err) {
-         console.log(err)
+         mqttClient.publish("e/" + topic,JSON.stringify({
+            err:err
+         }))
         }
       })
 }
@@ -211,7 +211,6 @@ function getChannel(char){
 function getOutPath(topic){
     var _topic = topic.toString()
     _topic=topic.slice(2) //remove the channel and the first slash
-    console.log(myPaths)
     //need to iterate through the paths because the inbound topic could be any length due to wildcards
     for (path in myPaths){
         if(_topic.startsWith(path)){
