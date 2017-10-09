@@ -3,15 +3,20 @@ var Schema = mongoose.Schema
 
 var SensorSchema = new Schema({
   channel: String,
+  id: String,
+  name: String,
+  config: String, //Need to JSON parse this
   sensorId: String,
   description: String,
-  handler: String,
+  handler: {
+    type: Schema.Types.ObjectId,
+    ref: 'Handler'
+  },
   config:String,
   location: {
     type: Schema.Types.ObjectId,
     ref: 'Location'
   },
-  name: String,
   active: Boolean,
   added: Date,
   poll: Number,

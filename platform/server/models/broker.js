@@ -2,8 +2,17 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var BrokerSchema = new Schema({
-  topic:String, //wildcard on this topic
+  
+  broker: String,
   description: String,
+  myPaths: [
+      {
+          in:String,
+          out:String
+      }
+     ],
+  handler: String,
+  active:true,
   deployment: {
     type: Schema.Types.ObjectId,
     ref:'deployment'
