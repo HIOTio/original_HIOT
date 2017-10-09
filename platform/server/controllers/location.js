@@ -24,7 +24,9 @@ exports.location_list_by_deployment = function (req, res, next) {
 exports.location_detail = function (req, res, next) {
   Location.find({
     _id: req.params.id
-  }, function (err, location) {
+  })
+  .populate("parent")
+  .exec( function (err, location) {
     if (err) {
       return next(err)
     }
