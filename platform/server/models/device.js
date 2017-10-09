@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var DeviceSchema = new Schema({
-    hiotId: {
+    deviceId: {
       type: String,
       required: true,
       uppercase: true

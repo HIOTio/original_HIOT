@@ -34,16 +34,16 @@ exports.aggregator_detail = function (req, res) {
   })
 }
 exports.aggregator_create = function (req, res, next) {
-  req.checkBody('description', 'Each aggregator needs a description').notEmpty()
-  req.sanitize('description').escape()
-  req.sanitize('description').trim()
-  var errors = req.validationErrors()
   var aggregator = new Aggregator({
-    deployment: req.body.deployment,
+    handler: req.body.handler,
     name: req.body.name,
-    description: req.body.description,
-    topic: req.body.topic,
-    handler: req.body.handler
+    channel:req.body.channel,
+    topics: req.body.topics,
+    description:req.body.description,
+    handler:req.body.handler,
+    poll:req.body.poll,
+    deployment:req.body.deployment,
+    active:req.body.active
   })
   aggregator.save(function (err) {
     if (err) {
@@ -107,3 +107,4 @@ exports.aggregator_update = function (req, res) {
       res.redirect(303, doc.url)
     })
 }
+

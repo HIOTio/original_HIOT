@@ -36,10 +36,13 @@ exports.handler_create = function (req, res, next) {
     name:req.body.name,
     aggregator:req.body.aggregator,
     controller:req.body.controller,
+    broker:req.body.broker,
+    coordinator:req.body.coordinator,
+    sensor:req.body.sensor,
     deployment: req.body.deployment,
     description: req.body.description,
-    path: req.body.path,
     commands: req.body.commands
+
   })
   handler.save(function (err) {
     if (err) {
@@ -66,12 +69,14 @@ exports.handler_update = function (req, res, next) {
   Handler.findOneAndUpdate({
     _id: req.body._id
   }, {
-    tname:req.body.name,
+    name:req.body.name,
     aggregator:req.body.aggregator,
     controller:req.body.controller,
+    broker:req.body.broker,
+    coordinator:req.body.coordinator,
+    sensor:req.body.sensor,
     deployment: req.body.deployment,
     description: req.body.description,
-    path: req.body.path,
     commands: req.body.commands
   }, {
     upsert: false

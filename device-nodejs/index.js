@@ -18,6 +18,7 @@ if(_config.moscaEnabled){
 }
 // set up device messaging - config etc
 
+
 // Role: Aggregator( aggList, mqttServer) - pass a list of mqttServers so that the aggregator can choose/swith
 aggregator.init(_config.roleChannels.aggregator,_config.mqttServers)
 // Role: Broker (brokerList, mqttServer)

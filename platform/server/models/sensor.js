@@ -12,7 +12,7 @@ var SensorSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Handler'
   },
-  config:String,
+  config:Object,
   location: {
     type: Schema.Types.ObjectId,
     ref: 'Location'
@@ -23,11 +23,7 @@ var SensorSchema = new Schema({
   sensortype: {
     type: Schema.Types.ObjectId,
     ref: 'Sensor_Types'
-  },
-  sensor_readings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Sensor_Reading'
-  }]
+  }
 })
 SensorSchema
 	.virtual('url')

@@ -35,9 +35,10 @@ exports.broker_create = function (req, res, next) {
   var broker = new Broker({
     deployment: req.body.deployment,
     description: req.body.description,
-    topic: req.body.topic,
-    added: req.body.added,
-    active: req.body.active
+    name: req.body.name,
+    myPaths: [req.body.myPaths],
+    handler: req.body.handler,
+    active:req.body.active
   })
   broker.save(function (err) {
     if (err) {
@@ -66,9 +67,10 @@ exports.broker_update = function (req, res, next) {
   }, {
     deployment: req.body.deployment,
     description: req.body.description,
-    topic: req.body.topic,
-    added: req.body.added,
-    active: req.body.active
+    name: req.body.name,
+    myPaths: [req.body.myPaths],
+    handler: req.body.handler,
+    active:req.body.active
   }, {
     upsert: false
   },

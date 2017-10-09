@@ -1,9 +1,38 @@
-/*
-Need to automagically create a config file for a particular device
-Device details from Device Controller
-Roles from referenced items (e.g. broker, aggregator)
-Map results to format expected by device
-push config out to device
-validation on both ends
+var device= require('./device')
 
-*/
+module.exports = {
+    getDeviceConfig: _getDeviceConfig,
+    testDeviceConfig: _testDeviceConfig,
+    resetDeviceConfig: _resetDeviceConfig,
+    updateDeviceConfig: _updateDeviceConfig
+}
+
+function _getDeviceConfig(req,res,next){
+    //build the structure of the config
+
+    res.send({
+        function:"_getDeviceConfig",
+        status: "not implemented"
+    })
+}
+
+function _testDeviceConfig(req,res,next){
+    res.send({
+        function:"_testDeviceConfig",
+        status: "not implemented"
+    })
+}
+
+function _resetDeviceConfig(req,res,next){
+    res.send({
+        function:"_resetDeviceConfig",
+        status: "not implemented"
+    })
+}
+
+function _updateDeviceConfig(req,res,next){
+    res.send({
+        function:"_updateDeviceConfig",
+        status: "not implemented"
+    })
+}

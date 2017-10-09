@@ -29,7 +29,12 @@ exports.sensor_types_create = function (req, res, next) {
     added: req.body.added,
     defaultPushInterval: req.body.defaultPushInterval
   })
-  res.redirect(303, sensor_types.url)
+  sensor_types.save(function (err) {
+    if (err) {
+      return next(err)
+    }
+    res.redirect(sensor_types.url)
+  })
 }
 exports.sensor_types_delete = function (req, res, next) {
   Sensor.findOneAndUpdate({

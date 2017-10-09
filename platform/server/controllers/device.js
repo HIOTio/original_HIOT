@@ -1,5 +1,38 @@
 var Device = require('../models/device')
+exports.config= function(req,res,next){
+  Device.findById(
+    {_id:req.params.device}
+  )
+  .populate("brokers")
+  .populate("aggregators")
+  .populate("sensors")
+  .populate("controllers")
+  .exec(function(err,_device){
+    if (err) {
+      return next(err)
+    }
+    //create config.json format from device
+    var dev_file={
+      device:{
+        hiotId:_device.deviceId,
+        name:_device.name,
+        description:_device.description
+      },
+      roleChannels:{
+        broker:_device.brokers,
+        coordinator: _device.coordinator,
+        controller: _device.controllers,
+        aggregator:_device.aggregators,
+        sensor: _device.sensors,
+      },
+      moscaEnabled: _device.moscaEnabled,
+      moscaPort: _device.moscaPort,
+      mqttServers: _device.mqttBrokers,
 
+    }
+    res.send(dev_file)
+  })
+}
 exports.device_list = function (req, res, next) {
   Device.find({}, function (err, list_devices) {
     if (err) {
@@ -55,10 +88,6 @@ exports.device_detail = function (req, res, next) {
   })
 }
 exports.device_create = function (req, res, next) {
-  req.checkBody('deviceid', 'Each device needs a device id').notEmpty()
-  req.sanitize('deviceid').escape()
-  req.sanitize('deviceid').trim()
-  var errors = req.validationErrors()
   var device = new Device({
     deviceId: req.body.deviceId,
     deployment: req.body.deployment,
@@ -70,15 +99,13 @@ exports.device_create = function (req, res, next) {
     mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
     active: req.body.active,
-    isBroker: Boolean,
-    isAggregator: Boolean,
-    hasSensors: Boolean,
-    isController: Boolean,
-    isCoordinator: Boolean,
+    coordinator:req.body.coordinator,
     aggregators: req.body.aggregators,
     controllers: req.body.controllers,
     sensors: req.body.sensors,
-    brokers: req.body.brokers
+    brokers: req.body.brokers,
+    moscaEnabled: req.body.moscaEnabled,
+    moscaPort: req.body.moscaPort
   })
   device.save(function (err) {
     if (err) {
@@ -115,15 +142,13 @@ exports.device_update = function (req, res, next) {
     mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
     active: req.body.active,
-    isBroker: Boolean,
-    isAggregator: Boolean,
-    hasSensors: Boolean,
-    isController: Boolean,
-    isCoordinator: Boolean,
+    coordinator:req.body.coordinator,
     aggregators: req.body.aggregators,
     controllers: req.body.controllers,
     sensors: req.body.sensors,
-    brokers: req.body.brokers
+    brokers: req.body.brokers,
+    moscaEnabled: req.body.moscaEnabled,
+    moscaPort: req.body.moscaPort
   }, {
     upsert: false
   },
