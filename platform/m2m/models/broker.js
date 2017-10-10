@@ -2,15 +2,22 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var BrokerSchema = new Schema({
-  deviceId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Device',
-    required: true
-  },
   description: String,
-  parent: {
+  name: String,
+  myPaths: [
+      {
+          in:String,
+          out:String
+      }
+     ],
+  handler: {
     type: Schema.Types.ObjectId,
-    ref: 'Device'
+    ref:"handler"
+  },
+  active:true,
+  deployment: {
+    type: Schema.Types.ObjectId,
+    ref:'deployment'
   },
   added: Date,
   active: Boolean

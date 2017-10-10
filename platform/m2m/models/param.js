@@ -16,4 +16,4 @@ ParamSchema
 	.get(function () {
   return '/api/param/' + this._id
 })
-module.exports = mongoose.model('ParamModel', ParamSchema)
+module.exports = mongoose.model('Param', ParamSchema)
