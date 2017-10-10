@@ -1,27 +1,30 @@
 
 var db = require('./db')
-
-module.exports = function( client, channel) {
+var _ch
+module.exports = function( client, channels) {
+  //list of all topics
 
     client.on('connect', function () {
-      client.subscribe(channel.topic)
+      for(_ch in channels){
+        client.subscribe(channels[_ch].topic)
+        console.log("M2m subscribed to " + channels[_ch].topic)
+      }
     })
 
-    client.on('message', function (channel) {
-      var topic=channel.topic
-      var model=require('./models/'+channel.model)
-      if(model){
-      DBObject.create(JSON.parse(message.toString()), function (err, readings) {
-    //   console.log("received message on topic '" + topic.toString() + "'")
-        if (err) {
-                  // need to raise an event on the platform
-    //     console.log(err)
-        } else {
+    client.on('message', function (topic,message) {
+      var _top=topic.slice(0,1)
+      channel=channels[_top]
+      console.log("m2m message received on topic :" + topic + " processing under " + channel.topic)
+      if(channel.model){
+        var model= new require('./models/'+channel.model)(JSON.parse(message.toString()))
+        model.save(function(err,_model){
 
+        })
+        console.log("m2m saving to DB")
         }
+        
       })
-    }
-    })
+
     client.on('error', function (err) {
     //  console.log(err)
     })
