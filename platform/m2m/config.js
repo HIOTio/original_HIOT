@@ -1,16 +1,19 @@
 module.exports = {
-
-  'mqttServer': 'mqtt://localhost',
+preventMosca:true, //use this when debugging full platform, use the mosca server from the coordinator
+  'mqttPort': 1883,
+  'mqttServer': 'http://localhost',
   'mqttTopic': [{
     name: 'sensor readings',
     topic: 's/#',
-    model: 'sensor_reading'
+    model: 'sensor_reading',
+    tellPlatform:false
   },    
 {
     topic:"e/#",
     name:"Error message from the deployment",
     model:"error",
-    function:"error"
+    function:"error",
+    tellPlatform:true
 },
 {
     topic:"r/#",

@@ -8,14 +8,13 @@ var ExtractJwt = passportJWT.ExtractJwt
 var JwtStrategy = passportJWT.Strategy
 var config = require('./config')
 var app = express()
+app.use(bodyParser.json())
+ // Set up websockets
+var socketSend = {}
+require('express-ws')(app);
 
 
-app.use(bodyParser.json())
-app.use(bodyParser.json())
 var cors = require('cors')
-app.use(bodyParser.urlencoded({
-  extended: 'false'
-}))
 app.use(expressValidator())
 // var expressJwt = require('express-jwt')
 // var db = require('./api/db')
@@ -116,12 +115,40 @@ app.use('/api/thing', r_thing)
 app.use('/api/topic', r_topic)
 app.use('/api/navigation', r_navigation)
 
-// End Routing
+
+// enable comms from m2m - for now, just create a websocket message to send to connected clients
+app.use('/m2p',function(req,res,next){
+  if(req.body.msg){
+    console.log(socketSend)
+    socketSend.send(req.body.msg);
+    res.send(200)
+  }else{
+    console.log(req)
+    res.send(500);
+  }
+})
+app.ws('/socket', function(ws, req) {
+  socketSend=ws;
+  ws.on('connect', function(){
+    console.log("Ws Connection established");
+})
+  ws.on('message',function(message){
+    console.log("received message "  + message)
+  })
+  ws.on('close', function(){
+    console.log("Ws Connection closed");
+})
+
+});
 
 app.get('/', function (req, res) {
   res.send('HIOT Platform!')
+  console.log("sending ws")
+  socketSend.send("someone requested root")
 })
+
 
 app.listen(3000, function () {
  // console.log('Platform running on port 3000!')
+
 })
