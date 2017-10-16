@@ -1,12 +1,12 @@
 <div class="page-layout blank p-24" perfectScrollbar>
 
 
-	<md-card *ngFor="let deployment of deployment  | async">
-		<md-card-title md-tooltip="{{deployment.description}}">{{deployment.name}}
-			<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+	<mat-card *ngFor="let deployment of deployment  | async">
+		<mat-card-title mat-tooltip="{{deployment.description}}">{{deployment.name}}
+			<button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
 
 
-		<md-card-content>
+		<mat-card-content>
 			<pre>
 			<device-count [deployment]='deployment._id'></device-count>
     Sensors (breakdown by type???)
@@ -16,15 +16,15 @@
     Locations/Groups
     Health warnings
     </pre>
-		</md-card-content>
-		<md-card-actions>
-			<button md-raised-button>Deployment Details</button>
-			<button md-raised-button>Admin Tasks</button>
-			<button md-raised-button>Maps</button>
-			<button md-raised-button>Health</button>
-			<button md-raised-button>Reports</button>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button>Deployment Details</button>
+			<button mat-raised-button>Admin Tasks</button>
+			<button mat-raised-button>Maps</button>
+			<button mat-raised-button>Health</button>
+			<button mat-raised-button>Reports</button>
 
-		</md-card-actions>
+		</mat-card-actions>
 		<device-list [deployment]='deployment._id'>this is the device list</device-list>
-	</md-card>
+	</mat-card>
 </div>

@@ -29,9 +29,9 @@ export class ConfigService
                 footer    : "none", // 'above', 'below', none
             },
             colorClasses    : {
-                toolbar: "md-red-500-bg",
-                navbar : "md-red-500-bg",
-                footer : "md-red-800-bg",
+                toolbar: "mat-red-500-bg",
+                navbar : "mat-red-500-bg",
+                footer : "mat-red-800-bg",
             },
             customScrollbars: true,
         };

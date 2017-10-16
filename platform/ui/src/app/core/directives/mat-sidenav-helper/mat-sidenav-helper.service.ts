@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { MdSidenav } from "@angular/material";
+import { MatSidenav } from "@angular/material";
 
 @Injectable()
 export class MdSidenavHelperService
 {
-    public sidenavInstances: MdSidenav[];
+    public sidenavInstances: MatSidenav[];
 
     constructor()
     {

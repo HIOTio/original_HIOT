@@ -1,6 +1,6 @@
-<md-list class="date">
+<mat-list class="date">
 
-	<h3 md-subheader>
+	<h3 mat-subheader>
 		<span>Today</span>
 	</h3>
 
@@ -14,30 +14,30 @@
 			<span> {{date | date:'MMMM'}}</span>
 		</div>
 	</div>
-</md-list>
+</mat-list>
 
-<md-divider></md-divider>
+<mat-divider></mat-divider>
 
-<md-list>
-	<h3 md-subheader>
+<mat-list>
+	<h3 mat-subheader>
 		<span>Quick Settings</span>
 	</h3>
 
-	<md-list-item>
-		<md-slide-toggle fxFlex class="mat-primary" [(ngModel)]="settings.notify" aria-label="Notifications" labelPosition="before">
+	<mat-list-item>
+		<mat-slide-toggle fxFlex class="mat-primary" [(ngModel)]="settings.notify" aria-label="Notifications" labelPosition="before">
 			<h3>Warnings</h3>
-		</md-slide-toggle>
-	</md-list-item>
+		</mat-slide-toggle>
+	</mat-list-item>
 
-	<md-list-item>
-		<md-slide-toggle fxFlex class="mat-accent" [(ngModel)]="settings.cloud" aria-label="Cloud" labelPosition="before">
+	<mat-list-item>
+		<mat-slide-toggle fxFlex class="mat-accent" [(ngModel)]="settings.cloud" aria-label="Cloud" labelPosition="before">
 			<h3>Changes</h3>
-		</md-slide-toggle>
-	</md-list-item>
+		</mat-slide-toggle>
+	</mat-list-item>
 
-	<md-list-item>
-		<md-slide-toggle fxFlex class="mat-warn" [(ngModel)]="settings.retro" aria-label="Retro Thrusters" labelPosition="before">
+	<mat-list-item>
+		<mat-slide-toggle fxFlex class="mat-warn" [(ngModel)]="settings.retro" aria-label="Retro Thrusters" labelPosition="before">
 			<h3>Hide Advanced</h3>
-		</md-slide-toggle>
-	</md-list-item>
-</md-list>
+		</mat-slide-toggle>
+	</mat-list-item>
+</mat-list>

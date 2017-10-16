@@ -1,16 +1,16 @@
 List all of my deployments and my access/role to then Stats for number of things, controllers and brokers health status and alerts
 
-<md-card *ngFor="let deployment of deployments  | async">
-    <md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
-        <button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
-    <md-card-subtitle>{{deployment.role.name}}
+<mat-card *ngFor="let deployment of deployments  | async">
+    <mat-card-title mat-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+        <button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
+    <mat-card-subtitle>{{deployment.role.name}}
 
-        <md-chip-list>
-            <md-chip>{{deployment.role.name}}</md-chip>
-        </md-chip-list>
-    </md-card-subtitle>
+        <mat-chip-list>
+            <mat-chip>{{deployment.role.name}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-subtitle>
 
-    <md-card-content>
+    <mat-card-content>
         <pre>
     Sensors (breakdown by type???)
     Controllers (breakdown??)
@@ -19,13 +19,13 @@ List all of my deployments and my access/role to then Stats for number of things
     Locations/Groups
     Health warnings
     </pre>
-    </md-card-content>
-    <md-card-actions>
-        <button md-raised-button (click)="saveChanges()">Deployment Details</button>
-        <button md-raised-button (click)="saveChanges()">Admin Tasks</button>
-        <button md-raised-button (click)="saveChanges()">Maps</button>
-        <button md-raised-button (click)="saveChanges()">Health</button>
-        <button md-raised-button (click)="saveChanges()">Reports</button>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="saveChanges()">Deployment Details</button>
+        <button mat-raised-button (click)="saveChanges()">Admin Tasks</button>
+        <button mat-raised-button (click)="saveChanges()">Maps</button>
+        <button mat-raised-button (click)="saveChanges()">Health</button>
+        <button mat-raised-button (click)="saveChanges()">Reports</button>
 
-    </md-card-actions>
-</md-card>
+    </mat-card-actions>
+</mat-card>

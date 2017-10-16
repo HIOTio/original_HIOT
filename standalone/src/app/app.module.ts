@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule,MdSliderModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule,MatSliderModule} from '@angular/material';
 import {FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -19,7 +19,7 @@ import { DataService } from './data.service';
       HttpModule,
       FormsModule,
       FlexLayoutModule,
-      BrowserAnimationsModule,MdButtonModule, MdCheckboxModule,MdSliderModule
+      BrowserAnimationsModule,MatButtonModule, MatCheckboxModule,MatSliderModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, HostBinding, HostListener, Input, OnDestroy, OnInit } from "@angular/core";
 import { ObservableMedia } from "@angular/flex-layout";
-import { MdSidenav } from "@angular/material";
-import { MdSidenavHelperService } from "app/core/directives/md-sidenav-helper/md-sidenav-helper.service";
+import { MatSidenav } from "@angular/material";
+import { MdSidenavHelperService } from "app/core/directives/mat-sidenav-helper/mat-sidenav-helper.service";
 import { Subscription } from "rxjs/Subscription";
 import { MatchMedia } from "../../services/match-media.service";
 
@@ -12,17 +12,17 @@ export class MdSidenavHelperDirective implements OnInit, AfterViewInit, OnDestro
 {
     public matchMediaSubscription: Subscription;
 
-     @HostBinding("class.md-is-locked-open") isLockedOpen = true;
-     @HostBinding("class.md-stop-transition") stopTransition = true;
+     @HostBinding("class.mat-is-locked-open") isLockedOpen = true;
+     @HostBinding("class.mat-stop-transition") stopTransition = true;
 
      @Input("mdSidenavHelper") id: string;
-     @Input("md-is-locked-open") mdIsLockedOpenBreakpoint: string;
+     @Input("mat-is-locked-open") mdIsLockedOpenBreakpoint: string;
 
     constructor(
         private mdSidenavService: MdSidenavHelperService,
         private matchMedia: MatchMedia,
         private observableMedia: ObservableMedia,
-        private mdSidenav: MdSidenav,
+        private mdSidenav: MatSidenav,
     )
     {
     }
