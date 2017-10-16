@@ -10,8 +10,8 @@
 	</ng-container>
 -->
 <div  *ngFor="let item of navigation" class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
-<div *ngIf="item.children"><button mat-button [mdMenuTriggerFor]="menu">{{item.title}}</button>
-<mat-menu #menu="mdMenu">
+<div *ngIf="item.children"><button mat-button [matMenuTriggerFor]="menu">{{item.title}}</button>
+<mat-menu #menu="matMenu">
 <button mat-menu-item *ngFor="let line of item.children" [routerLink]="[line.url]">{{line.title}}</button>
 	</mat-menu>
 </div>

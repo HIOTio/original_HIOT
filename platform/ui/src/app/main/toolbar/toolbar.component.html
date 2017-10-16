@@ -41,7 +41,7 @@
 
 			<mat-spinner *ngIf="showSpinner" class="loading-spinner mx-8"></mat-spinner>
             <div class="toolbar-separator"></div>
-			<button mat-button [mdMenuTriggerFor]="userMenu" class="user-button">
+			<button mat-button [matMenuTriggerFor]="userMenu" class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar" src="assets/images/avatars/profile.jpg">
                     <span class="username mr-12" fxHide fxShow.gt-sm>{{user.firstmame }} {{user.lastname}}</span>
@@ -49,7 +49,7 @@
                 </div>
             </button>
 
-			<mat-menu #userMenu="mdMenu">
+			<mat-menu #userMenu="matMenu">
 
 				<button mat-menu-item>
                     <mat-icon>account_circle</mat-icon>
@@ -74,14 +74,14 @@
 
 			<div class="toolbar-separator"></div>
 
-			<button mat-button class="language-button" [mdMenuTriggerFor]="languageMenu">
+			<button mat-button class="language-button" [matMenuTriggerFor]="languageMenu">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="flag mr-8" [src]="'assets/images/flags/'+selectedLanguage.flag+'.png'">
                     <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
                 </div>
             </button>
 
-			<mat-menu #languageMenu="mdMenu">
+			<mat-menu #languageMenu="matMenu">
 				<button mat-menu-item *ngFor="let lang of languages" (click)="selectedLanguage = lang">
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <img class="flag mr-16" [src]="'assets/images/flags/'+lang.flag+'.png'">

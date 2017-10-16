@@ -1,7 +1,7 @@
 List all of my deployments and my access/role to then Stats for number of things, controllers and brokers health status and alerts
 
 <mat-card *ngFor="let deployment of deployments  | async">
-    <mat-card-title mat-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+    <mat-card-title matTooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
         <button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
     <mat-card-subtitle>{{deployment.role.name}}
 

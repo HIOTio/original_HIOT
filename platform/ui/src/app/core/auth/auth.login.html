@@ -4,12 +4,12 @@
     <form name="form" (ngSubmit)="f.form.valid && login(model)" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <mat-input-container>
-                <input type="email" mdInput placeholder="Email Address" name="username" [(ngModel)]="model.username" #username="ngModel" required /></mat-input-container>
+                <input type="email" matInput placeholder="Email Address" name="username" [(ngModel)]="model.username" #username="ngModel" required /></mat-input-container>
             <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <mat-input-container>
-                <input mdInput placeholder="Password" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required /></mat-input-container>
+                <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required /></mat-input-container>
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
         <div class="form-group">

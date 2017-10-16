@@ -2,7 +2,7 @@
     
     
         <mat-card *ngFor="let device of device  | async">
-            <mat-card-title mat-tooltip="{{device.description}}">{{device.name}}
+            <mat-card-title matTooltip="{{device.description}}">{{device.name}}
                 <button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button>
             </mat-card-title>
        

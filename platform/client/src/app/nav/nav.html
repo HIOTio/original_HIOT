@@ -18,7 +18,7 @@
     </button>
 
 </mat-toolbar>
-<mat-menu x-position="before" #menu="mdMenu">
+<mat-menu x-position="before" #menu="matMenu">
     <button mat-menu-item routerLink="/deployment" *ngIf="authed()">Deployments</button>
     <button mat-menu-item routerLink="/dashboard" *ngIf="authed()">Dashboard</button>
     <button mat-menu-item routerLink="/login" *ngIf="!authed()">Login</button>

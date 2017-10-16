@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import { MatButtonModule, MdCheckboxModule, MdMenuModule, MdSnackBarModule } from "@angular/material";
+import { MatButtonModule, MdCheckboxModule, matMenuModule, MdSnackBarModule } from "@angular/material";
 import { MaterialModule } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -36,7 +36,7 @@ import { routing } from "./routing";
         MaterialModule,
         MdButtonModule,
         MdCheckboxModule,
-        MdMenuModule,
+        matMenuModule,
         MdSnackBarModule,
     ],
     declarations: [

@@ -2,7 +2,7 @@
 
 
 	<mat-card *ngFor="let deployment of deployment  | async">
-		<mat-card-title mat-tooltip="{{deployment.description}}">{{deployment.name}}
+		<mat-card-title matTooltip="{{deployment.description}}">{{deployment.name}}
 			<button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
 
 
