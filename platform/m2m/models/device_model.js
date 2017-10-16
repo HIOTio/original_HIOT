@@ -14,4 +14,4 @@ Device_ModelSchema
 	.get(function () {
   return '/api/device_model/' + this._id
 })
-module.exports = mongoose.model('Device_Model', Device_ModelSchema)
+module.exports = mongoose.model('DeviceModel', Device_ModelSchema)

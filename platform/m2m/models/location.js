@@ -3,6 +3,10 @@ var Schema = mongoose.Schema
 
 var LocationSchema = new Schema({
   description: String,
+  deployment:{
+    type: Schema.Types.ObjectId,
+    ref: 'Deployment'
+  },
   parent: {
     type: Schema.Types.ObjectId,
     ref: 'Location'
@@ -16,4 +20,4 @@ LocationSchema
 })
 
 // Compile model from schema
-var LocationModel = mongoose.model('Location', LocationSchema)
+module.exports = mongoose.model('Location', LocationSchema)

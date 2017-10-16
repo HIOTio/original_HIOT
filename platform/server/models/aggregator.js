@@ -3,19 +3,21 @@ var Schema = mongoose.Schema
 
 var AggregatorSchema = new Schema({
   name: String,
-  deployment: {
-    type:Schema.Types.ObjectId,
-    ref:'Deployment'
-  },
-  description: String,
-  topic: String,
+  agg_id: String,
+  channel: String,
+  topics: [String],
+  description:String,
   handler: {
     type: Schema.Types.ObjectId,
     ref: 'Handler'
   },
+  poll:Number,
+  deployment: {
+    type:Schema.Types.ObjectId,
+    ref:'Deployment'
+  },
   added: Date,
-  active: Boolean,
-  poll:Number
+  active: Boolean
 })
 AggregatorSchema
 	.virtual('url')

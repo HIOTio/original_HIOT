@@ -113,9 +113,7 @@ var channels=[
     }
 
 ]
-function init(config){
-    
-}
+
 
 function sendUp(topic, message){
     // send message to the platform
@@ -128,7 +126,10 @@ function sendDown(topic,message){
 
 
 
-function init(mqttServer){
+function init(coord,mqttServer){
+    if(!coord){
+        return;
+    }
     //connect to the mqtt broker
     mqttClient= mqtt.connect ({
         server:mqttServer[0].server, 

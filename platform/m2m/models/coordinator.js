@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var CoordinatorSchema = new Schema({
+  coordinatorId:String,
   description: String,
   added: {
     type: Date,
@@ -17,11 +18,13 @@ var CoordinatorSchema = new Schema({
     ref: 'Deployment',
     required: true
   },
-  device: {
-    type: Schema.Types.ObjectId,
-    ref: 'Device',
-    required: true
+  channels:[
+    {
+        channelId:String,
+        description: String,
+        function: String
   }
+]
 })
 
 CoordinatorSchema

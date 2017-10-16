@@ -28,17 +28,17 @@ exports.sensor_detail = function (req, res, next) {
   })
 }
 exports.sensor_create = function (req, res, next) {
-  req.checkBody('thing', 'Each sensor needs a thing id').notEmpty()
-  req.sanitize('thing').escape()
-  req.sanitize('thing').trim()
-  var errors = req.validationErrors()
   var sensor = new Sensor({
-    thing: req.body.thing,
-    description: req.body.description,
+    id: req.body.id,
     name: req.body.name,
-    pushInterval: req.body.pushInterval,
-    added: req.body.added,
-    active: req.body.active
+    channel: req.body.channel,
+    description: req.body.description,
+    handler: req.body.handler,
+    poll: 60000,
+    config: req.body.config,
+    location: req.body.location,
+    active: req.body.active,
+    sensortype: req.body.sensortype
   })
   sensor.save(function (err) {
     if (err) {
@@ -65,15 +65,16 @@ exports.sensor_update = function (req, res, next) {
   Sensor.findOneAndUpdate({
     _id: req.body.id
   }, {
-    thing: req.body.thing,
-    description: req.body.description,
+    id: req.body.id,
     name: req.body.name,
-    pushInterval: req.body.pushInterval,
-    added: req.body.added,
-    active: req.body.active,
+    channel: req.body.channel,
+    description: req.body.description,
+    handler: req.body.handler,
+    poll: 60000,
+    config: req.body.config,
     location: req.body.location,
-    sensorType: req.body.sensorType,
-    coordinatorGroups: req.body.coordinatorGroups
+    active: req.body.active,
+    sensortype: req.body.sensortype
   }, {
     upsert: false
   },

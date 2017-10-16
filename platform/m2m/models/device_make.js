@@ -1,15 +1,15 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
-var Device_MakeSchema = new Schema({
+var DeviceMakeSchema = new Schema({
   description: String,
   added: Date
 })
-Device_MakeSchema
+DeviceMakeSchema
 	.virtual('url')
 	.get(function () {
   return '/api/device_make/' + this._id
 })
 
 // Compile model from schema
-module.exports = mongoose.model('Device_Make', Device_MakeSchema)
+module.exports = mongoose.model('DeviceMake', DeviceMakeSchema)
