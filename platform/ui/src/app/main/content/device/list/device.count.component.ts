@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import {MdSnackBar} from "@angular/material";
+import {MatSnackBar} from "@angular/material";
 import { Observable } from "rxjs/Observable";
 import {DeviceService} from "../device.service";
 

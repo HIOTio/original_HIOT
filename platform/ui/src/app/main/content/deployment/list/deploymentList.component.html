@@ -1,16 +1,16 @@
 <div class="page-layout blank p-24" perfect-scrollbar>
 
 	<div *ngFor="let deployment of deployments  | async">
-		<md-card>
-			<md-card-title md-tooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
-				<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+		<mat-card>
+			<mat-card-title matTooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+				<button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
 
-			<md-card-content>
+			<mat-card-content>
 				<div fxlayout="row">
 					<div fxFlex="60">
-						<md-chip-list>
-							<md-chip>{{deployment.role.name}}</md-chip>
-						</md-chip-list>
+						<mat-chip-list>
+							<mat-chip>{{deployment.role.name}}</mat-chip>
+						</mat-chip-list>
 						<pre>
     Sensors (breakdown by type???)
     Controllers (breakdown??)
@@ -31,19 +31,19 @@ Responsiveness (95% within 20ms : green; 90%  within 20ms late or 95% within 500
 				</pre>
 					</div>
 				</div>
-			</md-card-content>
-			<md-card-actions>
-				<button md-raised-button routerLink={{deployment.deployment._id}}>Deployment Details</button>
-				<button md-raised-button (click)="saveChanges()">Admin Tasks</button>
-				<button md-raised-button (click)="saveChanges()">Maps</button>
-				<button md-raised-button (click)="saveChanges()">Health</button>
-				<button md-raised-button (click)="saveChanges()">Reports</button>
+			</mat-card-content>
+			<mat-card-actions>
+				<button mat-raised-button routerLink={{deployment.deployment._id}}>Deployment Details</button>
+				<button mat-raised-button (click)="saveChanges()">Admin Tasks</button>
+				<button mat-raised-button (click)="saveChanges()">Maps</button>
+				<button mat-raised-button (click)="saveChanges()">Health</button>
+				<button mat-raised-button (click)="saveChanges()">Reports</button>
 
-			</md-card-actions>
-			<md-card-footer>
+			</mat-card-actions>
+			<mat-card-footer>
 				Devices | Sensors | Controllers | Aggregators | Brokers
-			</md-card-footer>
-		</md-card>
+			</mat-card-footer>
+		</mat-card>
 		<br/>
 	</div>
 </div>

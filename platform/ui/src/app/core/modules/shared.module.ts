@@ -15,8 +15,8 @@ import { HljsComponent } from "../components/hljs/hljs.component";
 import { MaterialColorPickerComponent } from "../components/material-color-picker/material-color-picker.component";
 import { NavigationService } from "../components/navigation/navigation.service";
 import { IfOnDomDirective } from "../directives/if-on-dom/if-on-dom.directive";
-import { MdSidenavHelperDirective, MdSidenavTogglerDirective } from "../directives/md-sidenav-helper/md-sidenav-helper.directive";
-import { MdSidenavHelperService } from "../directives/md-sidenav-helper/md-sidenav-helper.service";
+import { MdSidenavHelperDirective, MdSidenavTogglerDirective } from "../directives/mat-sidenav-helper/mat-sidenav-helper.directive";
+import { MdSidenavHelperService } from "../directives/mat-sidenav-helper/mat-sidenav-helper.service";
 import { PipesModule } from "../pipes/pipes.module";
 import { MatchMedia } from "../services/match-media.service";
 

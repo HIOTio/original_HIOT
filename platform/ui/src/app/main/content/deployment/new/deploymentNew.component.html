@@ -1,41 +1,41 @@
 <div class="page-layout blank p-24" perfect-scrollbar>
 
 
-	<md-card>
-		<md-card-title>Add a new deployment
-			<button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button></md-card-title>
+	<mat-card>
+		<mat-card-title>Add a new deployment
+			<button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
 
 
-		<md-card-content>
+		<mat-card-content>
 
 
 			<form class="hiot-full-width">
 				<div fxLayout="column">
-					<md-input-container>
-						<input mdInput placeholder="Deployment Name" name="name" [(ngModel)]="deployment.name" >
-					</md-input-container>
+					<mat-input-container>
+						<input matInput placeholder="Deployment Name" name="name" [(ngModel)]="deployment.name" >
+					</mat-input-container>
 
-					<md-input-container>
-						<input mdInput placeholder="Description" name="description" [(ngModel)]="deployment.description" >
-					</md-input-container>
+					<mat-input-container>
+						<input matInput placeholder="Description" name="description" [(ngModel)]="deployment.description" >
+					</mat-input-container>
 <!--
 //NOTE: think about not hiding this and letting the user specify an owner...
-					<md-select placeholder="Owner" [(ngModel)]="deployment.owner" floatPlaceholder="never" name="owner">
-						<md-option *ngFor="let user of deployment_users" [value]="user._id">{{ user.name }}</md-option>
-						<md-option [value]="new">Add User</md-option>
-					</md-select> -->
-					<md-slide-toggle class="example-margin" [color]="color" [checked]="checked" [(ngModel)]="deployment.active" name="isActive"> 
+					<mat-select placeholder="Owner" [(ngModel)]="deployment.owner" floatPlaceholder="never" name="owner">
+						<mat-option *ngFor="let user of deployment_users" [value]="user._id">{{ user.name }}</mat-option>
+						<mat-option [value]="new">Add User</mat-option>
+					</mat-select> -->
+					<mat-slide-toggle class="example-margin" [color]="color" [checked]="checked" [(ngModel)]="deployment.active" name="isActive"> 
 						Active
-					</md-slide-toggle>
+					</mat-slide-toggle>
 				</div>
 			</form>
-		</md-card-content>
-		<md-card-actions>
-			<button md-raised-button (click)="AddDeployment()">Save</button>
-			<button md-raised-button (click)="clear()">Cancel</button>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button (click)="AddDeployment()">Save</button>
+			<button mat-raised-button (click)="clear()">Cancel</button>
 
-		</md-card-actions>
+		</mat-card-actions>
 
-	</md-card>
+	</mat-card>
 
 </div>

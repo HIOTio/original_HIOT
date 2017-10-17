@@ -1,51 +1,51 @@
 <div class="page-layout blank p-24" perfect-scrollbar>
     
     
-        <md-card *ngFor="let device of device  | async">
-            <md-card-title md-tooltip="{{device.description}}">{{device.name}}
-                <button md-button><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            </md-card-title>
+        <mat-card *ngFor="let device of device  | async">
+            <mat-card-title matTooltip="{{device.description}}">{{device.name}}
+                <button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </mat-card-title>
        
-            <md-card-content>
+            <mat-card-content>
                 
 
    <div>
 
-        <md-expansion-panel>
-                <md-expansion-panel-header>
-                  <md-panel-title>
+        <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
                         {{device.description}}
-                  </md-panel-title>
-                  <md-panel-description>
+                  </mat-panel-title>
+                  <mat-panel-description>
                     {{device.deviceId}}
-                  </md-panel-description>
-                </md-expansion-panel-header>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
                 <div>Device id, name and description</div>
                 <div>Location</div>
                 <div><b>MQTT server</b> -- address and portK</div>
                 <div>Roles</div>
-              </md-expansion-panel>
+              </mat-expansion-panel>
               
 
         
 
-        <md-tab-group>
-                <md-tab label="Sensors">Sensors</md-tab>
-                <md-tab label="Controllers">Controllers</md-tab>
-                <md-tab label="Health">Health</md-tab>
+        <mat-tab-group>
+                <mat-tab label="Sensors">Sensors</mat-tab>
+                <mat-tab label="Controllers">Controllers</mat-tab>
+                <mat-tab label="Health">Health</mat-tab>
                  
-<md-tab label="Aggregators"><aggregator-list [ids]="device.aggregators"></aggregator-list></md-tab>
-<md-tab label="Controllers">Controllers</md-tab>
-<md-tab label="Broker Details">Broker Details</md-tab>
-              </md-tab-group>
+<mat-tab label="Aggregators"><aggregator-list [ids]="device.aggregators"></aggregator-list></mat-tab>
+<mat-tab label="Controllers">Controllers</mat-tab>
+<mat-tab label="Broker Details">Broker Details</mat-tab>
+              </mat-tab-group>
 
    </div>
-            </md-card-content>
-            <md-card-actions>
-                <button md-raised-button>Push Config to Device</button>
-                <button md-raised-button>Send Command</button>
-                <button md-raised-button>Reset Stats</button>
-            </md-card-actions>
-        </md-card>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button>Push Config to Device</button>
+                <button mat-raised-button>Send Command</button>
+                <button mat-raised-button>Reset Stats</button>
+            </mat-card-actions>
+        </mat-card>
     </div>
     

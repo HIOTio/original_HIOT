@@ -1,0 +1,31 @@
+List all of my deployments and my access/role to then Stats for number of things, controllers and brokers health status and alerts
+
+<mat-card *ngFor="let deployment of deployments  | async">
+    <mat-card-title matTooltip="{{deployment.deployment.description}}">{{deployment.deployment.name}}
+        <button mat-button><i class="fa fa-pencil" aria-hidden="true"></i></button></mat-card-title>
+    <mat-card-subtitle>{{deployment.role.name}}
+
+        <mat-chip-list>
+            <mat-chip>{{deployment.role.name}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-subtitle>
+
+    <mat-card-content>
+        <pre>
+    Sensors (breakdown by type???)
+    Controllers (breakdown??)
+    Aggregators (Admin only)
+    Brokers (Admin only)]
+    Locations/Groups
+    Health warnings
+    </pre>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="saveChanges()">Deployment Details</button>
+        <button mat-raised-button (click)="saveChanges()">Admin Tasks</button>
+        <button mat-raised-button (click)="saveChanges()">Maps</button>
+        <button mat-raised-button (click)="saveChanges()">Health</button>
+        <button mat-raised-button (click)="saveChanges()">Reports</button>
+
+    </mat-card-actions>
+</mat-card>

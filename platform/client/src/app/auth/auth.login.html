@@ -1,6 +1,5 @@
 <div class="col-mat-6 col-mat-offset-3">
     <h2>Login</h2>
-    <div *ngIf="error">{{error}}</div>
     <form name="form" (ngSubmit)="f.form.valid && login(model)" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <mat-input-container>

@@ -112,12 +112,12 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             // Single scroll
             &.single-scroll {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
                     flex: 1 0 auto;
                 }
             }
 
-            > md-sidenav-container {
+            > mat-sidenav-container {
                 display: flex;
                 flex: 1;
                 background: none;
@@ -136,13 +136,13 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
                     overflow-y: hidden;
                     @include mat-elevation(7);
 
-                    &.md-is-locked-open {
+                    &.mat-is-locked-open {
                         position: relative;
                         background: none;
                         box-shadow: none;
                     }
 
-                    &.md-stop-transition {
+                    &.mat-stop-transition {
 
                         ~ .mat-sidenav-content {
                             transition: none;
@@ -223,11 +223,11 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
         &.left-sidenav {
 
             // Sidenav
-            > md-sidenav-container {
+            > mat-sidenav-container {
 
                 .sidenav {
 
-                    &.md-is-locked-open {
+                    &.mat-is-locked-open {
 
                         ~ .mat-sidenav-content {
                             margin-left: 0 !important;
@@ -245,12 +245,12 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
         &.right-sidenav {
 
             // Sidenav
-            > md-sidenav-container {
+            > mat-sidenav-container {
 
                 .sidenav {
                     order: 999;
 
-                    &.md-is-locked-open {
+                    &.mat-is-locked-open {
 
                         ~ .mat-sidenav-content {
                             margin-right: 0 !important;
@@ -298,7 +298,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             // Single scroll
             &.single-scroll {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
                     flex: 1 0 auto;
 
                     > .mat-sidenav-content {
@@ -315,7 +315,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             // Inner Sidenav
             &.inner-sidenav {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
                     flex: 1;
 
                     .sidenav {
@@ -343,7 +343,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
                 }
             }
 
-            > md-sidenav-container {
+            > mat-sidenav-container {
                 display: flex;
                 flex-direction: column;
                 flex: 1;
@@ -358,7 +358,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
                     z-index: 51;
                     @include mat-elevation(7);
 
-                    &.md-is-locked-open {
+                    &.mat-is-locked-open {
                         width: 220px;
                         min-width: 220px;
                         max-width: 220px;
@@ -366,7 +366,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
                         background: transparent;
                     }
 
-                    &.md-stop-transition {
+                    &.mat-stop-transition {
 
                         ~ .mat-sidenav-content {
                             transition: none;
@@ -450,7 +450,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             &.left-sidenav,
             &.right-sidenav {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
                     flex: 1 0 auto;
                 }
             }
@@ -469,7 +469,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             &.left-sidenav,
             &.right-sidenav {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
                     flex: 1 0 auto !important;
 
                     > .mat-sidenav-content {
@@ -497,7 +497,7 @@ $top-bg-image: url('assets/images/backgrounds/header-bg.png');
             &.left-sidenav,
             &.right-sidenav {
 
-                > md-sidenav-container {
+                > mat-sidenav-container {
 
                     > .mat-sidenav-content {
 
