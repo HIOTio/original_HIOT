@@ -117,7 +117,7 @@ var channels=[
 
 function sendUp(topic, message){
     // send message to the platform
-    // seperated out from sendDown as the use cases are much different
+    // seperated out from sendDown as the use cases are much different & a different MQTT Server is required
 }
 function sendDown(topic,message){
     //send message to the deployment devices
@@ -126,12 +126,16 @@ function sendDown(topic,message){
 
 
 
-function init(coord,mqttServer){
+function init(coord,mqttServer,coord){
     if(!coord){
         return;
     }
-    //connect to the mqtt broker
-    mqttClient= mqtt.connect ({
+    //connect to the mqtt brokers
+    platformMqttClient=mqtt.connect({
+        server:m2mMqttServer,
+        port:m2mMqttPort
+    })
+    deploymentMqttClient= mqtt.connect ({
         server:mqttServer[0].server, 
         port:mqttServer[0].port})
     // load the handers into an associative array with empty arrays for the elements (topic =>[handler])
@@ -149,7 +153,7 @@ function init(coord,mqttServer){
 
 
     //handle incoming messages
-    mqttClient.on('message', function (topic, _message) {
+    deploymentMqttClient.on('message', function (topic, _message) {
         try {
           var message = JSON.parse(_message.toString())
           var commands=null
@@ -159,7 +163,7 @@ function init(coord,mqttServer){
                    if(resp){
                         if(resp.topic){
                           //send a message
-                          mqttClient.publish(resp.topic,JSON.stringify(resp.message))
+                          m2mMqttClient.publish(resp.topic,JSON.stringify(resp.message))
                         
                       }
                       }
@@ -171,6 +175,29 @@ function init(coord,mqttServer){
          console.log(err)
         }
       })
+
+m2mMqttClient.on('message', function (topic, _message) {
+    try {
+      var message = JSON.parse(_message.toString())
+      var commands=null
+          if(coordHandlers[topic]){
+              console.log("got a coordinator message")
+              var resp = coordHandlers[topic].handleMessage(topic, message)
+               if(resp){
+                    if(resp.topic){
+                      //send a message
+                      deploymentMqttClient.publish(resp.topic,JSON.stringify(resp.message))
+                    
+                  }
+                  }
+              }
+            
+        
+      
+    } catch (err) {
+     console.log(err)
+    }
+  })
 }
 function reset(aggList,mqttServer){
     //clear the mqtt subscriptions (if any)

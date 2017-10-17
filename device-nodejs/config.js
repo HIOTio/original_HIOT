@@ -1,6 +1,4 @@
-var base64 = require('file-base64')
 var handler = require('./handler')
-var fs = require('fs')
 //NOTE: need this up here to set some config details (e.g. device id and mqtt address)
 
 /*
@@ -61,6 +59,7 @@ var _config = {
   moscaEnabled:false,
   moscaPort:1884,
   mqttServers:[],
+  devicePath:'',
   device:{
     hiotId:'',
     name:'',

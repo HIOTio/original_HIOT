@@ -16,7 +16,8 @@ exports.config= function(req,res,next){
       device:{
         hiotId:_device.deviceId,
         name:_device.name,
-        description:_device.description
+        description:_device.description,
+        devicePath:_device.devicePath
       },
       roleChannels:{
         broker:_device.brokers,
@@ -27,8 +28,7 @@ exports.config= function(req,res,next){
       },
       moscaEnabled: _device.moscaEnabled,
       moscaPort: _device.moscaPort,
-      mqttServers: _device.mqttBrokers,
-
+      mqttServers: _device.mqttBrokers
     }
     res.send(dev_file)
   })
@@ -96,6 +96,7 @@ exports.device_create = function (req, res, next) {
     location:req.body.location,
     make: req.body.make,
     model: req.body.model,
+    devicePath:req.body.devicePath,
     mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
     active: req.body.active,
@@ -141,6 +142,7 @@ exports.device_update = function (req, res, next) {
     model: req.body.model,
     mqttBrokers:req.body.mqttBrokers,
     added: req.body.added,
+    devicePath:req.body.devicePath,
     active: req.body.active,
     coordinator:req.body.coordinator,
     aggregators: req.body.aggregators,

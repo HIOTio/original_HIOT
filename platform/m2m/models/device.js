@@ -7,6 +7,7 @@ var DeviceSchema = new Schema({
       required: true,
       uppercase: true
     },
+    devicePath:String,
     deployment: {
       type: Schema.Types.ObjectId,
       ref: 'Deployment'

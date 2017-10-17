@@ -23,7 +23,7 @@ exports.broker_list_for_deployment = function (req, res, next) {
 exports.broker_detail = function (req, res, next) {
   Broker.find({
     _id: req.params._id
-  }, function (err, broker) {
+  }).populate("myPaths").exec( function (err, broker) {
     if (err) {
       return next(err)
     }
@@ -36,7 +36,7 @@ exports.broker_create = function (req, res, next) {
     deployment: req.body.deployment,
     description: req.body.description,
     name: req.body.name,
-    myPaths: [req.body.myPaths],
+    myPaths: req.body.myPaths,
     handler: req.body.handler,
     active:req.body.active
   })
@@ -68,7 +68,7 @@ exports.broker_update = function (req, res, next) {
     deployment: req.body.deployment,
     description: req.body.description,
     name: req.body.name,
-    myPaths: [req.body.myPaths],
+    myPaths: req.body.myPaths,
     handler: req.body.handler,
     active:req.body.active
   }, {

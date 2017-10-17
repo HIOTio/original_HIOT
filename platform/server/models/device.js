@@ -7,6 +7,7 @@ var DeviceSchema = new Schema({
       required: true,
       uppercase: true
     },
+    devicePath:String,
     deployment: {
       type: Schema.Types.ObjectId,
       ref: 'Deployment'
@@ -48,7 +49,10 @@ var DeviceSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Controller'
     }],
-    coordinator:Boolean,
+    coordinator:{
+      "m2mMqttServer" : String,
+      "m2mMqttport" : Number
+    },
     mqttBrokers:[{
       mqttServerIP: String,
       mqttServerPort:String,
